@@ -1,0 +1,37 @@
+version: '3.6'
+
+services:
+
+  # Backend API
+  kstart-container:
+    container_name: api
+    build: ./
+    command: npm start
+    working_dir: /Workspace/fec-capstone/service
+    volumes:
+      - ./:/Workspace/fec-capstone/service
+    ports:
+      - "3000:3000"
+    environment:
+      MYSQL_URI: mysql://root:password@mysql:3306/kstart
+      REDIS_URI: redis://redis:6379
+
+  # MySQL
+  mysql:
+    container_name: mysql
+    build: ./mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: kstart
+      MYSQL_USER: k-user
+      MYSQL_PASSWORD: k-pass
+    ports:
+      - "3306:3306"
+
+  # Redis
+  redis:
+    image: redis
+    container_name: redis
+    ports:
+      - "6379:6379"
+
