@@ -2,30 +2,26 @@
   "name": "service",
   "version": "1.0.0",
   "description": "",
-  "main": "Gulpfile.js",
-  "scripts": {
-    "init-server": "cd server && npm install",
-    "init-client": "cd client && npm install",
-    "init-stack": "npm run init-server && npm run init-client",
-    "start": "cd server && npm start"
+  "keywords": [],
+  "homepage": "https://github.com/team-iroh/za-service#readme",
+  "bugs": {
+    "url": "https://github.com/team-iroh/za-service/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/team-iroh/za-service.git"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/team-iroh/za-service/issues"
+  "author": "",
+  "main": "Gulpfile.js",
+  "scripts": {
+    "init-client": "cd client && npm install --no-optional",
+    "init-server": "cd server && npm install --no-optional",
+    "init-stack": "npm install --no-optional && npm run init-server && npm run init-client",
+    "start": "cd server && npm start"
   },
-  "homepage": "https://github.com/team-iroh/za-service#readme",
+  "dependencies": {},
   "devDependencies": {
     "gulp": "^4.0.2"
-  },
-  "dependencies": {
-    "concurrently": "^5.2.0",
-    "mysql2": "^2.1.0",
-    "sequelize": "^5.21.13"
   }
 }

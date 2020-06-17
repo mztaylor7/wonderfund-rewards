@@ -1,8 +1,59 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "Server for the rewards service",
+  "keywords": [],
+  "repository": {},
+  "license": "ISC",
+  "author": "",
   "main": "src/index.js",
+  "scripts": {
+    "dev": "DEBUG=server:startup,database:startup nodemon src/index.js",
+    "start": "node src/index.js"
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "bracketSpacing": true,
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true
+  },
+  "eslintConfig": {
+    "plugins": [
+      "prettier"
+    ],
+    "extends": [
+      "airbnb",
+      "prettier",
+      "plugin:node/recommended"
+    ],
+    "rules": {
+      "class-methods-use-this": "off",
+      "consistent-return": "off",
+      "func-names": "off",
+      "no-console": "warn",
+      "no-param-reassign": "off",
+      "no-process-exit": "off",
+      "no-return-await": "off",
+      "no-underscore-dangle": "off",
+      "no-unused-vars": [
+        "error",
+        {
+          "argsIgnorePattern": "req|res|next|val"
+        }
+      ],
+      "object-shorthand": "off",
+      "prefer-destructuring": [
+        "error",
+        {
+          "object": true,
+          "array": false
+        }
+      ],
+      "spaced-comment": "off",
+      "prettier/prettier": "error"
+    }
+  },
   "dependencies": {
     "axios": "^0.19.2",
     "cors": "^2.8.5",
@@ -12,6 +63,8 @@
     "express": "^4.17.1",
     "express-rate-limit": "^5.1.3",
     "helmet": "^3.23.1",
+    "mysql2": "^2.1.0",
+    "sequelize": "^5.21.13",
     "xss-clean": "^0.1.1"
   },
   "devDependencies": {
@@ -28,55 +81,5 @@
     "jest": "^26.0.1",
     "nodemon": "^2.0.4",
     "prettier": "^2.0.5"
-  },
-  "scripts": {
-    "start": "node src/index.js",
-    "dev": "DEBUG=server:startup,database:startup nodemon src/index.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "prettier": {
-    "printWidth": 80,
-    "semi": true,
-    "bracketSpacing": true,
-    "singleQuote": true,
-    "arrowParens": "always"
-  },
-  "eslintConfig": {
-    "extends": [
-      "airbnb",
-      "prettier",
-      "plugin:node/recommended"
-    ],
-    "plugins": [
-      "prettier"
-    ],
-    "rules": {
-      "prettier/prettier": "error",
-      "spaced-comment": "off",
-      "no-console": "warn",
-      "consistent-return": "off",
-      "func-names": "off",
-      "object-shorthand": "off",
-      "no-process-exit": "off",
-      "no-param-reassign": "off",
-      "no-return-await": "off",
-      "no-underscore-dangle": "off",
-      "class-methods-use-this": "off",
-      "prefer-destructuring": [
-        "error",
-        {
-          "object": true,
-          "array": false
-        }
-      ],
-      "no-unused-vars": [
-        "error",
-        {
-          "argsIgnorePattern": "req|res|next|val"
-        }
-      ]
-    }
   }
 }
