@@ -1,18 +1,106 @@
 {
   "name": "client",
   "version": "1.0.0",
-  "description": "",
-  "main": "Gulpfile.js",
+  "description": "Client for the rewards service",
+  "keywords": [],
+  "repository": {},
+  "license": "ISC",
+  "author": "Zach Ayers",
+  "main": "index.jsx",
   "scripts": {
     "build": "",
-    "clean": "rm dist/bundle.js",
     "build-dev": "webpack -d --mode development",
     "build-prod": "webpack -p --mode production",
+    "clean": "rm dist/bundle.js",
     "dev": "webpack-dev-server --hot --mode development"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "babel": {
+    "plugins": [
+      "react-hot-loader/babel"
+    ],
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "modules": false
+        }
+      ],
+      "@babel/preset-react"
+    ]
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "bracketSpacing": true,
+    "jsxSingleQuote": true,
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es6": true
+    },
+    "parser": "babel-eslint",
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "ecmaVersion": 11,
+      "sourceType": "module"
+    },
+    "plugins": [
+      "react",
+      "prettier"
+    ],
+    "extends": [
+      "plugin:react/recommended",
+      "airbnb",
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "error"
+      ],
+      "react/jsx-filename-extension": [
+        0
+      ],
+      "react/prop-types": [
+        1,
+        {
+          "ignore": [
+            "className",
+            "children",
+            "location",
+            "params",
+            "location*"
+          ]
+        }
+      ]
+    },
+    "globals": {
+      "Atomics": "readonly",
+      "SharedArrayBuffer": "readonly"
+    }
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.3.6",
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
+    "@typescript-eslint/parser": "^2.34.0",
+    "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
+    "dotenv-expand": "^5.1.0",
+    "lodash": "^4.17.15",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-hot-loader": "^4.12.21",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.10.2",
     "@babel/plugin-transform-runtime": "^7.10.1",
@@ -32,12 +120,12 @@
     "eslint-config-prettier": "^6.11.0",
     "eslint-config-react-app": "^5.2.1",
     "eslint-loader": "^4.0.2",
-    "eslint-plugin-flowtype": "^5.1.3",
+    "eslint-plugin-flowtype": "^4.7.0",
     "eslint-plugin-import": "^2.21.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.0",
-    "eslint-plugin-react-hooks": "^2.5.0",
+    "eslint-plugin-react-hooks": "^2.5.1",
     "html-webpack-plugin": "^4.3.0",
     "jest": "^26.0.1",
     "mini-css-extract-plugin": "^0.9.0",
@@ -51,90 +139,5 @@
     "webpack-bundle-analyzer": "^3.8.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.11.0"
-  },
-  "dependencies": {
-    "@reduxjs/toolkit": "^1.3.6",
-    "axios": "^0.19.2",
-    "dotenv": "^8.2.0",
-    "dotenv-expand": "^5.1.0",
-    "lodash": "^4.17.15",
-    "prop-types": "^15.7.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-hot-loader": "^4.12.21",
-    "react-redux": "^7.2.0",
-    "react-router-dom": "^5.2.0",
-    "redux": "^4.0.5",
-    "redux-devtools-extension": "^2.13.8",
-    "redux-thunk": "^2.3.0"
-  },
-  "babel": {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "modules": false
-        }
-      ],
-      "@babel/preset-react"
-    ],
-    "plugins": [
-      "react-hot-loader/babel"
-    ]
-  },
-  "eslintConfig": {
-    "env": {
-      "browser": true,
-      "es6": true
-    },
-    "extends": [
-      "plugin:react/recommended",
-      "airbnb",
-      "prettier"
-    ],
-    "globals": {
-      "Atomics": "readonly",
-      "SharedArrayBuffer": "readonly"
-    },
-    "parser": "babel-eslint",
-    "parserOptions": {
-      "ecmaFeatures": {
-        "jsx": true
-      },
-      "ecmaVersion": 11,
-      "sourceType": "module"
-    },
-    "plugins": [
-      "react",
-      "prettier"
-    ],
-    "rules": {
-      "react/prop-types": [
-        1,
-        {
-          "ignore": [
-            "className",
-            "children",
-            "location",
-            "params",
-            "location*"
-          ]
-        }
-      ],
-      "prettier/prettier": [
-        "error"
-      ],
-      "react/jsx-filename-extension": [
-        0
-      ]
-    }
-  },
-  "prettier": {
-    "printWidth": 80,
-    "semi": true,
-    "bracketSpacing": true,
-    "singleQuote": true,
-    "jsxSingleQuote": true,
-    "arrowParens": "always"
   }
 }
