@@ -1,6 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 
-const projectAtrs = {
+/**
+ * Project Model Attributes
+ */
+const attributes = {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -49,14 +52,21 @@ const projectAtrs = {
   }
 };
 
+/**
+ * Factory Function to create Model
+ * This implementation is explicitly used to unit test model creation
+ * Sequelize does not have build in unit testing functionality so the npm package used to test is
+ * 'sequelize-test-helpers'
+ * @param sequelize Sequelize Instance
+ * @returns {Project} The Project Model
+ */
 const factory = (sequelize) => {
-  /* Init the Project Model Schema */
   class Project extends Model {}
 
-  Project.init(projectAtrs, { sequelize, modelName: 'Project' });
-
+  Project.init(attributes, { sequelize, modelName: 'project' });
   return Project;
 };
 
+/* Export the factory and attributes */
 module.exports.factory = factory;
-module.exports.projectAtrs = projectAtrs;
+module.exports.attributes = attributes;

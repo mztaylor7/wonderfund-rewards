@@ -7,26 +7,26 @@ const { sequelize, Sequelize } = require('sequelize-test-helpers');
 
 chai.use(sinonChai);
 
-describe('project model', function () {
-  const MockProjectModel = proxyquire('../../models/projectModel.js', {
+describe('reward model', function () {
+  const MockRewardModel = proxyquire('../../models/rewardModel.js', {
     sequelize: Sequelize
   });
 
-  let MockProject;
+  let MockReward;
 
   before(function () {
-    MockProject = MockProjectModel.factory(sequelize);
-    // MockProject.hasMany(Reward);
+    MockReward = MockRewardModel.factory(sequelize);
+    // MockReward.hasMany(Reward);
   });
 
   after(function () {
-    MockProject.init.resetHistory();
+    MockReward.init.resetHistory();
   });
 
-  it('should call Project.init with the correct attributes', function () {
-    sinon.assert.calledWith(MockProject.init, MockProjectModel.attributes, {
+  it('should call Reward.init with the correct attributes', function () {
+    sinon.assert.calledWith(MockReward.init, MockRewardModel.attributes, {
       sequelize,
-      modelName: 'project'
+      modelName: 'reward'
     });
   });
 });
