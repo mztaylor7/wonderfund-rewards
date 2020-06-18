@@ -12,13 +12,13 @@
     "url": "git+https://github.com/team-iroh/pledge-rewards.git"
   },
   "license": "ISC",
-  "author": "",
+  "author": "Zach Ayers",
   "main": "server/src/index.js",
   "scripts": {
     "dev": "cd server && npm run dev",
-    "start": "cd server && npm start",
+    "postinstall": "(cd client && npm install); (cd server && npm install);",
     "prestart": "cd client && npm run build-prod",
-    "postinstall": "(cd client && npm install); (cd server && npm install);"
+    "start": "cd server && npm start"
   },
   "dependencies": {},
   "devDependencies": {

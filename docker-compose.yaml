@@ -13,6 +13,7 @@ services:
     ports:
       - "3005:3005"
     environment:
+      DATABASE_HOST: mysql
       MYSQL_URI: mysql://root:password@mysql:3307/kstart
       REDIS_URI: redis://redis:6380
 

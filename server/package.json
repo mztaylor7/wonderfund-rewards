@@ -8,6 +8,9 @@
   "author": "",
   "main": "src/index.js",
   "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch --verbose",
+    "test:coverage": "jest --watch --coverage",
     "dev": "nodemon src/index.js",
     "start": "node src/index.js"
   },
@@ -20,12 +23,14 @@
   },
   "eslintConfig": {
     "plugins": [
-      "prettier"
+      "prettier",
+      "jest"
     ],
     "extends": [
       "airbnb",
       "prettier",
-      "plugin:node/recommended"
+      "plugin:node/recommended",
+      "plugin:jest/all"
     ],
     "rules": {
       "class-methods-use-this": "off",
@@ -75,6 +80,7 @@
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-jest": "^23.13.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.1.4",
