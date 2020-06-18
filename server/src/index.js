@@ -22,7 +22,7 @@ const serverDebug = require('debug')('server:startup');
 
 /* App must be imported after the Environment Variables have been loaded
    or it will not have access to the variables*/
-const database = require('./database/database');
+const database = require('./database');
 const app = require('./app');
 
 // Set the port for the app to listen on

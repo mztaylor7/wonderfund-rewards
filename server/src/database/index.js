@@ -7,23 +7,32 @@ const Sequelize = require('sequelize');
  * */
 const dbDebug = require('debug')('database:startup');
 
+/* Import Models */
+const Project = require('../models/projectModel');
+const Reward = require('../models/rewardModel');
+
 /* Destructure out the environmental variables from process.env*/
-const { DATABASE_NAME, DATABASE_USER, DATABASE_PASSWORD } = process.env;
+const {
+  DATABASE_NAME,
+  DATABASE_USER,
+  DATABASE_PASSWORD,
+  DATABASE_HOST
+} = process.env;
 
 // Connect to MySQL Database
-const sequelize = new Sequelize(
+const connection = new Sequelize(
   DATABASE_NAME,
   DATABASE_USER,
   DATABASE_PASSWORD,
   {
-    host: 'mysql',
+    host: DATABASE_HOST,
     dialect: 'mysql',
-    logging: false,
+    logging: false
   }
 );
 
 // Init Database Connection
-sequelize
+connection
   .authenticate()
   .then(() => {
     dbDebug('Connection has been established successfully.');
@@ -32,6 +41,14 @@ sequelize
     dbDebug('Unable to connect to the database:', err);
   });
 
+/* Initialize Models */
+const ProjectModel = Project.factory(connection);
+const RewardModel = Reward.factory(connection);
+
+/* Append Association Values to the Project Model for use when items are added ot the database */
+ProjectModel.Rewards = ProjectModel.hasMany(RewardModel, { as: 'rewards' });
+
 // Export the main Sequelize App & the db connection
-module.exports.sequelize = sequelize;
-module.exports.Sequelize = Sequelize;
+module.exports.connection = connection;
+module.exports.ProjectModel = ProjectModel;
+module.exports.RewardModel = RewardModel;
