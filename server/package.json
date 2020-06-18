@@ -19,7 +19,8 @@
     "bracketSpacing": true,
     "printWidth": 80,
     "semi": true,
-    "singleQuote": true
+    "singleQuote": true,
+    "trailingComma": "none"
   },
   "eslintConfig": {
     "plugins": [
