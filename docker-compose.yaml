@@ -8,8 +8,8 @@ services:
     build: ./
     command: npm start
     working_dir: /Workspace/fec-capstone/rewards
-    volumes:
-      - ./:/Workspace/fec-capstone/rewards
+    env_file:
+      - ./server/src/config/.env
     ports:
       - "3005:3005"
     environment:

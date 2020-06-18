@@ -2,15 +2,13 @@
 FROM node:12.16.3
 
 # Set the working directory
-WORKDIR /Workspace/fec-capstone/service
+WORKDIR /Workspace/fec-capstone/rewards
 
 # Copy root directory into docker root directory
-COPY ./ ./
+COPY . .
 
 # Command to run upon mounting image
-RUN npm install
-RUN npm run init-server
-RUN npm run init-client
+RUN npm i --unsafe-perm --silent
 
 # Command to access the bash of the image
 CMD ["/bin/bash"]

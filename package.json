@@ -9,16 +9,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/team-iroh/za-service.git"
+    "url": "git+https://github.com/team-iroh/pledge-rewards.git"
   },
   "license": "ISC",
   "author": "",
-  "main": "Gulpfile.js",
+  "main": "server/src/index.js",
   "scripts": {
-    "init-client": "cd client && npm install --no-optional",
-    "init-server": "cd server && npm install --no-optional",
-    "init-stack": "npm install --no-optional && npm run init-server && npm run init-client",
-    "start": "cd server && npm start"
+    "dev": "cd server && npm run dev",
+    "start": "cd server && npm start",
+    "prestart": "cd client && npm run build-prod",
+    "postinstall": "(cd client && npm install); (cd server && npm install);"
   },
   "dependencies": {},
   "devDependencies": {

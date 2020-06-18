@@ -8,9 +8,8 @@
   "author": "Zach Ayers",
   "main": "index.jsx",
   "scripts": {
-    "build": "",
-    "build-dev": "webpack -d --mode development",
-    "build-prod": "webpack -p --mode production",
+    "build-dev": "./node_modules/.bin/webpack -d --mode development",
+    "build-prod": "./node_modules/.bin/webpack -p --mode production",
     "clean": "rm dist/bundle.js",
     "dev": "webpack-dev-server --hot --mode development"
   },
