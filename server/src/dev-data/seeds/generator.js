@@ -1,4 +1,5 @@
 const faker = require('faker');
+const random = require('random');
 const { getDaysBetween } = require('../../utils/manipulateDate');
 
 /**
@@ -14,15 +15,16 @@ module.exports.generateMockProject = () => ({
   subcategory: faker.commerce.productAdjective(),
   location: faker.fake('{{address.city}}, {{address.stateAbbr}}'),
   heroImage: faker.image.image(),
-  // TODO randomly generate video
-  heroVideo:
-    'https://coverr.co/videos/fast-typing-on-white-keyboard-QN73snCaeo',
+  heroVideo: 'https://ytroulette.com/',
   launchDate: faker.date.future(),
   campaignDuration: getDaysBetween(new Date(), faker.date.future()),
   budget: Math.floor(faker.finance.amount()),
   fundingGoal: Math.floor(faker.finance.amount()),
-  // TODO add reward here programatically
-  rewards: [1, 2, 3, 4]
+  rewards: [
+    ...new Set(
+      Array.from({ length: random.int(1, 8) }, () => random.int(0, 150))
+    )
+  ]
 });
 
 /**
@@ -42,5 +44,7 @@ module.exports.generateMockReward = () => ({
   rewardQuantity: faker.random.number(),
   timeLimit: faker.random.number(),
   projectId: faker.random.number(),
-  rewardItems: Array.from({ length: 8 }, () => faker.commerce.product())
+  rewardItems: Array.from({ length: random.int(1, 6) }, () =>
+    faker.commerce.product()
+  )
 });
