@@ -30,9 +30,7 @@ const PORT = process.env.PORT || 3000;
 
 // Start the server listening on the predefined PORT variable
 const server = app.listen(PORT, () => {
-  serverDebug(`Server running from directory: ${__dirname}`);
-  // eslint-disable-next-line no-console
-  console.log(`Server running on port: ${PORT}`);
+  serverDebug(`Server running on port: ${PORT}`);
 });
 
 // Export the server module
