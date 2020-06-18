@@ -8,7 +8,12 @@ const Sequelize = require('sequelize');
 const dbDebug = require('debug')('database:startup');
 
 /* Destructure out the environmental variables from process.env*/
-const { DATABASE_NAME, DATABASE_USER, DATABASE_PASSWORD } = process.env;
+const {
+  DATABASE_NAME,
+  DATABASE_USER,
+  DATABASE_PASSWORD,
+  DATABASE_HOST,
+} = process.env;
 
 // Connect to MySQL Database
 const sequelize = new Sequelize(
@@ -16,7 +21,7 @@ const sequelize = new Sequelize(
   DATABASE_USER,
   DATABASE_PASSWORD,
   {
-    host: 'mysql',
+    host: DATABASE_HOST,
     dialect: 'mysql',
     logging: false,
   }
