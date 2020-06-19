@@ -68,7 +68,7 @@ const createSequelizeConnection = () => {
         });
 
         /* Everything is connected - resolve */
-        resolve({ connection, ProjectModel, RewardModel });
+        resolve(connection);
       })
       .catch((err) => {
         reject(err);

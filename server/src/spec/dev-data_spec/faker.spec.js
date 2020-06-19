@@ -32,13 +32,6 @@ describe('mock generator', function () {
       assert.isNumber(mockProject.campaignDuration);
       assert.isNumber(mockProject.budget);
       assert.isNumber(mockProject.fundingGoal);
-      assert.isArray(mockProject.rewards);
-    });
-
-    it('should only contain numbers in the rewards array', function () {
-      // eslint-disable-next-line no-restricted-globals
-      const result = mockProject.rewards.some(isNaN);
-      assert.isFalse(result);
     });
   });
 

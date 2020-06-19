@@ -29,11 +29,7 @@ const app = require('./app');
  *  If a test suite is running - we will be making connections in the test suites
  * */
 if (process.env.NODE_ENV !== 'test') {
-  database.createSequelizeConnection().then((sequelize) => {
-    module.exports.sequelize.connection = sequelize.connection;
-    module.exports.ProjectModel = sequelize.ProjectModel;
-    module.exports.RewardModel = sequelize.RewardModel;
-  });
+  database.createSequelizeConnection();
 }
 
 // Start the server listening on the predefined PORT variable
@@ -42,6 +38,4 @@ const server = app.listen(process.env.PORT, () => {
 });
 
 // Export the server module
-module.exports.server = server;
-module.exports.database = database;
-module.exports.sequelize = {};
+module.exports = server;

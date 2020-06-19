@@ -22,6 +22,10 @@ const attributes = {
     type: DataTypes.STRING,
     allowNull: false
   },
+  subcategory: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
   location: {
     type: DataTypes.STRING,
     allowNull: false

@@ -17,11 +17,34 @@ const filterBody = (req) => {
     launchDate: req.body.launchDate,
     campaignDuration: req.body.campaignDuration,
     budget: req.body.budget,
-    fundingGoal: req.body.fundingGoal,
-    rewards: req.body.rewards
+    fundingGoal: req.body.fundingGoal
   };
 };
 
+/**
+ * Get Search Query
+ * @param req The HTTP Request object
+ * @returns {{}} A query object containing either the id or title of a project - depending on
+ * which was provided in the request.
+ */
+const getSearchQuery = (req) => {
+  const searchQuery = {};
+  if (req.id) {
+    searchQuery.id = req.id;
+  }
+
+  if (req.name) {
+    searchQuery.title = req.name;
+  }
+
+  return searchQuery;
+};
+
+/**
+ * Get All Projects
+ * @param req The HTTP Request Object
+ * @param res The HTTP Response Object
+ */
 module.exports.getAllProjects = (req, res) => {
   const ProjectModel = getProjectModel();
   ProjectModel.findAll()
@@ -33,32 +56,71 @@ module.exports.getAllProjects = (req, res) => {
     });
 };
 
+/**
+ * Get One Project
+ * @param req The HTTP Request Object
+ * @param res The HTTP Response Object
+ */
 module.exports.getOneProject = (req, res) => {
-  res.status(200).send('one');
+  const ProjectModel = getProjectModel();
+  const searchQuery = getSearchQuery(req);
+  ProjectModel.findAll({ where: searchQuery })
+    .then((projects) => {
+      res.status(200).json(projects);
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
 };
 
+/**
+ * Create One Project
+ * @param req The HTTP Request Object
+ * @param res The HTTP Response Object
+ */
 module.exports.createOneProject = (req, res) => {
   const ProjectModel = getProjectModel();
   ProjectModel.sync({ force: false })
     .then(() => {
       return ProjectModel.create(filterBody(req));
     })
-    .then((data) => {
-      res.status(200).send(data);
+    .then((project) => {
+      res.status(200).send(project);
     })
     .catch((err) => {
       res.status(400).send(err);
     });
 };
 
-module.exports.replaceOneProject = (req, res) => {
-  res.status(200).send('put');
-};
-
+/**
+ * Update One Project
+ * @param req The HTTP Request Object
+ * @param res The HTTP Response Object
+ */
 module.exports.updateOneProject = (req, res) => {
-  res.status(200).send('patch');
+  const ProjectModel = getProjectModel();
+  const searchQuery = getSearchQuery(req);
+  const params = filterBody(req);
+  ProjectModel.update(params, { where: searchQuery }).then(() => {
+    res.status(200).json(params);
+  });
+
+  // Errors from 'update' don't seem to be sent to the catch block - even if the database is closed.
 };
 
+/**
+ * Delete One Project
+ * @param req The HTTP Request Object
+ * @param res The HTTP Response Object
+ */
 module.exports.deleteOneProject = (req, res) => {
-  res.status(200).send('delete');
+  const ProjectModel = getProjectModel();
+  const searchQuery = getSearchQuery(req);
+  ProjectModel.destroy({ where: searchQuery })
+    .then(() => {
+      res.status(200).json(searchQuery);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
 };

@@ -4,6 +4,7 @@ const chai = require('chai');
 const sinon = require('sinon');
 const sinonChai = require('sinon-chai');
 const chaiAsPromised = require('chai-as-promised');
+const decache = require('decache');
 
 chai.use(sinonChai);
 chai.use(chaiAsPromised);
@@ -16,8 +17,8 @@ describe('server', function () {
 
   beforeEach(async function () {
     process.env.PORT = testPort;
-    server = require('../../index').server;
-    database = require('../../index').database;
+    server = require('../../index');
+    database = require('../../database');
   });
 
   afterEach(async function () {
@@ -50,9 +51,34 @@ describe('server', function () {
       assert.isFulfilled(database.createSequelizeConnection());
     });
 
-    it('should failt to connect to the database if incorrect credentials are passed in', function () {
+    it('should fail to connect to the database if incorrect credentials are passed in', function () {
       process.env.DATABASE_USER = '';
       assert.isRejected(database.createSequelizeConnection());
+    });
+
+    it('should connect automatically to the database if not running in test mode', async function () {
+      await server.close();
+      process.env.DATABASE_USER = 'root';
+      process.env.NODE_ENV = 'development';
+
+      decache('../../index.js');
+      decache('../../database');
+
+      database = require('../../database');
+
+      const cb = sinon.spy();
+      const cx = database.createSequelizeConnection;
+
+      database.createSequelizeConnection = cb;
+
+      server = require('../../index');
+
+      sinon.assert.called(cb);
+
+      database.createSequelizeConnection = cx;
+
+      process.env.NODE_ENV = 'test';
+      decache('../../index.js');
     });
   });
 });
