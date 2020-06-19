@@ -85,30 +85,6 @@ describe('/api/projects', function () {
   });
 
   /**
-   * Test the Parameter Pluck Middleware
-   */
-  context('parameter pluck', function () {
-    it('should correctly pluck parameters from the request object', async function () {
-      const res = await request.get(
-        `${apiAddress}/find?id=1&name=Fantastic Granite Table`
-      );
-
-      assert.equal(res.statusCode, 200);
-      assert.equal(res.body.length, 1);
-    });
-
-    it(
-      'should return a 400 error if the "api/projects/find" route is accessed but no query' +
-        ' params are passed in',
-      async function () {
-        const res = await request.get(`${apiAddress}/find`);
-        assert.equal(res.statusCode, 400);
-        assert.isUndefined(res.body.length);
-      }
-    );
-  });
-
-  /**
    * Test the Project GET Routes
    */
   context('GET /', function () {
