@@ -14,12 +14,6 @@ const path = require('path');
  * */
 require('dotenv').config({ path: path.resolve(__dirname, './config/.env') });
 
-/* If testing, append 'test' to the end of the database name so we don't
- append to our production database*/
-if (process.env.NODE_ENV === 'test') {
-  process.env.DATABASE_NAME = `${process.env.DATABASE_NAME}_test`;
-}
-
 /* Import Debug module
  *  These modules are used in place of 'console.log' to keep the terminal from being
  *  filled with unnecessary items during production runs
@@ -31,6 +25,17 @@ const serverDebug = require('debug')('server:startup');
 const database = require('./database');
 const app = require('./app');
 
+/* If we are not running a test environment - make the sequelize database connection
+ *  If a test suite is running - we will be making connections in the test suites
+ * */
+if (process.env.NODE_ENV !== 'test') {
+  database.createSequelizeConnection().then((sequelize) => {
+    module.exports.sequelize.connection = sequelize.connection;
+    module.exports.ProjectModel = sequelize.ProjectModel;
+    module.exports.RewardModel = sequelize.RewardModel;
+  });
+}
+
 // Start the server listening on the predefined PORT variable
 const server = app.listen(process.env.PORT, () => {
   serverDebug(`Server running on port: ${process.env.PORT}`);
@@ -39,3 +44,4 @@ const server = app.listen(process.env.PORT, () => {
 // Export the server module
 module.exports.server = server;
 module.exports.database = database;
+module.exports.sequelize = {};

@@ -8,7 +8,7 @@ const _ = require('lodash');
  * @returns {function(...[*]=)} a function that takes in a parameter to
  * search for in the request query params
  */
-const pluck = (req) => (param) => {
+const pluck = (req, res) => (param) => {
   if (req.query[param]) {
     req[param] = req.query[param];
   }
@@ -31,7 +31,7 @@ module.exports = (req, res, next) => {
   }
 
   // Create a function from pluck that takes in a parameter object
-  const replace = pluck(req);
+  const replace = pluck(req, res);
   replace('id');
   replace('name');
   replace('projectId');

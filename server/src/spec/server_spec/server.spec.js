@@ -1,25 +1,31 @@
 /* eslint-disable mocha/no-setup-in-describe,node/no-unsupported-features/es-syntax,global-require,import/no-extraneous-dependencies,node/no-extraneous-require */
 const { assert } = require('chai');
 const chai = require('chai');
+const sinon = require('sinon');
 const sinonChai = require('sinon-chai');
+const chaiAsPromised = require('chai-as-promised');
 
 chai.use(sinonChai);
+chai.use(chaiAsPromised);
 
 describe('server', function () {
-  let env;
+  const env = { ...process.env };
   const testPort = 3010;
-  const { server, database } = require('../../index');
+  let server;
+  let database;
 
-  before(function () {
-    env = { ...process.env };
+  beforeEach(async function () {
     process.env.PORT = testPort;
+    server = require('../../index').server;
+    database = require('../../index').database;
+  });
+
+  afterEach(async function () {
+    await server.close();
   });
 
   after(async function () {
-    if (server) {
-      await server.close();
-      await database.connection.close();
-    }
+    process.env = env;
   });
 
   context('port', function () {
@@ -41,7 +47,12 @@ describe('server', function () {
 
   context('database success', function () {
     it('should successfully connect to the database if the correct credentials are passed in', function () {
-      assert.isTrue(database.connected);
+      assert.isFulfilled(database.createSequelizeConnection());
+    });
+
+    it('should failt to connect to the database if incorrect credentials are passed in', function () {
+      process.env.DATABASE_USER = '';
+      assert.isRejected(database.createSequelizeConnection());
     });
   });
 });

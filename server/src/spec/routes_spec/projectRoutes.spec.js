@@ -3,9 +3,11 @@ const supertest = require('supertest');
 const { assert } = require('chai');
 
 describe('/api/projects', function () {
-  const { server, database } = require('../../index');
-  const Project = database.ProjectModel;
-  const request = supertest(server);
+  let server;
+  let database;
+  let request;
+  let Project;
+
   const apiAddress = '/api/projects';
 
   const mockProject = {
@@ -23,20 +25,23 @@ describe('/api/projects', function () {
     rewards: [146]
   };
 
-  //TODO SET UP PRE PROJECT CREATION
-
-  // beforeEach(async function () {
-  //   try {
-  //     await Project.sync({ force: true });
-  //     await Project.create(mockProject);
-  //   } catch (e) {
-  //     throw new Error(e);
-  //   }
-  // });
+  beforeEach(async function () {
+    server = require('../../index').server;
+    database = require('../../index').database;
+    Project = database.ProjectModel;
+    request = supertest(server);
+  });
 
   after(async function () {
     await server.close();
-    await database.connection.close();
+  });
+
+  context('parameter pluck', function () {
+    it('should correctly pluck parameters from the request object', async function () {
+      const res = await request.get(
+        `${apiAddress}/find/?id=1&name=TestProject`
+      );
+    });
   });
 
   context('GET /', function () {

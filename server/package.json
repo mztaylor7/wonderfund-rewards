@@ -8,9 +8,9 @@
   "author": "",
   "main": "src/index.js",
   "scripts": {
-    "test": "env NODE_ENV=test mocha src/spec/**/*.js --exit",
-    "test:watch": "env NODE_ENV=test mocha src/spec/**/*.js --watch",
-    "test:coverage": "env NODE_ENV=test nyc --reporter=text mocha src/spec/**/*.js --exit",
+    "test": "env NODE_ENV=test DATABASE_NAME=kstart_test mocha src/spec/**/*.js",
+    "test:watch": "env NODE_ENV=test DATABASE_NAME=kstart_test mocha src/spec/**/*.js --watch",
+    "test:coverage": "env NODE_ENV=test DATABASE_NAME=kstart_test nyc --reporter=text mocha src/spec/**/*.js --exit",
     "dev": "nodemon src/index.js",
     "start": "node src/index.js"
   },
