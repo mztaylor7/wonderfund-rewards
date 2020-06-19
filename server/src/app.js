@@ -5,6 +5,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const xssClean = require('xss-clean');
 const rateLimit = require('express-rate-limit');
+const projectRouter = require('./routes/projectRoutes');
 
 // Initialize the app as our express framework
 const app = express();
@@ -26,11 +27,12 @@ app.use(express.urlencoded({ extended: true, limit: '10kb' })); // Form Parser
 const limiter = rateLimit({
   max: 100,
   windowMs: 60 * 60 * 1000, //60 seconds * 60 minutes * 1000 = 3600000 milliseconds
-  message: 'Too many requests from this IP, please try again in an hour.',
+  message: 'Too many requests from this IP, please try again in an hour.'
 });
 
 // All requests flowing into the /api route will be rate-limited
 app.use('/api', limiter);
+app.use('/api/projects', projectRouter);
 
 // Serve up the dist folder from the client at the defined PORT
 app.use(express.static(path.resolve(__dirname, '../../client/dist')));
