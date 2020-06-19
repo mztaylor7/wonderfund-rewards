@@ -17,8 +17,7 @@ const filterBody = (req) => {
     launchDate: req.body.launchDate,
     campaignDuration: req.body.campaignDuration,
     budget: req.body.budget,
-    fundingGoal: req.body.fundingGoal,
-    rewards: req.body.rewards
+    fundingGoal: req.body.fundingGoal
   };
 };
 
@@ -70,7 +69,7 @@ module.exports.getOneProject = (req, res) => {
       res.status(200).json(projects);
     })
     .catch((err) => {
-      res.status(400).send(err);
+      res.status(400).json(err);
     });
 };
 
@@ -102,13 +101,11 @@ module.exports.updateOneProject = (req, res) => {
   const ProjectModel = getProjectModel();
   const searchQuery = getSearchQuery(req);
   const params = filterBody(req);
-  ProjectModel.update(params, { where: searchQuery })
-    .then(() => {
-      res.status(200).json(params);
-    })
-    .catch((err) => {
-      res.status(400).send(err);
-    });
+  ProjectModel.update(params, { where: searchQuery }).then(() => {
+    res.status(200).json(params);
+  });
+
+  // Errors from 'update' don't seem to be sent to the catch block - even if the database is closed.
 };
 
 /**

@@ -18,16 +18,11 @@ const {
 /* Initialize all routes for the '/' route */
 router.route('/').get(getAllProjects).post(createOneProject);
 
-/* Use param pluck middleware on all routes below this point*/
-router.use(paramPluck);
-
 /* Init all routes for the '/find' route */
-router
-  .route('/find')
-  .get(getOneProject)
-  .put(updateOneProject)
-  .patch(updateOneProject)
-  .delete(deleteOneProject);
+router.get('/find', paramPluck, getOneProject);
+router.put('/find', paramPluck, updateOneProject);
+router.patch('/find', paramPluck, updateOneProject);
+router.delete('/find', paramPluck, deleteOneProject);
 
 /* Export this module */
 module.exports = router;

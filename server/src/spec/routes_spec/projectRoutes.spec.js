@@ -22,13 +22,29 @@ describe('/api/projects', function () {
     launchDate: '2021-03-15T21:00:17.200Z',
     campaignDuration: 132,
     budget: 530,
-    fundingGoal: 564,
-    rewards: [146]
+    fundingGoal: 564
   };
 
+  const mockProject2 = {
+    title: 'Fantastic Granite Table 2',
+    subtitle: 'Fundamental incremental extranet',
+    category: 'Games',
+    subcategory: 'Handcrafted',
+    location: 'West Prudence, CA',
+    heroImage: 'http://lorempixel.com/640/480/nature',
+    heroVideo: 'https://ytroulette.com/',
+    launchDate: '2021-03-15T21:00:17.200Z',
+    campaignDuration: 132,
+    budget: 530,
+    fundingGoal: 564
+  };
+
+  /**
+   * Before Each Test
+   */
   beforeEach(async function () {
-    server = require('../../index').server;
-    database = require('../../index').database;
+    server = require('../../index');
+    database = require('../../database');
     request = supertest(server);
     connection = await database.createSequelizeConnection();
     Project = database.getProjectModel();
@@ -38,20 +54,41 @@ describe('/api/projects', function () {
     await Project.create(mockProject);
   });
 
+  /**
+   * After Each Test
+   */
   afterEach(async function () {
     await connection.close();
     await server.close();
   });
 
+  /**
+   * Test the Parameter Pluck Middleware
+   */
   context('parameter pluck', function () {
     it('should correctly pluck parameters from the request object', async function () {
       const res = await request.get(
-        `${apiAddress}/find/?id=1&name=TestProject`
+        `${apiAddress}/find?id=1&name=Fantastic Granite Table`
       );
-      assert.equal(res.length);
+
+      assert.equal(res.statusCode, 200);
+      assert.equal(res.body.length, 1);
     });
+
+    it(
+      'should return a 400 error if the "api/projects/find" route is accessed but no query' +
+        ' params are passed in',
+      async function () {
+        const res = await request.get(`${apiAddress}/find`);
+        assert.equal(res.statusCode, 400);
+        assert.isUndefined(res.body.length);
+      }
+    );
   });
 
+  /**
+   * Test the Project GET Routes
+   */
   context('GET /', function () {
     it('should get all projects if no [id] or [name] query parameter is passed in', async function () {
       const res = await request.get(apiAddress);
@@ -62,60 +99,280 @@ describe('/api/projects', function () {
       delete resObj.id;
       delete resObj.createdAt;
       delete resObj.updatedAt;
-      console.log(resObj);
-      console.log(mockProject);
       assert.deepEqual(resObj, mockProject);
     });
+
     it('should get a single project if both an [id] and [name] query parameter is passed in', async function () {
-      const res = await request.get(apiAddress);
+      const res = await request.get(
+        `${apiAddress}/find?id=1&name=Fantastic Granite Table`
+      );
+
       assert.equal(res.statusCode, 200);
+      assert.equal(res.body.length, 1);
     });
+
     it('should get a single project if only an [id] query parameter is passed in', async function () {
-      const res = await request.get(apiAddress);
+      const res = await request.get(`${apiAddress}/find?id=1`);
       assert.equal(res.statusCode, 200);
+      assert.equal(res.body.length, 1);
     });
-    it('should return status code 400 if only an [id] query parameter is passed in and no matching project is found', async function () {
-      const res = await request.get(apiAddress);
+
+    it(
+      'should return an empty array if only an [id] query parameter is passed in and no matching' +
+        ' project is found',
+      async function () {
+        const res = await request.get(`${apiAddress}/find?id=2`);
+        assert.equal(res.statusCode, 200);
+        assert.equal(res.body.length, 0);
+      }
+    );
+
+    it('should get a single project if only a [name] query parameter is passed in', async function () {
+      const res = await request.get(
+        `${apiAddress}/find?name=Fantastic Granite Table`
+      );
       assert.equal(res.statusCode, 200);
+      assert.equal(res.body.length, 1);
     });
-    it('should get a single project if only a [name] query parameter is passed in', async function () {});
-    it('should return status code 400 if only a [name] query parameter is passed in and no matching project is found', async function () {});
+
+    it(
+      'should return an empty array if only a [name] query parameter is passed in and no' +
+        ' matching project is found',
+      async function () {
+        const res = await request.get(
+          `${apiAddress}/find?name=NonExistentProject`
+        );
+        assert.equal(res.statusCode, 200);
+        assert.equal(res.body.length, 0);
+      }
+    );
+
+    it('should return a status code of 400 if a database error occurs', async function () {
+      await connection.close();
+      let res = await request.get(apiAddress);
+      assert.equal(res.statusCode, 400);
+
+      res = await request.get(
+        `${apiAddress}/find?id=1&name=Fantastic Granite Table`
+      );
+      assert.equal(res.statusCode, 400);
+    });
   });
 
+  /**
+   * Test the Project POST Routes
+   */
   context('POST /', function () {
-    it('should create a new project in the database with the given request body data', async function () {});
-    it('should return status code 400 if incorrect body data is passed in', async function () {});
-    it('should return status code 400 if no body data is passed in', async function () {});
+    it('should create a new project in the database with the given request body data', async function () {
+      const postRes = await request
+        .post(`${apiAddress}`)
+        .send(mockProject2)
+        .set('Accept', 'application/json');
+
+      assert.equal(postRes.statusCode, 200);
+      assert.isDefined(postRes.body);
+
+      const res = await request.get(`${apiAddress}`);
+      assert.equal(res.statusCode, 200);
+      assert.equal(res.body.length, 2);
+    });
+    it('should return status code 400 if incorrect body data is passed in', async function () {
+      const incorrectProject = { ...mockProject2 };
+      delete incorrectProject.title;
+
+      const postRes = await request
+        .post(`${apiAddress}`)
+        .send(incorrectProject)
+        .set('Accept', 'application/json');
+
+      assert.equal(postRes.statusCode, 400);
+
+      const res = await request.get(`${apiAddress}`);
+      assert.equal(res.statusCode, 200);
+      assert.equal(res.body.length, 1);
+    });
+    it('should return status code 400 if no body data is passed in', async function () {
+      const postRes = await request
+        .post(`${apiAddress}`)
+        .send({})
+        .set('Accept', 'application/json');
+
+      assert.equal(postRes.statusCode, 400);
+
+      const res = await request.get(`${apiAddress}`);
+      assert.equal(res.statusCode, 200);
+      assert.equal(res.body.length, 1);
+    });
+    it('should return a status code of 400 if a database error occurs', async function () {
+      await connection.close();
+      const res = await request.post(apiAddress);
+      assert.equal(res.statusCode, 400);
+    });
   });
 
-  context('PUT /', function () {
-    it('should return status code 400 no [id] or [name] query parameter is passed in', async function () {});
-    it('should replace a single project if both an [id] and [name] query parameter is passed in', async function () {});
-    it('should replace a single project if only an [id] query parameter is passed in', async function () {});
-    it('should return status code 400 if only an [id] query parameter is passed in and no matching project is found', async function () {});
-    it('should replace a single project if only a [name] query parameter is passed in', async function () {});
-    it('should return status code 400 if only a [name] query parameter is passed in and no matching project is found', async function () {});
-    it('should return status code 400 if incorrect body data is passed in', async function () {});
-    it('should return status code 400 if no body data is passed in', async function () {});
+  /**
+   * Test the Project PUT / PATCH Routes
+   */
+  context('PUT & PATCH /', function () {
+    it('should return status code 400 if no [id] or [name] query parameter is passed in', async function () {
+      const res = await request.get(`${apiAddress}/find`);
+      assert.equal(res.statusCode, 400);
+      assert.isUndefined(res.body.length);
+    });
+    it(
+      'should replace / update a single project if both an [id] and [name] query parameter is' +
+        ' passed' +
+        ' in',
+      async function () {
+        const putRes = await request
+          .put(`${apiAddress}/find?id=1&name=Fantastic Granite Table`)
+          .send(mockProject2)
+          .set('Accept', 'application/json');
+
+        assert.equal(putRes.statusCode, 200);
+
+        const res = await request.get(`${apiAddress}/find?id=1`);
+        assert.equal(res.statusCode, 200);
+        assert.equal(res.body[0].title, mockProject2.title);
+      }
+    );
+    it('should replace / update a single project if only an [id] query parameter is passed in', async function () {
+      const putRes = await request
+        .put(`${apiAddress}/find?id=1`)
+        .send(mockProject2)
+        .set('Accept', 'application/json');
+
+      assert.equal(putRes.statusCode, 200);
+
+      const res = await request.get(`${apiAddress}/find?id=1`);
+      assert.equal(res.statusCode, 200);
+      assert.equal(res.body[0].title, mockProject2.title);
+    });
+    it(
+      'should return an empty object if only an [id] query parameter is passed in and no matching' +
+        ' project is found',
+      async function () {
+        const res = await request
+          .put(`${apiAddress}/find?id=2`)
+          .send(mockProject2)
+          .set('Accept', 'application/json');
+        assert.equal(res.statusCode, 200);
+        assert.doesNotHaveAnyKeys(res.body);
+      }
+    );
+    it('should replace / update a single project if only a [name] query parameter is passed in', async function () {
+      const putRes = await request
+        .put(`${apiAddress}/find?name=Fantastic Granite Table`)
+        .send(mockProject2)
+        .set('Accept', 'application/json');
+
+      assert.equal(putRes.statusCode, 200);
+
+      const res = await request.get(`${apiAddress}/find?id=1`);
+      assert.equal(res.statusCode, 200);
+      assert.equal(res.body[0].title, mockProject2.title);
+    });
+    it(
+      'should return an empty object if only a [name] query parameter is passed in and no' +
+        ' matching project is found',
+      async function () {
+        const res = await request
+          .put(`${apiAddress}/find?name=Ugly Marble Table`)
+          .send(mockProject2)
+          .set('Accept', 'application/json');
+        assert.equal(res.statusCode, 200);
+        assert.doesNotHaveAnyKeys(res.body);
+      }
+    );
+    it('should return status code 400 if incorrect body data is passed in', async function () {
+      const incorrectProject = { ...mockProject2 };
+      delete incorrectProject.title;
+
+      const postRes = await request
+        .put(`${apiAddress}/find?id=1&name=Fantastic Granite Table`)
+        .send(incorrectProject)
+        .set('Accept', 'application/json');
+
+      assert.equal(postRes.statusCode, 200);
+      assert.doesNotHaveAnyKeys(postRes.body);
+      const res = await request.get(`${apiAddress}`);
+      assert.equal(res.statusCode, 200);
+      assert.equal(res.body.length, 1);
+    });
+    it('should return status code 400 if no body data is passed in', async function () {
+      const postRes = await request
+        .put(`${apiAddress}/find?id=1&name=Fantastic Granite Table`)
+        .send({})
+        .set('Accept', 'application/json');
+
+      assert.equal(postRes.statusCode, 200);
+      assert.doesNotHaveAnyKeys(postRes.body);
+      const res = await request.get(`${apiAddress}`);
+      assert.equal(res.statusCode, 200);
+      assert.equal(res.body.length, 1);
+    });
   });
 
-  context('PATCH /', function () {
-    it('should return status code 400 no [id] or [name] query parameter is passed in', async function () {});
-    it('should update a single project if both an [id] and [name] query parameter is passed in', async function () {});
-    it('should update a single project if only an [id] query parameter is passed in', async function () {});
-    it('should return status code 400 if only an [id] query parameter is passed in and no matching project is found', async function () {});
-    it('should update a single project if only a [name] query parameter is passed in', async function () {});
-    it('should return status code 400 if only a [name] query parameter is passed in and no matching project is found', async function () {});
-    it('should return status code 400 if incorrect body data is passed in', async function () {});
-    it('should return status code 400 if no body data is passed in', async function () {});
-  });
-
+  /**
+   * Test the Project DELETE Routes
+   */
   context('DELETE /', function () {
-    it('should return status code 400 no [id] or [name] query parameter is passed in', async function () {});
-    it('should delete a single project if both an [id] and [name] query parameter is passed in', async function () {});
-    it('should delete a single project if only an [id] query parameter is passed in', async function () {});
-    it('should return status code 400 if only an [id] query parameter is passed in and no matching project is found', async function () {});
-    it('should delete a single project if only a [name] query parameter is passed in', async function () {});
-    it('should return status code 400 if only a [name] query parameter is passed in and no matching project is found', async function () {});
+    it('should return status code 400 no [id] or [name] query parameter is passed in', async function () {
+      const res = await request.get(`${apiAddress}/find`);
+      assert.equal(res.statusCode, 400);
+      assert.isUndefined(res.body.length);
+    });
+    it('should delete a single project if both an [id] and [name] query parameter is passed in', async function () {
+      const delRes = await request.delete(
+        `${apiAddress}/find?id=1&name=Fantastic Granite Table`
+      );
+      assert.equal(delRes.statusCode, 200);
+      const res = await request.get(`${apiAddress}`);
+      assert.equal(res.statusCode, 200);
+      assert.equal(res.body.length, 0);
+    });
+    it('should delete a single project if only an [id] query parameter is passed in', async function () {
+      const delRes = await request.delete(`${apiAddress}/find?id=1`);
+      assert.equal(delRes.statusCode, 200);
+      const res = await request.get(`${apiAddress}`);
+      assert.equal(res.statusCode, 200);
+      assert.equal(res.body.length, 0);
+    });
+    it(
+      'should not delete any projects if only an [id] query parameter is passed in and no' +
+        ' matching project is found',
+      async function () {
+        const delRes = await request.delete(`${apiAddress}/find?id=2`);
+        assert.equal(delRes.statusCode, 200);
+        const res = await request.get(`${apiAddress}`);
+        assert.equal(res.statusCode, 200);
+        assert.equal(res.body.length, 1);
+      }
+    );
+    it('should delete a single project if only a [name] query parameter is passed in', async function () {
+      const delRes = await request.delete(
+        `${apiAddress}/find?name=Fantastic Granite Table`
+      );
+      assert.equal(delRes.statusCode, 200);
+      const res = await request.get(`${apiAddress}`);
+      assert.equal(res.statusCode, 200);
+      assert.equal(res.body.length, 0);
+    });
+    it('should not delete any projects if only a [name] query parameter is passed in and no matching project is found', async function () {
+      const delRes = await request.delete(
+        `${apiAddress}/find?name=Ugly Marble Table`
+      );
+      assert.equal(delRes.statusCode, 200);
+      const res = await request.get(`${apiAddress}`);
+      assert.equal(res.statusCode, 200);
+      assert.equal(res.body.length, 1);
+    });
+    it('should return a status code of 400 if a database error occurs', async function () {
+      await connection.close();
+      const res = await request.delete(
+        `${apiAddress}/find?id=1&name=Fantastic Granite Table`
+      );
+      assert.equal(res.statusCode, 400);
+    });
   });
 });

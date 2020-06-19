@@ -19,12 +19,7 @@ module.exports.generateMockProject = () => ({
   launchDate: faker.date.future(),
   campaignDuration: getDaysBetween(new Date(), faker.date.future()),
   budget: Math.floor(faker.finance.amount()),
-  fundingGoal: Math.floor(faker.finance.amount()),
-  rewards: [
-    ...new Set(
-      Array.from({ length: random.int(1, 8) }, () => random.int(0, 150))
-    )
-  ]
+  fundingGoal: Math.floor(faker.finance.amount())
 });
 
 /**
