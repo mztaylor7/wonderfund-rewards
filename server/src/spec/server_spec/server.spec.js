@@ -16,9 +16,10 @@ describe('server', function () {
   });
 
   after(async function () {
-    await server.close();
-    await database.connection.close();
-    process.env = env;
+    if (server) {
+      await server.close();
+      await database.connection.close();
+    }
   });
 
   context('port', function () {
@@ -27,7 +28,7 @@ describe('server', function () {
       assert.equal(result, testPort);
     });
 
-    it('should be running in the NODE_ENV "test"', function () {
+    it('should be running in the NODE_ENV "test" while in test mode', function () {
       const result = process.env.NODE_ENV;
       assert.equal(result, 'test');
     });
