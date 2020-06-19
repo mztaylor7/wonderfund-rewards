@@ -5,6 +5,7 @@ const { assert } = require('chai');
 describe('/api/projects', function () {
   let server;
   let database;
+  let connection;
   let request;
   let Project;
 
@@ -28,11 +29,17 @@ describe('/api/projects', function () {
   beforeEach(async function () {
     server = require('../../index').server;
     database = require('../../index').database;
-    Project = database.ProjectModel;
     request = supertest(server);
+    connection = await database.createSequelizeConnection();
+    Project = database.getProjectModel();
+
+    /* Drop the table and create a new object in the table*/
+    await Project.sync({ force: true });
+    await Project.create(mockProject);
   });
 
-  after(async function () {
+  afterEach(async function () {
+    await connection.close();
     await server.close();
   });
 
@@ -41,6 +48,7 @@ describe('/api/projects', function () {
       const res = await request.get(
         `${apiAddress}/find/?id=1&name=TestProject`
       );
+      assert.equal(res.length);
     });
   });
 
@@ -48,6 +56,15 @@ describe('/api/projects', function () {
     it('should get all projects if no [id] or [name] query parameter is passed in', async function () {
       const res = await request.get(apiAddress);
       assert.equal(res.statusCode, 200);
+      assert.equal(res.body.length, 1);
+
+      const resObj = res.body[0];
+      delete resObj.id;
+      delete resObj.createdAt;
+      delete resObj.updatedAt;
+      console.log(resObj);
+      console.log(mockProject);
+      assert.deepEqual(resObj, mockProject);
     });
     it('should get a single project if both an [id] and [name] query parameter is passed in', async function () {
       const res = await request.get(apiAddress);
