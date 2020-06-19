@@ -20,12 +20,8 @@
     "prestart": "cd client && npm run build-prod",
     "start": "cd server && npm start"
   },
-  "dependencies": {
-    "lodash": "^4.17.15"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "chai-as-promised": "^7.1.1",
-    "cross-env": "^7.0.2",
     "gulp": "^4.0.2"
   }
 }
