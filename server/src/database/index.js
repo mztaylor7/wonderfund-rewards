@@ -32,14 +32,9 @@ const connection = new Sequelize(
 );
 
 // Init Database Connection
-connection
-  .authenticate()
-  .then(() => {
-    dbDebug('Connection has been established successfully.');
-  })
-  .catch((err) => {
-    dbDebug('Unable to connect to the database:', err);
-  });
+connection.authenticate().then(() => {
+  dbDebug('Connection has been established successfully.');
+});
 
 /* Initialize Models */
 const ProjectModel = Project.factory(connection);

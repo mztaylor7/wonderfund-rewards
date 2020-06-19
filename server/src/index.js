@@ -25,12 +25,9 @@ const serverDebug = require('debug')('server:startup');
 const database = require('./database');
 const app = require('./app');
 
-// Set the port for the app to listen on
-const PORT = process.env.PORT || 3000;
-
 // Start the server listening on the predefined PORT variable
-const server = app.listen(PORT, () => {
-  serverDebug(`Server running on port: ${PORT}`);
+const server = app.listen(process.env.PORT, () => {
+  serverDebug(`Server running on port: ${process.env.PORT}`);
 });
 
 // Export the server module
