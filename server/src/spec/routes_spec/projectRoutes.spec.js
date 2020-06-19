@@ -1,28 +1,61 @@
+/* eslint-disable global-require,prefer-destructuring,mocha/no-setup-in-describe,node/no-unsupported-features/es-syntax */
 const supertest = require('supertest');
 const { assert } = require('chai');
 
 describe('/api/projects', function () {
-  let server;
-  let request;
+  const { server, database } = require('../../index');
+  const Project = database.ProjectModel;
+  const request = supertest(server);
   const apiAddress = '/api/projects';
 
-  beforeEach(function () {
-    // eslint-disable-next-line global-require
-    server = require('../../index').server;
-    request = supertest(server);
-  });
+  const mockProject = {
+    title: 'Fantastic Granite Table',
+    subtitle: 'Fundamental incremental extranet',
+    category: 'Games',
+    subcategory: 'Handcrafted',
+    location: 'West Prudence, CA',
+    heroImage: 'http://lorempixel.com/640/480/nature',
+    heroVideo: 'https://ytroulette.com/',
+    launchDate: '2021-03-15T21:00:17.200Z',
+    campaignDuration: 132,
+    budget: 530,
+    fundingGoal: 564,
+    rewards: [146]
+  };
 
-  afterEach(async function () {
+  //TODO SET UP PRE PROJECT CREATION
+
+  // beforeEach(async function () {
+  //   try {
+  //     await Project.sync({ force: true });
+  //     await Project.create(mockProject);
+  //   } catch (e) {
+  //     throw new Error(e);
+  //   }
+  // });
+
+  after(async function () {
     await server.close();
+    await database.connection.close();
   });
 
   context('GET /', function () {
     it('should get all projects if no [id] or [name] query parameter is passed in', async function () {
-      const response = await request.get(apiAddress);
+      const res = await request.get(apiAddress);
+      assert.equal(res.statusCode, 200);
     });
-    it('should get a single project if both an [id] and [name] query parameter is passed in', async function () {});
-    it('should get a single project if only an [id] query parameter is passed in', async function () {});
-    it('should return status code 400 if only an [id] query parameter is passed in and no matching project is found', async function () {});
+    it('should get a single project if both an [id] and [name] query parameter is passed in', async function () {
+      const res = await request.get(apiAddress);
+      assert.equal(res.statusCode, 200);
+    });
+    it('should get a single project if only an [id] query parameter is passed in', async function () {
+      const res = await request.get(apiAddress);
+      assert.equal(res.statusCode, 200);
+    });
+    it('should return status code 400 if only an [id] query parameter is passed in and no matching project is found', async function () {
+      const res = await request.get(apiAddress);
+      assert.equal(res.statusCode, 200);
+    });
     it('should get a single project if only a [name] query parameter is passed in', async function () {});
     it('should return status code 400 if only a [name] query parameter is passed in and no matching project is found', async function () {});
   });

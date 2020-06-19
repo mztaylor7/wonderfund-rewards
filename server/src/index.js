@@ -14,6 +14,12 @@ const path = require('path');
  * */
 require('dotenv').config({ path: path.resolve(__dirname, './config/.env') });
 
+/* If testing, append 'test' to the end of the database name so we don't
+ append to our production database*/
+if (process.env.NODE_ENV === 'test') {
+  process.env.DATABASE_NAME = `${process.env.DATABASE_NAME}_test`;
+}
+
 /* Import Debug module
  *  These modules are used in place of 'console.log' to keep the terminal from being
  *  filled with unnecessary items during production runs
