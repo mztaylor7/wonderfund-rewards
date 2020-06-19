@@ -11,7 +11,6 @@ const {
   getOneProject,
   deleteOneProject,
   createOneProject,
-  replaceOneProject,
   getAllProjects,
   updateOneProject
 } = projectController;
@@ -26,7 +25,7 @@ router.use(paramPluck);
 router
   .route('/find')
   .get(getOneProject)
-  .put(replaceOneProject)
+  .put(updateOneProject)
   .patch(updateOneProject)
   .delete(deleteOneProject);
 
