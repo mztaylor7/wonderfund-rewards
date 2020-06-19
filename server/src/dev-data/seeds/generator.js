@@ -41,5 +41,5 @@ module.exports.generateMockReward = () => ({
   projectId: faker.random.number(),
   rewardItems: Array.from({ length: random.int(1, 6) }, () =>
     faker.commerce.product()
-  )
+  ).join(',')
 });

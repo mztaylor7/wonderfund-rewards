@@ -8,8 +8,22 @@ describe('/api/projects', function () {
   let connection;
   let request;
   let Project;
-
+  let Reward;
   const apiAddress = '/api/projects';
+
+  const mockReward = {
+    title: 'Handcrafted Metal Bacon',
+    pledgeAmount: 535,
+    description:
+      'Dolorem nulla distinctio temporibus fuga quibusdam qui qui cum sint. Consequatur quia corporis optio non inventore ab qui labore. Quam necessitatibus iure qui. Fuga laborum error. Optio minima quibusdam optio eum.',
+    deliveryMonth: 'November',
+    deliveryYear: 2020,
+    shippingType: 'vertical',
+    rewardQuantity: 55709,
+    timeLimit: 69840,
+    projectId: 1,
+    rewardItems: 'Bike,Table,Shirt,Hat,Cheese'
+  };
 
   const mockProject = {
     title: 'Fantastic Granite Table',
@@ -22,7 +36,8 @@ describe('/api/projects', function () {
     launchDate: '2021-03-15T21:00:17.200Z',
     campaignDuration: 132,
     budget: 530,
-    fundingGoal: 564
+    fundingGoal: 564,
+    rewards: [mockReward]
   };
 
   const mockProject2 = {
@@ -48,10 +63,17 @@ describe('/api/projects', function () {
     request = supertest(server);
     connection = await database.createSequelizeConnection();
     Project = database.getProjectModel();
+    Reward = database.getRewardModel();
 
     /* Drop the table and create a new object in the table*/
-    await Project.sync({ force: true });
+    await connection.query('SET FOREIGN_KEY_CHECKS = 0', null, { raw: true });
+    await connection.query(`truncate table rewards`, null, { raw: true });
+    await connection.query(`truncate table projects`, null, { raw: true });
+    await connection.query('SET FOREIGN_KEY_CHECKS = 1', null, { raw: true });
+    await Project.sync({ force: false });
     await Project.create(mockProject);
+    await Reward.sync({ force: true });
+    await Reward.create(mockReward);
   });
 
   /**
@@ -99,6 +121,9 @@ describe('/api/projects', function () {
       delete resObj.id;
       delete resObj.createdAt;
       delete resObj.updatedAt;
+      delete resObj.rewards[0].id;
+      delete resObj.rewards[0].createdAt;
+      delete resObj.rewards[0].updatedAt;
       assert.deepEqual(resObj, mockProject);
     });
 

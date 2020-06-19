@@ -49,12 +49,14 @@ describe('mock generator', function () {
       assert.isNumber(mockReward.rewardQuantity);
       assert.isNumber(mockReward.timeLimit);
       assert.isNumber(mockReward.projectId);
-      assert.isArray(mockReward.rewardItems);
+      assert.isString(mockReward.rewardItems);
     });
 
     it('should only contain strings in the rewards items array', function () {
       assert.isTrue(
-        mockReward.rewardItems.every((item) => typeof item === 'string')
+        mockReward.rewardItems
+          .split(',')
+          .every((item) => typeof item === 'string')
       );
     });
   });
