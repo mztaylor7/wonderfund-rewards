@@ -17,20 +17,13 @@ jobs:
       # Check Out Git Code
       - checkout
 
-      # Update npm & install webpack
-      - run:
-          name: Update Global NPM & Webpack
-          command: |
-            sudo npm install -g npm@latest
-            sudo npm install -g webpack webpack-cli
-
       # install reporting tools
       - run:
           name: Install Reporting Tools
           command: |
             sudo apt-get update -qq -y
             sudo apt-get install lcov -y
-            sudo apt-get intall python-pip
+            sudo apt-get install python-pip
             sudo apt-get install python3-pip
             sudo pip install junit2html
 
@@ -41,12 +34,19 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
+      # Update npm & install webpack
+      - run:
+          name: Update Global NPM
+          command: |
+            sudo npm install -g npm@latest
+
       # Install Packages
       - run:
           name: Install NPM Packages
           command: |
             npm install
             npm install nyc mocha mocha-junit-reporter
+            sudo npm install -g webpack webpack-cli
             cd server
             npm install --only=dev
             cd ..
