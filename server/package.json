@@ -11,9 +11,12 @@
     "test": "env NODE_ENV=test DATABASE_NAME=kstart_test mocha src/spec/**/*.js --exit",
     "test:watch": "env NODE_ENV=test DATABASE_NAME=kstart_test mocha src/spec/**/*.js --watch",
     "test:coverage": "env NODE_ENV=test DATABASE_NAME=kstart_test nyc --reporter=text mocha src/spec/**/*.js --exit",
-    "seed:database": "env NODE_ENV=test node src/dev-data/seeds/projectSeed.js",
+    "seed:database": "node src/dev-data/seeds/projectSeed.js",
     "dev": "nodemon src/index.js",
     "start": "node src/index.js"
+  },
+  "engines": {
+    "node": "12.x"
   },
   "prettier": {
     "arrowParens": "always",

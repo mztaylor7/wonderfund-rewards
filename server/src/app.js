@@ -6,6 +6,7 @@ const helmet = require('helmet');
 const xssClean = require('xss-clean');
 const rateLimit = require('express-rate-limit');
 const projectRouter = require('./routes/projectRoutes');
+const rewardRouter = require('./routes/rewardRoutes');
 
 // Initialize the app as our express framework
 const app = express();
@@ -33,6 +34,7 @@ const limiter = rateLimit({
 // All requests flowing into the /api route will be rate-limited
 app.use('/api', limiter);
 app.use('/api/projects', projectRouter);
+app.use('/api/rewards', rewardRouter);
 
 // Serve up the dist folder from the client at the defined PORT
 app.use(express.static(path.resolve(__dirname, '../../client/dist')));

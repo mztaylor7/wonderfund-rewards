@@ -11,7 +11,6 @@ const attributes = {
   },
   title: {
     type: DataTypes.STRING,
-    unique: true,
     allowNull: false
   },
   pledgeAmount: {
@@ -43,7 +42,11 @@ const attributes = {
     allowNull: false
   },
   rewardItems: {
-    type: DataTypes.ARRAY(DataTypes.STRING),
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  projectId: {
+    type: DataTypes.INTEGER,
     allowNull: false
   }
 };

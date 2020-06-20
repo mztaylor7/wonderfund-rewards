@@ -1,41 +1,58 @@
+/* eslint-disable no-plusplus,no-await-in-loop */
 // eslint-disable-next-line import/no-extraneous-dependencies
-const supertest = require('supertest');
-const server = require('../../index');
+const path = require('path');
+const { config } = require('dotenv');
+
+config({ path: path.resolve(__dirname, '../../config/.env') });
+
+console.log('PASSWORD', process.env.DATABASE_PASSWORD);
+console.log('DATABASE', process.env.DATABASE_NAME);
+
+/* APPEND _test to the end of the database name to avoid destroying our production database */
+/* Comment out this line to seed the production database */
+process.env.DATABASE_NAME += '_test';
+
 const database = require('../../database');
 
 const seedAmount = 100;
-const request = supertest(server);
-const projectsApiAddress = '/api/projects';
-const { generateMockProject } = require('./generator');
+
+const { generateMockProject, generateMockReward } = require('./generator');
 
 /**
  * Generate Projects Into Database
  */
-const generateProjects = () => {
+const generateProjects = async () => {
   /* Create an array to hold promises for use with promise.all */
-  const postPromises = [];
+  console.log('Seeding...');
+  try {
+    const Project = database.getProjectModel();
+    const Reward = database.getRewardModel();
 
-  /* Loop from 1 to the seed amount and populate the database */
-  for (let i = 1; i <= seedAmount; i++) {
-    const newProject = generateMockProject();
-    console.log(`Seeding project ${i} of ${seedAmount}`);
-    const postRequest = request
-      .post(projectsApiAddress)
-      .send(newProject)
-      .set('Accept', 'application/json');
+    await Project.sync({ force: true });
+    await Reward.sync({ force: true });
 
-    postPromises.push(postRequest);
+    const maxRewards = 8;
+    const minRewards = 3;
+
+    /* Loop from 1 to the seed amount and populate the database */
+    for (let i = 1; i <= seedAmount; i++) {
+      const newProject = generateMockProject();
+      await Project.create(newProject);
+
+      const randomNumber =
+        Math.floor(Math.random() * (maxRewards - minRewards + 1)) + minRewards;
+
+      for (let j = 1; j <= randomNumber; j++) {
+        const newReward = generateMockReward();
+        newReward.projectId = i;
+        await Reward.create(newReward);
+      }
+    }
+    console.log('Projects Table seeded successfuly!');
+    process.exit(0);
+  } catch (e) {
+    console.log(e);
   }
-
-  /* Wait for all post requests to complete then notify the user - next exit the node process */
-  Promise.all(postPromises)
-    .then(() => {
-      console.log('Projects Table seeded successfuly!');
-      process.exit(0);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
 };
 
 /* Connect to the database, drop all tables, then generate the projects in the database */
@@ -46,4 +63,7 @@ database
   })
   .then(() => {
     generateProjects();
+  })
+  .catch((err) => {
+    console.log(err);
   });

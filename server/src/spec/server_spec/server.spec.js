@@ -40,9 +40,9 @@ describe('server', function () {
       assert.equal(result, 'test');
     });
 
-    it('should be using the database kstart_test', function () {
+    it(`should append '_test' to the end of the database name`, function () {
       const result = process.env.DATABASE_NAME;
-      assert.equal(result, 'kstart_test');
+      assert.isTrue(result.endsWith('_test'));
     });
   });
 

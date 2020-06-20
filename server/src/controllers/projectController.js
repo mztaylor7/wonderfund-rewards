@@ -1,4 +1,5 @@
 const { getProjectModel } = require('../database');
+const { getRewardModel } = require('../database');
 
 /**
  * Filter Body
@@ -47,7 +48,15 @@ const getSearchQuery = (req) => {
  */
 module.exports.getAllProjects = (req, res) => {
   const ProjectModel = getProjectModel();
-  ProjectModel.findAll()
+  const rewardModel = getRewardModel();
+
+  ProjectModel.findAll({
+    include: [
+      {
+        model: rewardModel
+      }
+    ]
+  })
     .then((projects) => {
       res.status(200).json(projects);
     })
@@ -63,8 +72,16 @@ module.exports.getAllProjects = (req, res) => {
  */
 module.exports.getOneProject = (req, res) => {
   const ProjectModel = getProjectModel();
+  const rewardModel = getRewardModel();
   const searchQuery = getSearchQuery(req);
-  ProjectModel.findAll({ where: searchQuery })
+  ProjectModel.findAll({
+    where: searchQuery,
+    include: [
+      {
+        model: rewardModel
+      }
+    ]
+  })
     .then((projects) => {
       res.status(200).json(projects);
     })

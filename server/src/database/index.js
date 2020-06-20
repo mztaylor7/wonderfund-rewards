@@ -19,6 +19,10 @@ module.exports.getProjectModel = () => {
   return ProjectModel;
 };
 
+module.exports.getRewardModel = () => {
+  return RewardModel;
+};
+
 /**
  * Create Sequelize Connection
  * @returns {Promise<*>} A Promise that will eventually resolve with the connection and model
@@ -63,9 +67,8 @@ const createSequelizeConnection = () => {
         RewardModel = Reward.factory(connection);
 
         /* Append Association Values to the Project Model for use when items are added ot the database */
-        ProjectModel.Rewards = ProjectModel.hasMany(RewardModel, {
-          as: 'rewards'
-        });
+        ProjectModel.Rewards = ProjectModel.hasMany(RewardModel);
+        RewardModel.Project = RewardModel.belongsTo(ProjectModel);
 
         /* Everything is connected - resolve */
         resolve(connection);
