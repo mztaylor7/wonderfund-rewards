@@ -5,9 +5,6 @@ const { config } = require('dotenv');
 
 config({ path: path.resolve(__dirname, '../../config/.env') });
 
-console.log('PASSWORD', process.env.DATABASE_PASSWORD);
-console.log('DATABASE', process.env.DATABASE_NAME);
-
 /* APPEND _test to the end of the database name to avoid destroying our production database */
 /* Comment out this line to seed the production database */
 process.env.DATABASE_NAME += '_test';
