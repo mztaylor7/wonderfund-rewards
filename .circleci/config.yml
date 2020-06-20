@@ -38,6 +38,7 @@ jobs:
           command: |
             sudo apt-get update -qq -y
             sudo apt-get install lcov -y
+            sudo apt-get install python3-pip
             sudo pip install junit2html
 
       # Download and cache dependencies
