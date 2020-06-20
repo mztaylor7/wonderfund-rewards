@@ -1,6 +1,5 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const config = {
@@ -47,10 +46,6 @@ const config = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, 'src/public/index.html'),
       filename: 'index.html',
-    }),
-    new BundleAnalyzerPlugin({
-      analyzerMode: 'static',
-      openAnalyzer: false,
     }),
     new MiniCssExtractPlugin(),
   ],
