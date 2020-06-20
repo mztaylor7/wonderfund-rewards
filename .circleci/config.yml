@@ -43,7 +43,7 @@ jobs:
           name: Install NPM Packages
           command: |
             npm install
-            npm install nyc mocha
+            npm install nyc mocha mocha-junit-reporter
             cd server
             npm install --only=dev
             cd ..
@@ -61,7 +61,7 @@ jobs:
       - run:
           name: Run Mocha Test Suite On Server
           command: |
-            env DEBUG=off NODE_ENV=test DATABASE_NAME=kstart_test ./node_modules/.bin/nyc ./node_modules/.bin/mocha server/src/spec/**/*.js --recursive --timeout=10000 --exit --reporter markdown --reporter-options mochaFile=reports/mocha/test-results.md
+            env DEBUG=off NODE_ENV=test DATABASE_NAME=kstart_test ./node_modules/.bin/nyc ./node_modules/.bin/mocha server/src/spec/**/*.js --recursive --timeout=10000 --exit --reporter mocha-junit-reporter --reporter-options mochaFile=reports/mocha/test-results.xml
           when: always
 
       # Run EsLint
@@ -69,7 +69,7 @@ jobs:
           name: Run ESLint On Server
           command: |
             cd server
-            ./node_modules/.bin/eslint ./ --format html --output-file ../reports/eslint/eslint.html
+            ./node_modules/.bin/eslint ./ --format junit --output-file ../reports/eslint/eslint.xml
           when: always
 
       - run:
@@ -78,7 +78,7 @@ jobs:
             mkdir coverage
             # nyc report requires that nyc has already been run,
             # which creates the .nyc_output folder containing necessary data
-            ./node_modules/.bin/nyc report --reporter=html
+            ./node_modules/.bin/nyc report --reporter=text-lcov > coverage/lcov.info
           when: always
 
       # Upload results
@@ -86,16 +86,14 @@ jobs:
           path: reports
 
       - store_artifacts:
-          path: ./reports/mocha/test-results.md
+          path: ./reports/mocha/test-results.xml
 
       - store_artifacts:
-          path: ./reports/eslint/eslint.html
+          path: ./reports/eslint/eslint.xml
 
       - store_artifacts: # upload test coverage as artifact
-          path: ./coverage/index.html
+          path: ./coverage/lcov.info
           prefix: tests
-
-
 
 workflows:
   version: 2
