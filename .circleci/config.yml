@@ -27,9 +27,11 @@ jobs:
 
       # Update npm
       - run:
-          name: Update Global NPM
+          name: Update Global NPM & lcov
           command: |
             sudo npm install -g npm@latest
+            sudo apt-get update -qq -y
+            sudo apt-get install lcov -y
 
       # Download and cache dependencies
       - restore_cache:
@@ -79,6 +81,7 @@ jobs:
             # nyc report requires that nyc has already been run,
             # which creates the .nyc_output folder containing necessary data
             ./node_modules/.bin/nyc report --reporter=text-lcov > coverage/lcov.info
+            genhtml coverage/lcov.info -o coverage/html
           when: always
 
       # Upload results
@@ -92,7 +95,7 @@ jobs:
           path: ./reports/eslint/eslint.xml
 
       - store_artifacts: # upload test coverage as artifact
-          path: ./coverage/lcov.info
+          path: ./coverage/html
           prefix: tests
 
 workflows:
