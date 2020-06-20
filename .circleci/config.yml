@@ -25,14 +25,20 @@ jobs:
             HOST: localhost
             PORT: 3306
 
-      # Update npm
+      # Update npm & install webpack
       - run:
-          name: Update Global NPM & lcov
+          name: Update Global NPM & Webpack
           command: |
             sudo npm install -g npm@latest
-            sudo npm install -g webpack
+            sudo npm install -g webpack webpack-cli
+
+      # install reporting tools
+      - run:
+          name: Install Reporting Tools
+          command: |
             sudo apt-get update -qq -y
             sudo apt-get install lcov -y
+            sudo pip install junit2html
 
       # Download and cache dependencies
       - restore_cache:
