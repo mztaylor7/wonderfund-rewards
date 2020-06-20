@@ -34,7 +34,7 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      # Update npm & install webpack
+      # Update npm
       - run:
           name: Update Global NPM
           command: |
@@ -46,7 +46,7 @@ jobs:
           command: |
             npm install
             npm install nyc mocha mocha-junit-reporter
-            sudo npm install -g webpack webpack-cli
+            npm install -g parcel-bundler
             cd server
             npm install --only=dev
             cd ..
@@ -90,19 +90,26 @@ jobs:
             # nyc report requires that nyc has already been run,
             # which creates the .nyc_output folder containing necessary data
             ./node_modules/.bin/nyc report --reporter=text-lcov > coverage/lcov.info
-            genhtml coverage/lcov.info -o coverage/html
-            webpack coverage/html/index.html -o coverage/bundle
+
           when: always
+
+      - run:
+          name: Format Reports
+          command: |
+            genhtml coverage/lcov.info -o coverage/html
+            junit2html reports/eslint/eslint.xml reports/eslint/eslint.html
+            junit2html reports/mocha/test-results.xml reports/mocha/test-results.html
+            parcel coverage/html/index.html -d coverage/bundle
 
       # Upload results
       - store_test_results:
           path: reports
 
       - store_artifacts:
-          path: ./reports/mocha/test-results.xml
+          path: ./reports/mocha/test-results.html
 
       - store_artifacts:
-          path: ./reports/eslint/eslint.xml
+          path: ./reports/eslint/eslint.html
 
       - store_artifacts: # upload test coverage as artifact
           path: ./coverage/bundle
