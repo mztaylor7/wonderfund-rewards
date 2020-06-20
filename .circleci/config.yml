@@ -27,9 +27,8 @@ jobs:
 
       # Update npm
       - run:
-          name: Update NPM
+          name: Update Global NPM
           command: |
-            touch package-lock.json
             sudo npm install -g npm@latest
 
       # Download and cache dependencies
@@ -41,7 +40,7 @@ jobs:
 
       # Install Packages
       - run:
-          name: Install Server Packages
+          name: Install NPM Packages
           command: |
             npm install
             npm install nyc mocha mocha-junit-reporter
@@ -60,7 +59,7 @@ jobs:
 
       # Run Mocha
       - run:
-          name: Run Mocha Test Suite
+          name: Run Mocha Test Suite On Server
           command: |
             env DEBUG=off NODE_ENV=test DATABASE_NAME=kstart_test ./node_modules/.bin/nyc ./node_modules/.bin/mocha server/src/spec/**/*.js --recursive --timeout=10000 --exit --reporter mocha-junit-reporter --reporter-options mochaFile=reports/mocha/test-results.xml
           when: always
@@ -70,7 +69,7 @@ jobs:
           name: Run ESLint On Server
           command: |
             cd server
-            ./node_modules/.bin/eslint ./ --format junit --output-file ./reports/eslint/eslint.xml
+            ./node_modules/.bin/eslint ./ --format junit --output-file ../reports/eslint/eslint.xml
           when: always
 
       - run:
