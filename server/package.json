@@ -17,7 +17,7 @@
     "start": "node src/index.js"
   },
   "engines": {
-    "node": "12.x"
+    "node": "10.x"
   },
   "prettier": {
     "arrowParens": "always",

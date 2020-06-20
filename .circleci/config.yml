@@ -27,11 +27,11 @@ jobs:
 
       - run:
           name: Install Node Packages
-          command: npm install
+          command: yarn install
 
       - run:
           name: Run Test Suite
-          command: npm run ci:test
+          command: yarn ci:test
           environment:
             DATABASE_HOST: localhost
             PORT: 3000

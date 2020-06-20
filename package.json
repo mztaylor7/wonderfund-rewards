@@ -17,11 +17,12 @@
   "author": "Zach Ayers",
   "main": "server/src/index.js",
   "scripts": {
-    "test": "(cd server && yarn test); (cd client && yarn test);",
-    "dev": "cd server && yarn dev",
-    "postinstall": "(cd client && yarn install); (cd server && yarn install);",
-    "prestart": "cd client && yarn build-prod",
-    "start": "cd server && yarn start"
+    "ci:test": "(cd server && yarn test); (cd client && yarn test);",
+    "test": "(cd server && npm test); (cd client && npm test);",
+    "dev": "cd server && npm run dev",
+    "postinstall": "(cd client && npm install); (cd server && npm install);",
+    "prestart": "cd client && npm run build-prod",
+    "start": "cd server && npm start"
   },
   "dependencies": {},
   "devDependencies": {
