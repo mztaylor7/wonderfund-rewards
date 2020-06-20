@@ -47,6 +47,7 @@ jobs:
             npm install nyc mocha mocha-junit-reporter
             cd server
             npm install --only=dev
+            cd ..
 
       # Save the dependency cache
       - save_cache:
