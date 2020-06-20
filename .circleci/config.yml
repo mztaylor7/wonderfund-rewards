@@ -4,7 +4,7 @@ jobs:
   inspect-server:
     docker:
       - image: "circleci/node:12.16.3"
-      - image: "mysql:8.0"
+      - image: "mysql:8.0.20"
         environment:
           MYSQL_ROOT_PASSWORD: password
           MYSQL_DATABASE: kstart
