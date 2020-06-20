@@ -69,7 +69,7 @@ jobs:
           name: Run ESLint On Server
           command: |
             cd server
-            ./node_modules/.bin/eslint ./ --format codeframe --output-file ../reports/eslint/eslint.xml
+            ./node_modules/.bin/eslint ./ --format html --output-file ../reports/eslint/eslint.html
           when: always
 
       - run:
@@ -78,7 +78,7 @@ jobs:
             mkdir coverage
             # nyc report requires that nyc has already been run,
             # which creates the .nyc_output folder containing necessary data
-            ./node_modules/.bin/nyc report --reporter=html > coverage
+            ./node_modules/.bin/nyc report --reporter=html
           when: always
 
       # Upload results
@@ -89,7 +89,7 @@ jobs:
           path: ./reports/mocha/test-results.md
 
       - store_artifacts:
-          path: ./reports/eslint/eslint.xml
+          path: ./reports/eslint/eslint.html
 
       - store_artifacts: # upload test coverage as artifact
           path: ./coverage
