@@ -8,7 +8,7 @@
   "author": "",
   "main": "src/index.js",
   "scripts": {
-    "ci:test": "mocha src/spec/**/*.js --exit",
+    "ci:test": "env DEBUG=off NODE_ENV=test DATABASE_NAME=kstart_test mocha src/spec/**/*.js --exit",
     "test": "env DEBUG=off NODE_ENV=test DATABASE_NAME=kstart_test mocha src/spec/**/*.js --exit",
     "test:watch": "env DEBUG=off NODE_ENV=test DATABASE_NAME=kstart_test mocha src/spec/**/*.js --watch",
     "test:coverage": "env DEBUG=off NODE_ENV=test DATABASE_NAME=kstart_test nyc --reporter=text mocha src/spec/**/*.js --exit",
