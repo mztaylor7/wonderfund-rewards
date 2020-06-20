@@ -11,6 +11,8 @@ jobs:
           MYSQL_USER: user
           MYSQL_PASSWORD: password
 
+    working_directory: ~/repo
+
     steps:
       # Check Out Git Code
       - checkout
@@ -40,8 +42,8 @@ jobs:
           name: Install Server Packages
           command: |
             cd server
-            npm install |
-            npm install mocha-junit-reporter
+            npm install
+            npm install mocha-junit-reporter nyc mocha eslint
 
       # Sace the dependency cache
       - save_cache:
