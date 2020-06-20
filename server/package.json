@@ -16,9 +16,6 @@
     "dev": "nodemon src/index.js",
     "start": "node src/index.js"
   },
-  "engines": {
-    "node": "10.x"
-  },
   "prettier": {
     "arrowParens": "always",
     "bracketSpacing": true,
