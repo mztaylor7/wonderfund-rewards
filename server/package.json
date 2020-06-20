@@ -8,10 +8,10 @@
   "author": "",
   "main": "src/index.js",
   "scripts": {
-    "test": "env NODE_ENV=test DATABASE_NAME=kstart_test mocha src/spec/**/*.js --exit",
-    "test:watch": "env NODE_ENV=test DATABASE_NAME=kstart_test mocha src/spec/**/*.js --watch",
-    "test:coverage": "env NODE_ENV=test DATABASE_NAME=kstart_test nyc --reporter=text mocha src/spec/**/*.js --exit",
-    "test:coverageHtml": "env NODE_ENV=test DATABASE_NAME=kstart_test nyc --reporter=html mocha src/spec/**/*.js --exit",
+    "test": "env DEBUG=off NODE_ENV=test DATABASE_NAME=kstart_test mocha src/spec/**/*.js --exit",
+    "test:watch": "env DEBUG=off NODE_ENV=test DATABASE_NAME=kstart_test mocha src/spec/**/*.js --watch",
+    "test:coverage": "env DEBUG=off NODE_ENV=test DATABASE_NAME=kstart_test nyc --reporter=text mocha src/spec/**/*.js --exit",
+    "test:coverageHtml": "env DEBUG=off NODE_ENV=test DATABASE_NAME=kstart_test nyc --reporter=html mocha src/spec/**/*.js --exit",
     "seed:database": "node src/dev-data/seeds/projectSeed.js",
     "dev": "nodemon src/index.js",
     "start": "node src/index.js"
