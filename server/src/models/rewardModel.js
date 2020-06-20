@@ -11,7 +11,6 @@ const attributes = {
   },
   title: {
     type: DataTypes.STRING,
-    unique: true,
     allowNull: false
   },
   pledgeAmount: {

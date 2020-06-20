@@ -28,7 +28,7 @@ describe('mock generator', function () {
       assert.isString(mockProject.location);
       assert.isString(mockProject.heroImage);
       assert.isString(mockProject.heroVideo);
-      assert.instanceOf(mockProject.launchDate, Date);
+      assert.isString(mockProject.launchDate);
       assert.isNumber(mockProject.campaignDuration);
       assert.isNumber(mockProject.budget);
       assert.isNumber(mockProject.fundingGoal);

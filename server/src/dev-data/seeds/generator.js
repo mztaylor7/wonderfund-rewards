@@ -16,7 +16,7 @@ module.exports.generateMockProject = () => ({
   location: faker.fake('{{address.city}}, {{address.stateAbbr}}'),
   heroImage: faker.image.image(),
   heroVideo: 'https://ytroulette.com/',
-  launchDate: faker.date.future(),
+  launchDate: faker.date.future().toString(),
   campaignDuration: getDaysBetween(new Date(), faker.date.future()),
   budget: Math.floor(faker.finance.amount()),
   fundingGoal: Math.floor(faker.finance.amount())
@@ -32,7 +32,7 @@ module.exports.generateMockProject = () => ({
 module.exports.generateMockReward = () => ({
   title: faker.commerce.productName(),
   pledgeAmount: Math.floor(faker.finance.amount()),
-  description: faker.lorem.paragraph(),
+  description: faker.lorem.paragraph().substring(0, 200),
   deliveryMonth: faker.date.month(),
   deliveryYear: faker.date.future().getFullYear(),
   shippingType: faker.company.bsAdjective(),
