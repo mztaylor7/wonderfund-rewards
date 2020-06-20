@@ -17,14 +17,6 @@ jobs:
       # Check Out Git Code
       - checkout
 
-      # Wait For Database Connection
-      - run:
-          name: Wait For Database Connection
-          command: dockerize -wait tcp://$HOST:$PORT -timeout 1m
-          environment:
-            HOST: localhost
-            PORT: 3306
-
       # Update npm & install webpack
       - run:
           name: Update Global NPM & Webpack
@@ -38,6 +30,7 @@ jobs:
           command: |
             sudo apt-get update -qq -y
             sudo apt-get install lcov -y
+            sudo apt-get intall python-pip
             sudo apt-get install python3-pip
             sudo pip install junit2html
 
@@ -66,6 +59,14 @@ jobs:
 
       # Make Report Directory
       - run: mkdir reports
+
+      # Wait For Database Connection
+      - run:
+          name: Wait For Database Connection
+          command: dockerize -wait tcp://$HOST:$PORT -timeout 1m
+          environment:
+            HOST: localhost
+            PORT: 3306
 
       # Run Mocha
       - run:
