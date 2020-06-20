@@ -35,7 +35,7 @@ jobs:
       - run:
           name: Update Global NPM & Install Parcel
           command: |
-            sudo npm install -g npm@latest parcel-bundler --quiet
+            sudo yarn global add npm@latest
 
       # Install Packages
       - run:
