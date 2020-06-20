@@ -44,9 +44,10 @@ jobs:
           name: Install Server Packages
           command: |
             npm install
-            npm install mocha-junit-reporter nyc mocha eslint
+            cd server
+            npm install mocha-junit-reporter
 
-      # Sace the dependency cache
+      # Save the dependency cache
       - save_cache:
           paths:
             - node_modules
@@ -59,24 +60,14 @@ jobs:
       - run:
           name: Run Mocha Test Suite
           command: |
-            ./node_modules/.bin/nyc ./node_modules/.bin/mocha server/src/spec/**/*.js --recursive --timeout=10000 --exit --reporter mocha-junit-reporter --reporter-options mochaFile=reports/mocha/test-results.xml
+            ./server/node_modules/.bin/nyc ./server/node_modules/.bin/mocha ./server/src/spec/**/*.js --recursive --timeout=10000 --exit --reporter mocha-junit-reporter --reporter-options mochaFile=reports/mocha/test-results.xml
           when: always
 
       # Run EsLint
       - run:
-          name: Run ESLint
+          name: Run ESLint On Server
           command: |
-            ./node_modules/.bin/eslint ./ --format junit --output-file ./reports/eslint/eslint.xml
-          when: always
-
-      # Run coverage report for Code Climate
-      - run:
-          name: Setup Code Climate Test-Reporter
-          command: |
-            # download test reporter as a static binary
-            curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-            chmod +x ./cc-test-reporter
-            ./cc-test-reporter before-build
+            ./server/node_modules/.bin/eslint ./server --format junit --output-file ./reports/eslint/eslint.xml
           when: always
 
       - run:
