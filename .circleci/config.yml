@@ -38,17 +38,17 @@ jobs:
       - run:
           name: Update Global NPM
           command: |
-            sudo npm install -g npm@latest
+            sudo npm install -g npm@latest --silent
 
       # Install Packages
       - run:
           name: Install NPM Packages
           command: |
-            npm install
-            npm install nyc mocha mocha-junit-reporter
-            npm install -g parcel-bundler
+            npm install --silent
+            npm install nyc mocha mocha-junit-reporter --silent
+            sudo npm install -g parcel-bundler --silent
             cd server
-            npm install --only=dev
+            npm install --only=dev --silent
             cd ..
 
       # Save the dependency cache
