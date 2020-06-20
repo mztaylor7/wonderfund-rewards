@@ -15,6 +15,7 @@
   "author": "Zach Ayers",
   "main": "server/src/index.js",
   "scripts": {
+    "test": "(cd server && npm test); (cd client && npm test);",
     "dev": "cd server && npm run dev",
     "postinstall": "(cd client && npm install); (cd server && npm install);",
     "prestart": "cd client && npm run build-prod",
