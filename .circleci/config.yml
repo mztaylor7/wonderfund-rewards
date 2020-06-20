@@ -21,8 +21,10 @@ jobs:
             PORT: 3306
 
       - run:
-          name: Install Node Packages
-          command: yarn install
+          name: Install Server Packages
+          command: |
+            cd server
+            yarn install
 
       - run:
           name: Run Server Test Suite

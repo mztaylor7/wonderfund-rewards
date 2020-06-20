@@ -59,7 +59,7 @@ const createSequelizeConnection = () => {
     /* Create database connection for sequelize*/
     connection
       .authenticate()
-      .then(() => {
+      .then(async () => {
         dbDebug('Connection has been established successfully.');
 
         /* Initialize Models */
@@ -69,6 +69,9 @@ const createSequelizeConnection = () => {
         /* Append Association Values to the Project Model for use when items are added ot the database */
         ProjectModel.Rewards = ProjectModel.hasMany(RewardModel);
         RewardModel.Project = RewardModel.belongsTo(ProjectModel);
+
+        await ProjectModel.sync();
+        await RewardModel.sync();
 
         /* Everything is connected - resolve */
         resolve(connection);
