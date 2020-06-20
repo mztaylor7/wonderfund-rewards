@@ -11,7 +11,8 @@
     "build-dev": "./node_modules/.bin/webpack -d --mode development",
     "build-prod": "./node_modules/.bin/webpack -p --mode production",
     "clean": "rm dist/bundle.js",
-    "dev": "webpack-dev-server --hot --mode development"
+    "dev": "webpack-dev-server --hot --mode development",
+    "test": "echo 'add tests'"
   },
   "resolutions": {
     "styled-components": "^5"
