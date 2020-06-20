@@ -92,7 +92,7 @@ jobs:
           path: ./reports/eslint/eslint.html
 
       - store_artifacts: # upload test coverage as artifact
-          path: ./coverage
+          path: ./coverage/index.html
           prefix: tests
 
 
