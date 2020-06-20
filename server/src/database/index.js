@@ -70,8 +70,8 @@ const createSequelizeConnection = () => {
         ProjectModel.Rewards = ProjectModel.hasMany(RewardModel);
         RewardModel.Project = RewardModel.belongsTo(ProjectModel);
 
+        /* Ensure the tables exist in the database before continuing */
         await ProjectModel.sync();
-
         await RewardModel.sync();
 
         /* Everything is connected - resolve */

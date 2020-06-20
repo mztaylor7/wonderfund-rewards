@@ -43,7 +43,7 @@ describe('middleware', function () {
   /**
    * Before Each Test
    */
-  beforeEach(async function () {
+  before(async function () {
     server = require('../../index');
     database = require('../../database');
     request = supertest(server);
@@ -65,7 +65,7 @@ describe('middleware', function () {
   /**
    * After Each Test
    */
-  afterEach(async function () {
+  after(async function () {
     await connection.close();
     await server.close();
   });
