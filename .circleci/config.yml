@@ -28,7 +28,9 @@ jobs:
       # Update npm
       - run:
           name: Update NPM
-          command: 'sudo npm install -g npm@latest'
+          command: |
+            touch package-lock.json
+            sudo npm install -g npm@latest
 
       # Download and cache dependencies
       - restore_cache:
@@ -56,7 +58,8 @@ jobs:
       # Run Mocha
       - run:
           name: Run Mocha Test Suite
-          command: ./node_modules/.bin/nyc ./node_modules/.bin/mocha src/spec/**/*.js --recursive --timeout=10000 --exit --reporter mocha-junit-reporter --reporter-options mochaFile=reports/mocha/test-results.xml
+          command: |
+            ./node_modules/.bin/nyc ./node_modules/.bin/mocha server/src/spec/**/*.js --recursive --timeout=10000 --exit --reporter mocha-junit-reporter --reporter-options mochaFile=reports/mocha/test-results.xml
           when: always
 
       # Run EsLint
