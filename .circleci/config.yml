@@ -38,18 +38,17 @@ jobs:
       - run:
           name: Update Global NPM
           command: |
-            sudo npm install -g npm@latest --silent
+            sudo npm install -g npm@latest --quiet
 
       # Install Packages
       - run:
-          name: Install NPM Packages
+          name: Install Server NPM Packages
           command: |
-            npm install --silent
-            npm install nyc mocha mocha-junit-reporter --silent
-            sudo npm install -g parcel-bundler --silent
+            npm install nyc mocha mocha-junit-reporter --quiet
+            sudo npm install -g parcel-bundler --quiet
             cd server
-            npm install --only=dev --silent
-            cd ..
+            npm install --quiet
+            npm install --only=dev --quiet
 
       # Save the dependency cache
       - save_cache:
@@ -99,7 +98,7 @@ jobs:
             genhtml coverage/lcov.info -o coverage/html
             junit2html reports/eslint/eslint.xml reports/eslint/eslint.html
             junit2html reports/mocha/test-results.xml reports/mocha/test-results.html
-            parcel coverage/html/index.html -d coverage/bundle
+            parcel build coverage/html/index.html -d coverage/bundle
 
       # Upload results
       - store_test_results:
