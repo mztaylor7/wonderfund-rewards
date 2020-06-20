@@ -8,7 +8,10 @@
     "url": "https://github.com/team-iroh/za-service/issues"
   },
   "private": true,
-  "workspaces": ["server", "client"],
+  "workspaces": [
+    "server",
+    "client"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/team-iroh/pledge-rewards.git"
@@ -17,7 +20,6 @@
   "author": "Zach Ayers",
   "main": "server/src/index.js",
   "scripts": {
-    "ci:test": "(cd server && yarn test); (cd client && yarn test);",
     "test": "(cd server && npm test); (cd client && npm test);",
     "dev": "cd server && npm run dev",
     "postinstall": "(cd client && npm install); (cd server && npm install);",

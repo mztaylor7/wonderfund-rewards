@@ -14,19 +14,21 @@ describe('reward model', function () {
 
   let MockReward;
 
-  before(function () {
+  before(function (done) {
     MockReward = MockRewardModel.factory(sequelize);
-    // MockReward.hasMany(Reward);
+    done();
   });
 
-  after(function () {
+  after(function (done) {
     MockReward.init.resetHistory();
+    done();
   });
 
-  it('should call Reward.init with the correct attributes', function () {
+  it('should call Reward.init with the correct attributes', function (done) {
     sinon.assert.calledWith(MockReward.init, MockRewardModel.attributes, {
       sequelize,
       modelName: 'reward'
     });
+    done();
   });
 });

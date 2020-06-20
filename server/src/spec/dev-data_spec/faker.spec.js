@@ -18,7 +18,7 @@ describe('mock generator', function () {
    * Project Model Unit Tests
    */
   context('mock project', function () {
-    it('should correctly mock a project model', function () {
+    it('should correctly mock a project model', function (done) {
       assert.isString(mockProject.title);
 
       assert.isString(mockProject.title);
@@ -32,6 +32,7 @@ describe('mock generator', function () {
       assert.isNumber(mockProject.campaignDuration);
       assert.isNumber(mockProject.budget);
       assert.isNumber(mockProject.fundingGoal);
+      done();
     });
   });
 
@@ -39,7 +40,7 @@ describe('mock generator', function () {
    * Rewards Model Unit Test
    */
   context('mock reward', function () {
-    it('should correctly mock a rewards model', function () {
+    it('should correctly mock a rewards model', function (done) {
       assert.isString(mockReward.title);
       assert.isNumber(mockReward.pledgeAmount);
       assert.isString(mockReward.description);
@@ -50,14 +51,16 @@ describe('mock generator', function () {
       assert.isNumber(mockReward.timeLimit);
       assert.isNumber(mockReward.projectId);
       assert.isString(mockReward.rewardItems);
+      done();
     });
 
-    it('should only contain strings in the rewards items array', function () {
+    it('should only contain strings in the rewards items array', function (done) {
       assert.isTrue(
         mockReward.rewardItems
           .split(',')
           .every((item) => typeof item === 'string')
       );
+      done();
     });
   });
 });

@@ -14,19 +14,21 @@ describe('project model', function () {
 
   let MockProject;
 
-  before(function () {
+  before(function (done) {
     MockProject = MockProjectModel.factory(sequelize);
-    // MockProject.hasMany(Reward);
+    done();
   });
 
-  after(function () {
+  after(function (done) {
     MockProject.init.resetHistory();
+    done();
   });
 
-  it('should call Project.init with the correct attributes', function () {
+  it('should call Project.init with the correct attributes', function (done) {
     sinon.assert.calledWith(MockProject.init, MockProjectModel.attributes, {
       sequelize,
       modelName: 'project'
     });
+    done();
   });
 });

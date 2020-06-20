@@ -4,15 +4,58 @@ jobs:
   inspect-server:
     docker:
       - image: "circleci/node:12.16.3"
-      - image: "mysql:8.0"
+      - image: "mysql:8.0.20"
         environment:
           MYSQL_ROOT_PASSWORD: password
           MYSQL_DATABASE: kstart
           MYSQL_USER: user
           MYSQL_PASSWORD: password
 
+    working_directory: ~/repo
+
     steps:
+      # Check Out Git Code
       - checkout
+
+      # install reporting tools
+      - run:
+          name: Install Reporting Tools
+          command: |
+            sudo apt-get update -qq -y
+            sudo apt-get install lcov -y
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package-lock.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      # Update npm
+      - run:
+          name: Update Global NPM & Install Parcel
+          command: |
+            sudo npm install -g npm@latest parcel-bundler --quiet
+
+      # Install Packages
+      - run:
+          name: Install Server NPM Packages
+          command: |
+            npm install nyc mocha mocha-junit-reporter --quiet
+            cd server
+            npm install --quiet
+            npm install --only=dev --quiet
+
+      # Save the dependency cache
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package-lock.json" }}
+
+      # Make Report Directory
+      - run: mkdir reports
+
+      # Wait For Database Connection
       - run:
           name: Wait For Database Connection
           command: dockerize -wait tcp://$HOST:$PORT -timeout 1m
@@ -20,17 +63,44 @@ jobs:
             HOST: localhost
             PORT: 3306
 
+      # Run Mocha
       - run:
-          name: Install Server Packages
+          name: Run Mocha Test Suite On Server
+          command: |
+            env DEBUG=off NODE_ENV=test DATABASE_NAME=kstart_test ./node_modules/.bin/nyc ./node_modules/.bin/mocha server/src/spec/**/*.js --recursive --timeout=10000 --exit --reporter mocha-junit-reporter --reporter-options mochaFile=reports/mocha/test-results.xml
+          when: always
+
+      # Run EsLint
+      - run:
+          name: Run ESLint On Server
           command: |
             cd server
-            yarn install
+            ./node_modules/.bin/eslint ./ --format junit --output-file ../reports/eslint/eslint.xml
+          when: always
 
       - run:
-          name: Run Server Test Suite
+          name: Code Coverage
           command: |
-            cd server
-            yarn ci:test
+            mkdir coverage
+            # nyc report requires that nyc has already been run,
+            # which creates the .nyc_output folder containing necessary data
+            ./node_modules/.bin/nyc report --reporter=text-lcov > coverage/lcov.info
+
+          when: always
+
+      # Upload results
+      - store_test_results:
+          path: reports
+
+      - store_artifacts:
+          path: ./reports/mocha/test-results.xml
+
+      - store_artifacts:
+          path: ./reports/eslint/eslint.xml
+
+      - store_artifacts: # upload test coverage as artifact
+          path: ./coverage/lcov.info
+          prefix: tests
 
 workflows:
   version: 2
