@@ -8,7 +8,10 @@
     "url": "https://github.com/team-iroh/za-service/issues"
   },
   "private": true,
-  "workspaces": ["server", "client"],
+  "workspaces": [
+    "server",
+    "client"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/team-iroh/pledge-rewards.git"
