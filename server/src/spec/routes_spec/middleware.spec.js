@@ -52,13 +52,7 @@ describe('middleware', function () {
     Reward = database.getRewardModel();
 
     /* Drop the table and create a new object in the table*/
-    await connection.query('SET FOREIGN_KEY_CHECKS = 0', null, { raw: true });
-    await connection.query(`truncate table rewards`, null, { raw: true });
-    await connection.query(`truncate table projects`, null, { raw: true });
-    await connection.query('SET FOREIGN_KEY_CHECKS = 1', null, { raw: true });
-    await Project.sync({ force: false });
     await Project.create(mockProject);
-    await Reward.sync({ force: true });
     await Reward.create(mockReward);
   });
 
