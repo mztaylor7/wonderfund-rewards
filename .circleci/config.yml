@@ -30,10 +30,14 @@ jobs:
           command: yarn install
 
       - run:
-          name: Run Test Suite
-          command: yarn ci:test
+          name: Run Server Test Suite
+          command: |
+            cd server
+            yarn ci:test
           environment:
-            DATABASE_HOST: localhost
+            DEBUG: off
+            DATABASE_NAME: circle_test
+            DATABASE_HOST: 127.0.0.1
             PORT: 3000
             DATABASE_USER: user
             DATBASE_PASSWORD: password
