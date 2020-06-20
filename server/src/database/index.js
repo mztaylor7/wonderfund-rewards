@@ -71,6 +71,7 @@ const createSequelizeConnection = () => {
         RewardModel.Project = RewardModel.belongsTo(ProjectModel);
 
         await ProjectModel.sync();
+
         await RewardModel.sync();
 
         /* Everything is connected - resolve */
