@@ -62,6 +62,7 @@ jobs:
       - run:
           name: Run Mocha Test Suite
           command: |
+             env DEBUG=off NODE_ENV=test DATABASE_NAME=kstart_test
             ./node_modules/.bin/nyc ./node_modules/.bin/mocha server/src/spec/**/*.js --recursive --timeout=10000 --exit --reporter mocha-junit-reporter --reporter-options mochaFile=reports/mocha/test-results.xml
           when: always
 
