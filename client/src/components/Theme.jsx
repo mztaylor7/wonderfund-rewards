@@ -8,7 +8,7 @@ const theme = {
     buttonGreen: '#009E74',
     gradientBlue: '#DBE7FE',
     gradientOrange: '#FFF2EC',
-    text: '#303030',
+    text: '#282828',
     flavorText: '#888B8B',
     linkText: '#498F80',
   },
