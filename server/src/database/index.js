@@ -47,8 +47,6 @@ const createSequelizeConnection = () => {
         sqlRoot
           .query(`CREATE DATABASE IF NOT EXISTS ${DATABASE_NAME};`)
           .then(() => {
-            /* Destructure out the environmental variables from process.env*/
-
             // Connect to MySQL Database
             const connection = new Sequelize(
               DATABASE_NAME,

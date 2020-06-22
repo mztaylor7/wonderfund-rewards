@@ -21,13 +21,16 @@
   "main": "server/src/index.js",
   "scripts": {
     "test": "(cd server && npm test); (cd client && npm test);",
-    "dev": "cd server && npm run dev",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run build-dev:watch",
+    "dev": "concurrently 'npm run dev:server' 'npm run dev:client'",
     "postinstall": "(cd client && npm install); (cd server && npm install);",
     "prestart": "cd client && npm run build-prod",
     "start": "cd server && npm start"
   },
   "dependencies": {},
   "devDependencies": {
+    "concurrently": "^5.2.0",
     "gulp": "^4.0.2"
   }
 }

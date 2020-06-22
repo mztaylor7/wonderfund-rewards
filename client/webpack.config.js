@@ -51,7 +51,9 @@ const config = {
   ],
   devServer: {
     contentBase: './dist',
+    historyApiFallback: true,
   },
+  devtool: 'inline-source-maps',
   optimization: {
     runtimeChunk: 'single',
     splitChunks: {
