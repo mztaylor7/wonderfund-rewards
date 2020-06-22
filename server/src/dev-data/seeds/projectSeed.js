@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies,global-require,no-await-in-loop */
+/* eslint-disable import/no-extraneous-dependencies,global-require,no-await-in-loop,no-plusplus,no-console */
 const path = require('path');
 const { config } = require('dotenv');
 
