@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 const theme = {
   colors: {
     borderGrey: '#9B9E9E',
-    highlightGreen: '#35A883',
+    highlightGreen: '#009E74',
     buttonGreen: '#009E74',
     gradientBlue: '#DBE7FE',
     gradientOrange: '#FFF2EC',
