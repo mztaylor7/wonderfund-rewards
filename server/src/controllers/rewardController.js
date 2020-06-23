@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const { getRewardModel } = require('../database');
 /**
  * Filter Body
