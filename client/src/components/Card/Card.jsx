@@ -19,6 +19,12 @@ import {
   Title,
 } from './Card.style';
 
+/**
+ * Card Component
+ * @param props
+ * @returns {*}
+ * @constructor
+ */
 const Card = (props) => {
   /* Use Hooks to create state component for the description container */
   const [descOpen, setDescOpen] = useState(false);
