@@ -50,7 +50,7 @@ export const Container = styled.div`
   @keyframes focus-in-contract {
     0% {
       letter-spacing: 1em;
-      filter: blur(12px);
+      filter: blur(6px);
       opacity: 0;
     }
     100% {

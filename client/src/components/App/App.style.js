@@ -12,4 +12,8 @@ export default createGlobalStyle`
     font-size: 62.5%;
     font-weight: 400;
   }
+  
+  body {
+  padding: 20px;
+  }
 `;

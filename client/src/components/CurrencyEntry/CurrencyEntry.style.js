@@ -33,8 +33,7 @@ export const Input = styled.input`
   border: 1px solid #dcdedd;
   color: #282828;
   cursor: default;
-  padding: 10px;
-  padding-left: 5.4rem;
+  padding: 10px 10px 10px 5.4rem;
   position: relative;
   height: 42px;
   line-height: 20px;
@@ -50,7 +49,6 @@ export const Input = styled.input`
   text-align: start;
   font: 400 13.3333px Arial;
   writing-mode: horizontal-tb;
-  -webkit-rtl-ordering: logical;
 
   &:focus {
     outline: 0;
