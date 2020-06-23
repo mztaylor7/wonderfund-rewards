@@ -3,6 +3,7 @@ import React from 'react';
 /* Import Components */
 import Container from '../Shared/Container/Container';
 import Heading from '../Shared/Heading/Heading';
+import Avatar from '../Shared/Avatar/Avatar';
 
 /**
  * Avatar Card Component

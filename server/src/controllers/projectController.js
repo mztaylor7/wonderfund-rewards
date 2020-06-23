@@ -66,7 +66,10 @@ const getImage = (id) => {
 module.exports.getUserImage = (req, res) => {
   getImage(req.id)
     .then((image) => {
-      res.status(200).send(image);
+      const buf = Buffer.from(image.Body);
+      const base64 = buf.toString('base64');
+      const html = `<img src='data:image/jpeg;base64,${base64}'` + `/>`;
+      res.status(200).send(html);
     })
     .catch((err) => res.status(400).send(err));
 };

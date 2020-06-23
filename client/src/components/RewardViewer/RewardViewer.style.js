@@ -7,4 +7,5 @@ export default styled.div`
   position: fixed;
   padding-right: 20px;
   padding-bottom: 60px;
+  padding-top: 40px;
 `;
