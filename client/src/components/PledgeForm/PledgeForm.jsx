@@ -5,7 +5,7 @@ import CurrencyEntry from '../CurrencyEntry/CurrencyEntry';
 import ContinueButton from '../ContinueButton/ContinueButton';
 
 export default withTheme((props) => {
-  const { activated } = props;
+  const { activated, children } = props;
   const { theme } = props;
 
   const [input, setInput] = useState('');
@@ -18,6 +18,7 @@ export default withTheme((props) => {
         </SubHeading>
         <CurrencyEntry input={input} setInput={setInput} />
         <SubHeading uppercase>{`About £${Math.round(input * 0.8)}`}</SubHeading>
+        {children}
         <ContinueButton />
       </>
     );

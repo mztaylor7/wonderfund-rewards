@@ -2,8 +2,6 @@
 import React, { useState } from 'react';
 
 /* Import Components */
-import ContinueButton from '../ContinueButton/ContinueButton';
-import CurrencyEntry from '../CurrencyEntry/CurrencyEntry';
 import Container from '../Shared/Container/Container';
 import Overlay from '../Shared/Overlay/Overlay';
 import Heading from '../Shared/Heading/Heading';

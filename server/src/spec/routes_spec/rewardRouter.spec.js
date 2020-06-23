@@ -128,6 +128,12 @@ describe('/api/rewards', function () {
       }
     );
 
+    it('should return an empty array if only an empty projectId is passed in', async function () {
+      const res = await request.get(`${apiAddress}?projectId=`);
+      assert.equal(res.statusCode, 200);
+      assert.equal(res.body.length, 0);
+    });
+
     it(
       'should return an empty array if only a [projectId] query parameter is passed in and no' +
         ' matching reward is found',
@@ -137,6 +143,11 @@ describe('/api/rewards', function () {
         assert.equal(res.body.length, 0);
       }
     );
+
+    it('should return a status code of 400 if no params are passed in', async function () {
+      const res = await request.get(apiAddress);
+      assert.equal(res.statusCode, 400);
+    });
 
     it('should return a status code of 400 if a database error occurs', async function () {
       await connection.close();

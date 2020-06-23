@@ -1,22 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import Card from '../Card/Card';
-import apiService from '../../services/apiService';
-import Container from '../Shared/Container/Container';
+import { getRewards } from '../../services/apiService';
+import RewardBounds from './RewardViewer.style';
+import GradientCard from '../GradientCard/GradientCard';
+import LargeTitle from '../Shared/LargeTitle/LargeTitle';
+import AvatarCard from '../AvatarCard/AvatarCard';
 
 const RewardViewer = () => {
   const [rewards, setRewards] = useState([]);
   useEffect(() => {
-    apiService().then((response) => {
+    getRewards().then((response) => {
       setRewards(response.data);
     });
   }, []);
 
   return (
-    <>
+    <RewardBounds>
+      <AvatarCard />
+      <LargeTitle>Support</LargeTitle>
+      <GradientCard />
       {rewards.map((reward) => (
         <Card key={reward.id} reward={reward} />
       ))}
-    </>
+    </RewardBounds>
   );
 };
 

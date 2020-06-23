@@ -1,3 +1,5 @@
+const AWS = require('aws-sdk');
+const uuid = require('uuid');
 const { getProjectModel } = require('../database');
 const { getRewardModel } = require('../database');
 
@@ -39,6 +41,34 @@ const getSearchQuery = (req) => {
   }
 
   return searchQuery;
+};
+
+/**
+ * Get Image
+ * @param id The id of the project to fetch the user for
+ * @returns {Promise<PromiseResult<S3.GetObjectOutput, AWSError>>}
+ */
+const getImage = (id) => {
+  const s3 = new AWS.S3();
+  return s3
+    .getObject({
+      Bucket: 'fec-zayers-reward-service',
+      Key: `${id}.png`
+    })
+    .promise();
+};
+
+/**
+ * Get User Image
+ * @param req The HTTP Request Object
+ * @param res The HTTP Response Object
+ */
+module.exports.getUserImage = (req, res) => {
+  getImage(req.id)
+    .then((image) => {
+      res.status(200).send(image);
+    })
+    .catch((err) => res.status(400).send(err));
 };
 
 /**

@@ -6,7 +6,12 @@ const CurrencyEntry = (props) => {
 
   return (
     <Form>
-      <Input value={input} onChange={(e) => setInput(e.target.value)} />
+      <Input
+        type='number'
+        min='0'
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+      />
       <CurrencyBox>
         <CurrencyIcon>$</CurrencyIcon>
       </CurrencyBox>

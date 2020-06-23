@@ -88,6 +88,17 @@ describe('/api/projects', function () {
    * Test the Project GET Routes
    */
   context('GET /', function () {
+    it('should get the user image for the passed in project id', async function () {
+      const res = await request.get(`${apiAddress}/user?id=1`);
+      assert.equal(res.statusCode, 200);
+      assert.isDefined(res);
+    });
+
+    it('should return a status code of 200 if a user image does not exist', async function () {
+      const res = await request.get(`${apiAddress}/user?id=-1`);
+      assert.equal(res.statusCode, 400);
+    });
+
     it('should get all projects if no [id] or [name] query parameter is passed in', async function () {
       const res = await request.get(apiAddress);
       assert.equal(res.statusCode, 200);

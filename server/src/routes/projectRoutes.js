@@ -8,6 +8,7 @@ const projectController = require('../controllers/projectController');
  * */
 const router = express.Router();
 const {
+  getUserImage,
   getOneProject,
   deleteOneProject,
   createOneProject,
@@ -23,6 +24,9 @@ router.get('/find', paramPluck, getOneProject);
 router.put('/find', paramPluck, updateOneProject);
 router.patch('/find', paramPluck, updateOneProject);
 router.delete('/find', paramPluck, deleteOneProject);
+
+/* Route for getting user image */
+router.get('/user', paramPluck, getUserImage);
 
 /* Export this module */
 module.exports = router;

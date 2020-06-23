@@ -1,5 +1,5 @@
+const _ = require('lodash');
 const { getRewardModel } = require('../database');
-
 /**
  * Filter Body
  * @param req the HTTP Request object
@@ -47,6 +47,7 @@ const getSearchQuery = (req) => {
 module.exports.getRewards = (req, res) => {
   const RewardModel = getRewardModel();
   const searchQuery = getSearchQuery(req);
+
   RewardModel.findAll({ where: searchQuery })
     .then((rewards) => {
       res.status(200).json(rewards);
