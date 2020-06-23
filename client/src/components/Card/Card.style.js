@@ -66,10 +66,10 @@ export const DescCollapseBtn = styled.p`
     rgba(255, 255, 255, 0) 0%,
     rgba(255, 255, 255, 1) 20%
   );
-  width: 100px;
+  width: 80px;
   text-align: end;
   cursor: pointer;
   position: absolute;
   right: 5px;
-  bottom: 5px;
+  bottom: 0;
 `;

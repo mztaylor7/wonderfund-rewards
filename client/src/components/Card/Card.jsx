@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { withTheme } from 'styled-components';
+import ContinueButton from '../ContinueButton/ContinueButton';
+
 import {
   Container,
   Heading,
@@ -9,11 +12,12 @@ import {
   DescriptionContainer,
   DescCollapseBtn,
 } from './Card.style';
+import CurrencyEntry from '../CurrencyEntry/CurrencyEntry';
 
 const Card = (props) => {
   /* Use Hooks to create state component for the description container */
   const [descOpen, setDescOpen] = useState(false);
-
+  const { theme } = props;
   return (
     <Container>
       <Heading>Pledge $5 or more</Heading>
@@ -39,8 +43,14 @@ const Card = (props) => {
       </SubHeading>
       <SmallTitle uppercase={false}>Jul 2020</SmallTitle>
       <BackerHeading>19 Backers</BackerHeading>
+      <SubHeading uppercase={false} style={{ color: `${theme.colors.text}` }}>
+        Pledge amount
+      </SubHeading>
+      <CurrencyEntry />
+      <SubHeading uppercase>About $6</SubHeading>
+      <ContinueButton />
     </Container>
   );
 };
 
-export default Card;
+export default withTheme(Card);
