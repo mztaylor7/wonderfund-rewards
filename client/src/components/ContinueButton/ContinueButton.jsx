@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from './ContinueButton.style';
 
-const ContinueButton = (props) => {
+const ContinueButton = () => {
   return <Button>Continue</Button>;
 };
 

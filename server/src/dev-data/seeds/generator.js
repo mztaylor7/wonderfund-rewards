@@ -36,7 +36,7 @@ module.exports.generateMockReward = () => ({
   deliveryMonth: faker.date.month(),
   deliveryYear: faker.date.future().getFullYear(),
   shippingType: faker.company.bsAdjective(),
-  rewardQuantity: faker.random.number(),
+  rewardQuantity: Math.floor(Math.random() * (500 - 1 + 1)) + 1,
   timeLimit: faker.random.number(),
   projectId: faker.random.number(),
   rewardItems: Array.from({ length: random.int(1, 6) }, () =>
