@@ -27,6 +27,7 @@
     "postinstall": "(cd client && yarn install); (cd server && yarn install);",
     "lint": "(cd server && yarn lint); (cd client && yarn lint);",
     "precommit-msg": "echo 'Project parsing...' && exit 0",
+    "start:database": "node server/src/dev-data/seeds/projectSeed.js --docker && yarn start",
     "sort": "(npx sort-package-json); (cd server && yarn sort); (cd client && yarn sort);",
     "prestart": "cd client && yarn build-prod",
     "start": "cd server && yarn start",

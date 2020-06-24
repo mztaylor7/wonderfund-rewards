@@ -29,6 +29,7 @@
   "dependencies": {
     "aws-sdk": "^2.703.0",
     "axios": "^0.19.2",
+    "commander": "^5.1.0",
     "cors": "^2.8.5",
     "debug": "^4.1.1",
     "dotenv": "^8.2.0",
