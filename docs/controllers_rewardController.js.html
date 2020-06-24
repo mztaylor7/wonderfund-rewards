@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: controllers/rewardController.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: controllers/rewardController.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const { getRewardModel } = require('../database');
+/**
+ * Filter Body
+ * @param req the HTTP Request object
+ * @returns {Object} An object with only the parameters we need from the request body
+ */
+const filterBody = (req) => {
+  return {
+    title: req.body.title,
+    pledgeAmount: req.body.pledgeAmount,
+    description: req.body.description,
+    deliveryMonth: req.body.deliveryMonth,
+    deliveryYear: req.body.deliveryYear,
+    rewardItems: req.body.rewardItems,
+    shippingType: req.body.shippingType,
+    rewardQuantity: req.body.rewardQuantity,
+    timeLimit: req.body.timeLimit,
+    projectId: req.body.projectId
+  };
+};
+
+/**
+ * Get Search Query
+ * @param req The HTTP Request object
+ * @returns {{}} A query object containing either the id or title of a project - depending on
+ * which was provided in the request.
+ */
+const getSearchQuery = (req) => {
+  const searchQuery = {};
+  if (req.projectId) {
+    searchQuery.projectId = req.projectId;
+  }
+
+  if (req.rewardId) {
+    searchQuery.id = req.rewardId;
+  }
+
+  return searchQuery;
+};
+
+/**
+ * Get All Rewards
+ * @param req The HTTP Request Object
+ * @param res The HTTP Response Object
+ */
+module.exports.getRewards = (req, res) => {
+  const RewardModel = getRewardModel();
+  const searchQuery = getSearchQuery(req);
+
+  RewardModel.findAll({ where: searchQuery })
+    .then((rewards) => {
+      res.status(200).json(rewards);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
+};
+
+/**
+ * Create One Reward
+ * @param req The HTTP Request Object
+ * @param res The HTTP Response Object
+ */
+module.exports.createOneReward = (req, res) => {
+  const RewardModel = getRewardModel();
+  RewardModel.sync({ force: false })
+    .then(() => {
+      return RewardModel.create(filterBody(req));
+    })
+    .then((reward) => {
+      res.status(200).send(reward);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
+};
+
+/**
+ * Update One Reward
+ * @param req The HTTP Request Object
+ * @param res The HTTP Response Object
+ */
+module.exports.updateOneReward = (req, res) => {
+  const RewardModel = getRewardModel();
+  const searchQuery = getSearchQuery(req);
+  const params = filterBody(req);
+  RewardModel.update(params, { where: searchQuery }).then(() => {
+    res.status(200).json(params);
+  });
+
+  // Errors from 'update' don't seem to be sent to the catch block - even if the database is closed.
+};
+
+/**
+ * Delete One Reward
+ * @param req The HTTP Request Object
+ * @param res The HTTP Response Object
+ */
+module.exports.deleteOneReward = (req, res) => {
+  const RewardModel = getRewardModel();
+  const searchQuery = getSearchQuery(req);
+  RewardModel.destroy({ where: searchQuery })
+    .then(() => {
+      res.status(200).json(searchQuery);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
+};
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addDays">addDays</a></li><li><a href="global.html#attributes">attributes</a></li><li><a href="global.html#createOneProject">createOneProject</a></li><li><a href="global.html#createOneReward">createOneReward</a></li><li><a href="global.html#createSequelizeConnection">createSequelizeConnection</a></li><li><a href="global.html#deleteOneProject">deleteOneProject</a></li><li><a href="global.html#deleteOneReward">deleteOneReward</a></li><li><a href="global.html#factory">factory</a></li><li><a href="global.html#filterBody">filterBody</a></li><li><a href="global.html#generateMockProject">generateMockProject</a></li><li><a href="global.html#generateMockReward">generateMockReward</a></li><li><a href="global.html#generateProjects">generateProjects</a></li><li><a href="global.html#getAllProjects">getAllProjects</a></li><li><a href="global.html#getDaysBetween">getDaysBetween</a></li><li><a href="global.html#getImage">getImage</a></li><li><a href="global.html#getOneProject">getOneProject</a></li><li><a href="global.html#getRewards">getRewards</a></li><li><a href="global.html#getSearchQuery">getSearchQuery</a></li><li><a href="global.html#getUserImage">getUserImage</a></li><li><a href="global.html#pluck">pluck</a></li><li><a href="global.html#updateOneProject">updateOneProject</a></li><li><a href="global.html#updateOneReward">updateOneReward</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Jun 24 2020 15:13:31 GMT-0700 (Pacific Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

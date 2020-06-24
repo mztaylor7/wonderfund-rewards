@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: dev-data/seeds/projectSeed.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: dev-data/seeds/projectSeed.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/* eslint-disable import/no-extraneous-dependencies,global-require,no-await-in-loop,no-plusplus,no-console */
+const path = require('path');
+const { config } = require('dotenv');
+
+const inquirer = require('inquirer');
+const chalkPipe = require('chalk-pipe');
+const ProgressBar = require('progress');
+const _ = require('lodash');
+const PromiseBar = require('promise.bar');
+const chalk = require('chalk');
+
+PromiseBar.enable();
+
+/**
+ * Generate Projects Into Database
+ */
+const generateProjects = async (dbName, seedAmount) => {
+  config({ path: path.resolve(__dirname, '../../config/.env') });
+
+  /* Set The Datbase Name */
+  process.env.DATABASE_NAME = dbName;
+
+  /* Require the datbase */
+  const database = require('../../database');
+
+  /* Require the generators for mock projects and rewards */
+  const { generateMockProject, generateMockReward } = require('./generator');
+
+  /* Connect to the database, drop all tables, then generate the projects in the database */
+  const connection = await database.createSequelizeConnection();
+  await connection.drop();
+
+  /* Create a progress bar to notify the user of staging percentage */
+  const stagingBar = new ProgressBar(
+    chalkPipe('green.bold')(
+      'Staged [:bar] :current of :total entries - :percent :etas'
+    ),
+    {
+      complete: '=',
+      incomplete: ' ',
+      width: 30,
+      total: seedAmount
+    }
+  );
+
+  try {
+    /* Get the project and rward models */
+    const Project = database.getProjectModel();
+    const Reward = database.getRewardModel();
+
+    /* Sync the tables to ensure they exist */
+    await Project.sync({ force: true });
+    await Reward.sync({ force: true });
+
+    /* Max and min number of rewards to generate*/
+    const maxRewards = 8;
+    const minRewards = 3;
+
+    /* Create arrays to hold generated data */
+    const projects = [];
+    const rewards = [];
+
+    /* Loop from 1 to the seed amount and populate generator arrays */
+    for (let i = 1; i &lt;= seedAmount; i++) {
+      const newProject = generateMockProject();
+      projects.push(newProject);
+
+      const randomNumber =
+        Math.floor(Math.random() * (maxRewards - minRewards + 1)) + minRewards;
+
+      for (let j = 1; j &lt;= randomNumber; j++) {
+        const newReward = generateMockReward();
+        newReward.projectId = i;
+        rewards.push(newReward);
+      }
+
+      /* Update the progress bar */
+      stagingBar.tick();
+    }
+
+    /* Split the generator arrays into chunks - this avoid packet_size errors for large seed operations */
+    const projectChunks = _.chunk(projects, seedAmount / (seedAmount * 0.01));
+    const rewardChunks = _.chunk(rewards, rewards.length / (seedAmount * 0.01));
+
+    /* Create a progress bar to notify the user of bulk creation progress */
+    const creationBar = new ProgressBar(
+      chalkPipe('green.bold')(
+        'Seeding [:bar] :current of :total chunks - :percent :etas'
+      ),
+      {
+        complete: '=',
+        incomplete: ' ',
+        width: 30,
+        total: projectChunks.length + rewardChunks.length
+      }
+    );
+
+    /* Array to hold bulk creations */
+    const creations = [];
+
+    /* Loop through the project chunks and bulk create each chunk */
+    projectChunks.forEach((chunk) => {
+      creations.push(Project.bulkCreate(chunk));
+      creationBar.tick();
+    });
+
+    /* Loop through the reward chunks and bulk create each chunk */
+    rewardChunks.forEach((chunk) => {
+      creations.push(Reward.bulkCreate(chunk));
+      creationBar.tick();
+    });
+
+    /* This is the same funciton as Promise.all - using the Promise.bar npm package to display the progress to the screen*/
+    PromiseBar.all(creations, {
+      label: chalk.blue('Verify'),
+      barFormat: chalk.dim.blue
+    }).then(() => {
+      /* All done! Notify user and exit! */
+      console.log(chalkPipe('green.bold')('Database Seeded Successfully!'));
+      process.exit(0);
+    });
+  } catch (e) {
+    /* Error! Notify user and exit! */
+    console.error(chalkPipe('red.bold')(e));
+    process.exit(0);
+  }
+};
+
+/**
+ * IIFE to run the console questionnaire upon module load
+ */
+(() => {
+  /* Mutable variables to hold the database name and seeding amount */
+  let dbName = 'kstart';
+  let seedAmount = 100;
+
+  if (process.argv[2] === '--docker') {
+    return generateProjects(dbName, seedAmount);
+  }
+
+  /* Questions to present to the user in the console */
+  const questions = [
+    {
+      type: 'input',
+      name: 'database',
+      message: 'Enter the name of the database to seed',
+      default: dbName
+    },
+    {
+      type: 'number',
+      name: 'entries',
+      message: 'Enter the number of parent entries to create',
+      default: seedAmount
+    }
+  ];
+
+  /* Use the inquirer package to promt the user with questions and save the answers */
+  inquirer.prompt(questions).then((answers) => {
+    seedAmount = answers.entries;
+    dbName = answers.database;
+    return inquirer
+      .prompt([
+        {
+          type: 'confirm',
+          name: 'confirm',
+          message: chalkPipe('orange.bold')(
+            `Seed database: '${answers.database}' with ${answers.entries} entries?`
+          )
+        }
+      ])
+      .then((finalAnswer) => {
+        if (finalAnswer.confirm) {
+          return generateProjects(dbName, seedAmount);
+        }
+      });
+  });
+})();
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addDays">addDays</a></li><li><a href="global.html#attributes">attributes</a></li><li><a href="global.html#createOneProject">createOneProject</a></li><li><a href="global.html#createOneReward">createOneReward</a></li><li><a href="global.html#createSequelizeConnection">createSequelizeConnection</a></li><li><a href="global.html#deleteOneProject">deleteOneProject</a></li><li><a href="global.html#deleteOneReward">deleteOneReward</a></li><li><a href="global.html#factory">factory</a></li><li><a href="global.html#filterBody">filterBody</a></li><li><a href="global.html#generateMockProject">generateMockProject</a></li><li><a href="global.html#generateMockReward">generateMockReward</a></li><li><a href="global.html#generateProjects">generateProjects</a></li><li><a href="global.html#getAllProjects">getAllProjects</a></li><li><a href="global.html#getDaysBetween">getDaysBetween</a></li><li><a href="global.html#getImage">getImage</a></li><li><a href="global.html#getOneProject">getOneProject</a></li><li><a href="global.html#getRewards">getRewards</a></li><li><a href="global.html#getSearchQuery">getSearchQuery</a></li><li><a href="global.html#getUserImage">getUserImage</a></li><li><a href="global.html#pluck">pluck</a></li><li><a href="global.html#updateOneProject">updateOneProject</a></li><li><a href="global.html#updateOneReward">updateOneReward</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Jun 24 2020 15:13:31 GMT-0700 (Pacific Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
