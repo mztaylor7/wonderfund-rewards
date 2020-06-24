@@ -1,0 +1,290 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card Component should match the test snapshot 1`] = `
+<Theme>
+  <ThemeProvider
+    theme={
+      Object {
+        "colors": Object {
+          "borderGrey": "#9B9E9E",
+          "buttonGreen": "#009E74",
+          "flavorText": "#888B8B",
+          "gradientBlue": "#DBE7FE",
+          "gradientOrange": "#FFF2EC",
+          "highlightGreen": "#009E74",
+          "linkText": "#498F80",
+          "text": "#282828",
+        },
+        "fontSizes": Object {
+          "large": "3rem",
+          "medium": "1.8rem",
+          "small": "1rem",
+        },
+        "fonts": Array [
+          "Muli",
+          "sans-serif",
+        ],
+      }
+    }
+  >
+    <Card
+      reward={
+        Object {
+          "deliveryMonth": "Placeholder",
+          "deliveryYear": 2020,
+          "description": "Placeholder",
+          "id": 1,
+          "pledgeAmount": "Placeholder",
+          "rewardItems": "Test1,Test2,Test3",
+          "rewardQuantity": 1,
+          "title": "Placeholder",
+        }
+      }
+    >
+      <_default
+        activated={false}
+      >
+        <Containerstyle___default
+          activated={false}
+        >
+          <div
+            className="Containerstyle___default-sc-1q8wjhx-0 BmWDh"
+          >
+            <_default
+              activated={false}
+              setActivated={[Function]}
+            >
+              <Overlaystyle___default
+                onClick={[Function]}
+              >
+                <div
+                  className="Overlaystyle___default-trsgfk-0 fGHlti"
+                  onClick={[Function]}
+                >
+                  <p>
+                    Select this reward
+                  </p>
+                </div>
+              </Overlaystyle___default>
+            </_default>
+            <_default>
+              <Headingstyle___default>
+                <h2
+                  className="Headingstyle___default-dlpxpq-0 iErRtB"
+                >
+                  Pledge $Placeholder or more
+                </h2>
+              </Headingstyle___default>
+            </_default>
+            <_default
+              uppercase={true}
+            >
+              <SubHeadingstyle___default
+                uppercase={true}
+              >
+                <p
+                  className="SubHeadingstyle___default-qgikex-0 cDJTT"
+                >
+                  About £NaN
+                </p>
+              </SubHeadingstyle___default>
+            </_default>
+            <_default
+              uppercase={true}
+            >
+              <Titlestyle___default
+                uppercase={true}
+              >
+                <h3
+                  className="Titlestyle___default-s64se5-0 hzYnKD"
+                >
+                  Placeholder
+                </h3>
+              </Titlestyle___default>
+            </_default>
+            <Description
+              activated={false}
+              descOpen={false}
+              description="Placeholder"
+              setDescOpen={[Function]}
+            >
+              <Descriptionstyle__DescriptionContainer
+                activated={false}
+                open={false}
+              >
+                <div
+                  className="Descriptionstyle__DescriptionContainer-wtqy6i-0 lhnXnZ"
+                  open={false}
+                >
+                  <p>
+                    Placeholder
+                  </p>
+                  <Descriptionstyle__DescCollapseBtn
+                    onClick={[Function]}
+                    open={false}
+                  >
+                    <p
+                      className="Descriptionstyle__DescCollapseBtn-wtqy6i-1 loBJcu"
+                      onClick={[Function]}
+                      open={false}
+                    />
+                  </Descriptionstyle__DescCollapseBtn>
+                </div>
+              </Descriptionstyle__DescriptionContainer>
+            </Description>
+            <_default
+              activated={false}
+              id={1}
+              rewardItems="Test1,Test2,Test3"
+            >
+              <_default
+                uppercase={true}
+              >
+                <SubHeadingstyle___default
+                  uppercase={true}
+                >
+                  <p
+                    className="SubHeadingstyle___default-qgikex-0 cDJTT"
+                  >
+                    Includes:
+                  </p>
+                </SubHeadingstyle___default>
+              </_default>
+              <RewarsListstyle___default>
+                <ul
+                  className="RewarsListstyle___default-gbe8yx-0 gRmdJF"
+                >
+                  <li
+                    key="1_Test1-0"
+                  >
+                    Test1
+                  </li>
+                  <li
+                    key="1_Test2-1"
+                  >
+                    Test2
+                  </li>
+                  <li
+                    key="1_Test3-2"
+                  >
+                    Test3
+                  </li>
+                </ul>
+              </RewarsListstyle___default>
+            </_default>
+            <_default>
+              <SplitContainerstyle___default>
+                <div
+                  className="SplitContainerstyle___default-sc-1ep4whv-0 hdmVpp"
+                >
+                  <div>
+                    <_default
+                      uppercase={true}
+                    >
+                      <SubHeadingstyle___default
+                        uppercase={true}
+                      >
+                        <p
+                          className="SubHeadingstyle___default-qgikex-0 cDJTT"
+                        >
+                          Estimated
+                          <br />
+                          delivery
+                        </p>
+                      </SubHeadingstyle___default>
+                    </_default>
+                    <_default
+                      uppercase={false}
+                    >
+                      <SmallTitlestyle___default
+                        uppercase={false}
+                      >
+                        <h3
+                          className="SmallTitlestyle___default-g42rlo-0 hVAPix"
+                        >
+                          Pla 2020
+                        </h3>
+                      </SmallTitlestyle___default>
+                    </_default>
+                  </div>
+                  <div>
+                    <_default
+                      uppercase={true}
+                    >
+                      <SubHeadingstyle___default
+                        uppercase={true}
+                      >
+                        <p
+                          className="SubHeadingstyle___default-qgikex-0 cDJTT"
+                        >
+                          Ships To
+                        </p>
+                      </SubHeadingstyle___default>
+                    </_default>
+                    <_default
+                      uppercase={false}
+                    >
+                      <SmallTitlestyle___default
+                        uppercase={false}
+                      >
+                        <h3
+                          className="SmallTitlestyle___default-g42rlo-0 hVAPix"
+                        >
+                          Anywhere in the world
+                        </h3>
+                      </SmallTitlestyle___default>
+                    </_default>
+                  </div>
+                </div>
+              </SplitContainerstyle___default>
+            </_default>
+            <_default
+              activated={false}
+            >
+              <BackerHeadingstyle___default
+                activated={false}
+              >
+                <p
+                  className="BackerHeadingstyle___default-t7usxk-0 lhsgcG"
+                >
+                  1 Backers
+                </p>
+              </BackerHeadingstyle___default>
+            </_default>
+            <WithTheme(Component)
+              activated={false}
+            >
+              <Component
+                activated={false}
+                theme={
+                  Object {
+                    "colors": Object {
+                      "borderGrey": "#9B9E9E",
+                      "buttonGreen": "#009E74",
+                      "flavorText": "#888B8B",
+                      "gradientBlue": "#DBE7FE",
+                      "gradientOrange": "#FFF2EC",
+                      "highlightGreen": "#009E74",
+                      "linkText": "#498F80",
+                      "text": "#282828",
+                    },
+                    "fontSizes": Object {
+                      "large": "3rem",
+                      "medium": "1.8rem",
+                      "small": "1rem",
+                    },
+                    "fonts": Array [
+                      "Muli",
+                      "sans-serif",
+                    ],
+                  }
+                }
+              />
+            </WithTheme(Component)>
+          </div>
+        </Containerstyle___default>
+      </_default>
+    </Card>
+  </ThemeProvider>
+</Theme>
+`;

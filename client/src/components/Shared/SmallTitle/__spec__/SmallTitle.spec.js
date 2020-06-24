@@ -1,12 +1,25 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
+import toJson from 'enzyme-to-json';
 import SmallTitle from '../SmallTitle';
+import Theme from '../../../Theme/Theme';
 
 describe('SmallTitle Component', () => {
   let component;
+  let componentLowercase;
 
   beforeEach(() => {
-    component = shallow(<SmallTitle />);
+    component = mount(
+      <Theme>
+        <SmallTitle uppercase />
+      </Theme>
+    );
+
+    componentLowercase = mount(
+      <Theme>
+        <SmallTitle uppercase={false} />
+      </Theme>
+    );
   });
 
   afterEach(() => {
@@ -15,5 +28,13 @@ describe('SmallTitle Component', () => {
 
   it('should render without failure', () => {
     expect(component).toBeDefined();
+  });
+
+  it('should match the test snapshot', () => {
+    expect(toJson(component)).toMatchSnapshot();
+  });
+
+  it('should match the test snapshot for lowercase lettering', () => {
+    expect(toJson(componentLowercase)).toMatchSnapshot();
   });
 });

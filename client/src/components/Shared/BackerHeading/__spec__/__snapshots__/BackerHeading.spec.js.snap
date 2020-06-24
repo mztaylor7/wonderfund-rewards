@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BackerHeading Component should match the test snapshot for lowercase & de-activated heading 1`] = `
+<Theme>
+  <ThemeProvider
+    theme={
+      Object {
+        "colors": Object {
+          "borderGrey": "#9B9E9E",
+          "buttonGreen": "#009E74",
+          "flavorText": "#888B8B",
+          "gradientBlue": "#DBE7FE",
+          "gradientOrange": "#FFF2EC",
+          "highlightGreen": "#009E74",
+          "linkText": "#498F80",
+          "text": "#282828",
+        },
+        "fontSizes": Object {
+          "large": "3rem",
+          "medium": "1.8rem",
+          "small": "1rem",
+        },
+        "fonts": Array [
+          "Muli",
+          "sans-serif",
+        ],
+      }
+    }
+  >
+    <_default
+      activated={false}
+      uppercase={false}
+    >
+      <BackerHeadingstyle___default
+        activated={false}
+        uppercase={false}
+      >
+        <p
+          className="BackerHeadingstyle___default-t7usxk-0 lhsgcG"
+        />
+      </BackerHeadingstyle___default>
+    </_default>
+  </ThemeProvider>
+</Theme>
+`;
+
+exports[`BackerHeading Component should match the test snapshot for uppercase & activated heading 1`] = `
+<Theme>
+  <ThemeProvider
+    theme={
+      Object {
+        "colors": Object {
+          "borderGrey": "#9B9E9E",
+          "buttonGreen": "#009E74",
+          "flavorText": "#888B8B",
+          "gradientBlue": "#DBE7FE",
+          "gradientOrange": "#FFF2EC",
+          "highlightGreen": "#009E74",
+          "linkText": "#498F80",
+          "text": "#282828",
+        },
+        "fontSizes": Object {
+          "large": "3rem",
+          "medium": "1.8rem",
+          "small": "1rem",
+        },
+        "fonts": Array [
+          "Muli",
+          "sans-serif",
+        ],
+      }
+    }
+  >
+    <_default
+      activated={true}
+      uppercase={true}
+    >
+      <BackerHeadingstyle___default
+        activated={true}
+        uppercase={true}
+      >
+        <p
+          className="BackerHeadingstyle___default-t7usxk-0 kYjYVh"
+        />
+      </BackerHeadingstyle___default>
+    </_default>
+  </ThemeProvider>
+</Theme>
+`;

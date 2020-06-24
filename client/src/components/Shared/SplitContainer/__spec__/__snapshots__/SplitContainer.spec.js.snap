@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SplitContainer Component should match the test snapshot 1`] = `
+<_default>
+  <SplitContainerstyle___default>
+    <div
+      className="SplitContainerstyle___default-sc-1ep4whv-0 hdmVpp"
+    />
+  </SplitContainerstyle___default>
+</_default>
+`;

@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RewardList Component should match the test snapshot 1`] = `
+<Theme>
+  <ThemeProvider
+    theme={
+      Object {
+        "colors": Object {
+          "borderGrey": "#9B9E9E",
+          "buttonGreen": "#009E74",
+          "flavorText": "#888B8B",
+          "gradientBlue": "#DBE7FE",
+          "gradientOrange": "#FFF2EC",
+          "highlightGreen": "#009E74",
+          "linkText": "#498F80",
+          "text": "#282828",
+        },
+        "fontSizes": Object {
+          "large": "3rem",
+          "medium": "1.8rem",
+          "small": "1rem",
+        },
+        "fonts": Array [
+          "Muli",
+          "sans-serif",
+        ],
+      }
+    }
+  >
+    <_default
+      rewardItems="Test1,Test2,Test3"
+    >
+      <_default
+        uppercase={true}
+      >
+        <SubHeadingstyle___default
+          uppercase={true}
+        >
+          <p
+            className="SubHeadingstyle___default-qgikex-0 cDJTT"
+          >
+            Includes:
+          </p>
+        </SubHeadingstyle___default>
+      </_default>
+      <RewarsListstyle___default>
+        <ul
+          className="RewarsListstyle___default-gbe8yx-0 gRmdJF"
+        >
+          <li
+            key="undefined_Test1-0"
+          >
+            Test1
+          </li>
+          <li
+            key="undefined_Test2-1"
+          >
+            Test2
+          </li>
+          <li
+            key="undefined_Test3-2"
+          >
+            Test3
+          </li>
+        </ul>
+      </RewarsListstyle___default>
+    </_default>
+  </ThemeProvider>
+</Theme>
+`;
+
+exports[`RewardList Component should return am empty fragment if the "activated" prop is true 1`] = `<Fragment />`;

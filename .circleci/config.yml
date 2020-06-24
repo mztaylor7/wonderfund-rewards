@@ -23,31 +23,27 @@ jobs:
           command: |
             sudo apt-get update -qq -y
             sudo apt-get install lcov -y
+            sudo apt-get install mysql-client
 
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "package-lock.json" }}
+            - v1-dependencies-{{ checksum "yarn.lock" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      # Update npm
+      # Install Dependencies
       - run:
-          name: Update Global NPM
+          name: Install Project Dependencies
           command: |
             yarn install
-
-      # Install Packages
-      - run:
-          name: Install Testing Packages
-          command: |
-            yarn add nyc mocha mocha-junit-reporter
+            sudo yarn add mocha-junit-reporter global -W
 
       # Save the dependency cache
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package-lock.json" }}
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
 
       # Make Report Directory
       - run: mkdir reports
@@ -67,22 +63,36 @@ jobs:
             env DEBUG=off NODE_ENV=test DATABASE_NAME=kstart_test ./node_modules/.bin/nyc ./node_modules/.bin/mocha server/src/spec/**/*.js --recursive --timeout=10000 --exit --reporter mocha-junit-reporter --reporter-options mochaFile=reports/mocha/test-results.xml
           when: always
 
+      # Run Jest
+      - run:
+          name: Run Jest Suite on Client
+          command: |
+            cd client
+            ./node_modules/.bin/jest
+
       # Run EsLint
       - run:
           name: Run ESLint On Server
           command: |
             cd server
-            ./node_modules/.bin/eslint ./ --format junit --output-file ../reports/eslint/eslint.xml
+            ./node_modules/.bin/eslint ./ --format junit --output-file ../reports/eslint/eslint-server.xml
+          when: always
+
+      # Run EsLint
+      - run:
+          name: Run ESLint On Client
+          command: |
+            cd client
+            ./node_modules/.bin/eslint ./ --format junit --output-file ../reports/eslint/eslint-client.xml
           when: always
 
       - run:
-          name: Code Coverage
+          name: Verify Code Coverage
           command: |
             mkdir coverage
             # nyc report requires that nyc has already been run,
             # which creates the .nyc_output folder containing necessary data
             ./node_modules/.bin/nyc report --reporter=text-lcov > coverage/lcov.info
-
           when: always
 
       # Upload results
@@ -93,10 +103,17 @@ jobs:
           path: ./reports/mocha/test-results.xml
 
       - store_artifacts:
-          path: ./reports/eslint/eslint.xml
+          path: ./reports/eslint/eslint-server.xml
+
+      - store_artifacts:
+          path: ./reports/eslint/eslint-client.xml
 
       - store_artifacts: # upload test coverage as artifact
           path: ./coverage/lcov.info
+          prefix: tests
+
+      - store_artifacts: # upload test coverage as artifact
+          path: ./client/coverage/lcov.info
           prefix: tests
 
 workflows:

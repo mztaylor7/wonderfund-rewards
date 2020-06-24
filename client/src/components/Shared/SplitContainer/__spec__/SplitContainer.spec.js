@@ -1,12 +1,13 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
+import toJson from 'enzyme-to-json';
 import SplitContainer from '../SplitContainer';
 
 describe('SplitContainer Component', () => {
   let component;
 
   beforeEach(() => {
-    component = shallow(<SplitContainer />);
+    component = mount(<SplitContainer />);
   });
 
   afterEach(() => {
@@ -15,5 +16,9 @@ describe('SplitContainer Component', () => {
 
   it('should render without failure', () => {
     expect(component).toBeDefined();
+  });
+
+  it('should match the test snapshot', () => {
+    expect(toJson(component)).toMatchSnapshot();
   });
 });

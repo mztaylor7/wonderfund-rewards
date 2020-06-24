@@ -1,6 +1,5 @@
 /* Import Modules */
 import React, { useState } from 'react';
-
 /* Import Components */
 import Container from '../Shared/Container/Container';
 import Overlay from '../Shared/Overlay/Overlay';

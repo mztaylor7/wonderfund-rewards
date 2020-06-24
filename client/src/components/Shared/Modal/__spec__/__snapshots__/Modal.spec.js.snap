@@ -1,0 +1,255 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal Component should match the test snapshot 1`] = `
+<Theme>
+  <ThemeProvider
+    theme={
+      Object {
+        "colors": Object {
+          "borderGrey": "#9B9E9E",
+          "buttonGreen": "#009E74",
+          "flavorText": "#888B8B",
+          "gradientBlue": "#DBE7FE",
+          "gradientOrange": "#FFF2EC",
+          "highlightGreen": "#009E74",
+          "linkText": "#498F80",
+          "text": "#282828",
+        },
+        "fontSizes": Object {
+          "large": "3rem",
+          "medium": "1.8rem",
+          "small": "1rem",
+        },
+        "fonts": Array [
+          "Muli",
+          "sans-serif",
+        ],
+      }
+    }
+  >
+    <Modal
+      project={
+        Object {
+          "creator": "Bob",
+          "location": "Home",
+        }
+      }
+      setModalOpen={[MockFunction]}
+    >
+      <Portal
+        containerInfo={
+          <div
+            id="modal-root"
+          >
+            <div
+              class="Modalstyle__Fader-j211o6-0 dTHFpQ"
+            >
+              <div
+                class="Modalstyle__InfoCard-j211o6-1 uIpWh"
+              >
+                <p>
+                  About the creator
+                </p>
+                <h2
+                  class="Headingstyle___default-dlpxpq-0 iWDnYS"
+                >
+                  Bob
+                </h2>
+                <p
+                  class="SubHeadingstyle___default-qgikex-0 eiBTbF"
+                >
+                  Home
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci consequatur dicta, eveniet exercitationem laborum minus mollitia neque odio perferendis, placeat quod rem ut voluptates. Consequuntur est in iure minima perspiciatis? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad cumque doloremque maxime, nihil non omnis sapiente. Commodi inventore molestias ratione reiciendis sequi. Asperiores beatae eos id nam quam quidem vero! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad corporis deleniti, distinctio esse, labore modi odit officiis pariatur provident qui rerum veniam veritatis! Ad doloremque fuga harum suscipit vitae. Modi! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis cupiditate temporibus voluptate! Aliquid deserunt dicta expedita hic libero nihil qui sed. Cumque debitis dolorem earum enim ipsa modi tempora ut!
+                </p>
+                <div
+                  class="flex"
+                >
+                  <div
+                    class="flexColumn"
+                  >
+                    <ul>
+                      <li>
+                        <i
+                          class="fas fa-check"
+                          style="color: rgb(0, 158, 116);"
+                        />
+                      </li>
+                      <li>
+                        <i
+                          class="fas fa-lock"
+                        />
+                      </li>
+                      <li>
+                        <i
+                          class="fab fa-facebook"
+                          style="color: rgb(57, 87, 154);"
+                        />
+                      </li>
+                      <li>
+                        <i
+                          class="fab fa-kickstarter-k"
+                          style="color: rgb(5, 115, 98);"
+                        />
+                      </li>
+                    </ul>
+                  </div>
+                  <div
+                    class="flexColumn"
+                  >
+                    <ul>
+                      <li>
+                        Bob
+                      </li>
+                      <li>
+                        Last login
+                      </li>
+                      <li>
+                        Not connected
+                      </li>
+                      <li
+                        style="color: rgb(39, 164, 126);"
+                      >
+                        1 created · 0 backed
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <span>
+                <u>
+                  Close
+                </u>
+              </span>
+            </div>
+          </div>
+        }
+      >
+        <Modalstyle__Fader
+          onClick={[Function]}
+        >
+          <div
+            className="Modalstyle__Fader-j211o6-0 dTHFpQ"
+            onClick={[Function]}
+          >
+            <Modalstyle__InfoCard
+              onClick={[Function]}
+            >
+              <div
+                className="Modalstyle__InfoCard-j211o6-1 uIpWh"
+                onClick={[Function]}
+              >
+                <p>
+                  About the creator
+                </p>
+                <_default
+                  heavy={true}
+                >
+                  <Headingstyle___default
+                    heavy={true}
+                  >
+                    <h2
+                      className="Headingstyle___default-dlpxpq-0 iWDnYS"
+                    >
+                      Bob
+                    </h2>
+                  </Headingstyle___default>
+                </_default>
+                <_default>
+                  <SubHeadingstyle___default>
+                    <p
+                      className="SubHeadingstyle___default-qgikex-0 eiBTbF"
+                    >
+                      Home
+                    </p>
+                  </SubHeadingstyle___default>
+                </_default>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci consequatur dicta, eveniet exercitationem laborum minus mollitia neque odio perferendis, placeat quod rem ut voluptates. Consequuntur est in iure minima perspiciatis? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad cumque doloremque maxime, nihil non omnis sapiente. Commodi inventore molestias ratione reiciendis sequi. Asperiores beatae eos id nam quam quidem vero! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad corporis deleniti, distinctio esse, labore modi odit officiis pariatur provident qui rerum veniam veritatis! Ad doloremque fuga harum suscipit vitae. Modi! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis cupiditate temporibus voluptate! Aliquid deserunt dicta expedita hic libero nihil qui sed. Cumque debitis dolorem earum enim ipsa modi tempora ut!
+                </p>
+                <div
+                  className="flex"
+                >
+                  <div
+                    className="flexColumn"
+                  >
+                    <ul>
+                      <li>
+                        <i
+                          className="fas fa-check"
+                          style={
+                            Object {
+                              "color": "#009E74",
+                            }
+                          }
+                        />
+                      </li>
+                      <li>
+                        <i
+                          className="fas fa-lock"
+                        />
+                      </li>
+                      <li>
+                        <i
+                          className="fab fa-facebook"
+                          style={
+                            Object {
+                              "color": "#39579A",
+                            }
+                          }
+                        />
+                      </li>
+                      <li>
+                        <i
+                          className="fab fa-kickstarter-k"
+                          style={
+                            Object {
+                              "color": "#057362",
+                            }
+                          }
+                        />
+                      </li>
+                    </ul>
+                  </div>
+                  <div
+                    className="flexColumn"
+                  >
+                    <ul>
+                      <li>
+                        Bob
+                      </li>
+                      <li>
+                        Last login
+                      </li>
+                      <li>
+                        Not connected
+                      </li>
+                      <li
+                        style={
+                          Object {
+                            "color": "#27A47E",
+                          }
+                        }
+                      >
+                        1 created · 0 backed
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </Modalstyle__InfoCard>
+            <span>
+              <u
+                onClick={[Function]}
+              >
+                Close
+              </u>
+            </span>
+          </div>
+        </Modalstyle__Fader>
+      </Portal>
+    </Modal>
+  </ThemeProvider>
+</Theme>
+`;

@@ -1,13 +1,12 @@
 /* Import Modules */
 import React from 'react';
 import { Helmet } from 'react-helmet';
-
 /* Import Theme Provider */
 import Theme from '../Theme/Theme';
 import GlobalStyles from './App.style';
-
 /* Import Components */
 import RewardViewer from '../RewardViewer/RewardViewer';
+import { getRewards } from '../../services/apiService';
 
 /**
  * App Component
@@ -35,7 +34,7 @@ const App = () => {
         <title>Document</title>
       </Helmet>
       <GlobalStyles />
-      <RewardViewer />
+      <RewardViewer getRewards={getRewards} />
     </Theme>
   );
 };
