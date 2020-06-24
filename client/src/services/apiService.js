@@ -12,6 +12,12 @@ export const getRewards = () => {
   });
 };
 
+export const getUserInfo = () => {
+  return axios.get(`http://localhost:3005/api/projects/find`, {
+    params: { id: getParams() },
+  });
+};
+
 export const getUserImage = () => {
   return axios.get(`http://localhost:3005/api/projects/user`, {
     params: { id: getParams() },

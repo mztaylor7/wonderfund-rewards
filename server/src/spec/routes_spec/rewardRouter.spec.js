@@ -41,6 +41,7 @@ describe('/api/rewards', function () {
 
   const mockProject = {
     title: 'Fantastic Granite Table',
+    creator: 'Bob',
     subtitle: 'Fundamental incremental extranet',
     category: 'Games',
     subcategory: 'Handcrafted',

@@ -33,7 +33,7 @@ jobs:
 
       # Update npm
       - run:
-          name: Update Global NPM & Install Parcel
+          name: Update Global NPM
           command: |
             sudo yarn global add npm@latest
 
@@ -51,6 +51,14 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package-lock.json" }}
+
+      # Lint & Format
+      - run:
+          name: Lint, Sort, & Format
+          command: |
+            yarn sort
+            yarn lint
+            yarn format
 
       # Make Report Directory
       - run: mkdir reports

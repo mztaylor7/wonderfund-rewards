@@ -1,17 +1,13 @@
 {
   "name": "service",
   "version": "1.0.0",
+  "private": true,
   "description": "",
   "keywords": [],
   "homepage": "https://github.com/team-iroh/za-service#readme",
   "bugs": {
     "url": "https://github.com/team-iroh/za-service/issues"
   },
-  "private": true,
-  "workspaces": [
-    "server",
-    "client"
-  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/team-iroh/pledge-rewards.git"
@@ -19,14 +15,21 @@
   "license": "ISC",
   "author": "Zach Ayers",
   "main": "server/src/index.js",
+  "workspaces": [
+    "server",
+    "client"
+  ],
   "scripts": {
-    "test": "(cd server && npm test); (cd client && npm test);",
-    "dev:server": "cd server && npm run dev",
-    "dev:client": "cd client && npm run build-dev:watch",
     "dev": "concurrently 'npm run dev:server' 'npm run dev:client'",
+    "dev:client": "cd client && npm run build-dev:watch",
+    "dev:server": "cd server && npm run dev",
+    "format": "(cd server && npm run format); (cd client && npm run format);",
     "postinstall": "(cd client && npm install); (cd server && npm install);",
+    "lint": "(cd server && npm run lint); (cd client && npm run lint);",
+    "sort": "(npx sort-package-json); (cd server && npm run sort); (cd client && npm run sort);",
     "prestart": "cd client && npm run build-prod",
-    "start": "cd server && npm start"
+    "start": "cd server && npm start",
+    "test": "(cd server && npm test); (cd client && npm test);"
   },
   "dependencies": {},
   "devDependencies": {

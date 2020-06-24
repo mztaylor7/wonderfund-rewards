@@ -1,0 +1,41 @@
+{
+  "plugins": ["prettier", "chai-expect", "mocha"],
+  "extends": [
+    "airbnb",
+    "prettier",
+    "plugin:node/recommended",
+    "plugin:mocha/recommended",
+    "plugin:chai-expect/recommended"
+  ],
+  "env": {
+    "mocha": true
+  },
+  "rules": {
+    "class-methods-use-this": "off",
+    "consistent-return": "off",
+    "func-names": "off",
+    "no-console": "warn",
+    "no-param-reassign": "off",
+    "no-process-exit": "off",
+    "no-return-await": "off",
+    "no-underscore-dangle": "off",
+    "node/no-unpublished-require": 0,
+    "node/no-missing-require": 0,
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "req|res|next|val"
+      }
+    ],
+    "object-shorthand": "off",
+    "prefer-destructuring": [
+      "error",
+      {
+        "object": true,
+        "array": false
+      }
+    ],
+    "spaced-comment": "off",
+    "prettier/prettier": "error"
+  }
+}

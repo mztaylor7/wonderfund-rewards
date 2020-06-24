@@ -10,6 +10,7 @@ const { getDaysBetween } = require('../../utils/manipulateDate');
  */
 module.exports.generateMockProject = () => ({
   title: faker.commerce.productName(),
+  creator: faker.internet.userName(),
   subtitle: faker.company.catchPhrase(),
   category: faker.commerce.department(),
   subcategory: faker.commerce.productAdjective(),

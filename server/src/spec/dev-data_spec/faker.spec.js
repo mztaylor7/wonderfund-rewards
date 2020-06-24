@@ -22,6 +22,7 @@ describe('mock generator', function () {
       assert.isString(mockProject.title);
 
       assert.isString(mockProject.title);
+      assert.isString(mockProject.creator);
       assert.isString(mockProject.subtitle);
       assert.isString(mockProject.category);
       assert.isString(mockProject.subcategory);

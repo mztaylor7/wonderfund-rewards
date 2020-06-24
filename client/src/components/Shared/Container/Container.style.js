@@ -5,8 +5,7 @@ export default styled.div`
   border: 1px solid ${(props) => props.theme.colors.borderGrey};
   display: flex;
   flex-direction: column;
-  padding: 20px;
-  padding-top: ${(props) => props.padding};
+  padding: ${(props) => props.padding} 20px 20px;
   margin-bottom: 20px;
   transition: all 0.2s ease-in-out;
   position: relative;

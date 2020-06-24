@@ -10,6 +10,7 @@ const { getRewardModel } = require('../database');
 const filterBody = (req) => {
   return {
     title: req.body.title,
+    creator: req.body.creator,
     subtitle: req.body.subtitle,
     category: req.body.category,
     subcategory: req.body.subcategory,
@@ -67,7 +68,7 @@ module.exports.getUserImage = (req, res) => {
     .then((image) => {
       const buf = Buffer.from(image.Body);
       const base64 = buf.toString('base64');
-      const html = `<img src='data:image/jpeg;base64,${base64}'` + `/>`;
+      const html = `<img src="data:image/jpeg;base64,${base64}" alt="user avatar"/>`;
       res.status(200).send(html);
     })
     .catch((err) => res.status(400).send(err));

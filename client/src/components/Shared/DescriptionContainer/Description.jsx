@@ -3,6 +3,11 @@ import { DescCollapseBtn, DescriptionContainer } from './Description.style';
 
 const Description = (props) => {
   const { description, descOpen, activated, setDescOpen } = props;
+  let { descClicked } = props;
+
+  if (!descClicked) {
+    descClicked = () => setDescOpen(!descOpen);
+  }
 
   /**
    * Render Description Button
@@ -21,7 +26,7 @@ const Description = (props) => {
   return (
     <DescriptionContainer open={descOpen} activated={activated}>
       <p>{description}</p>
-      <DescCollapseBtn onClick={() => setDescOpen(!descOpen)} open={descOpen}>
+      <DescCollapseBtn onClick={descClicked} open={descOpen}>
         {renderDescButton()}
       </DescCollapseBtn>
     </DescriptionContainer>

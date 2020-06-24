@@ -27,6 +27,7 @@ describe('/api/projects', function () {
 
   const mockProject = {
     title: 'Fantastic Granite Table',
+    creator: 'Bob',
     subtitle: 'Fundamental incremental extranet',
     category: 'Games',
     subcategory: 'Handcrafted',
@@ -42,6 +43,7 @@ describe('/api/projects', function () {
 
   const mockProject2 = {
     title: 'Fantastic Granite Table 2',
+    creator: 'Bob',
     subtitle: 'Fundamental incremental extranet',
     category: 'Games',
     subcategory: 'Handcrafted',
