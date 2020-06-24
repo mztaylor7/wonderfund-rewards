@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CurrencyEntry Component should match the test snapshot 1`] = `
+<CurrencyEntry
+  input={0}
+  setInput={[MockFunction]}
+>
+  <CurrencyEntrystyle__Form>
+    <div
+      className="CurrencyEntrystyle__Form-zl3z4f-0 cCvtGG"
+    >
+      <CurrencyEntrystyle__Input
+        min="0"
+        onChange={[Function]}
+        type="number"
+        value={0}
+      >
+        <input
+          className="CurrencyEntrystyle__Input-zl3z4f-3 kOuXyP"
+          min="0"
+          onChange={[Function]}
+          type="number"
+          value={0}
+        />
+      </CurrencyEntrystyle__Input>
+      <CurrencyEntrystyle__CurrencyBox>
+        <div
+          className="CurrencyEntrystyle__CurrencyBox-zl3z4f-2 jTmnGB"
+        >
+          <CurrencyEntrystyle__CurrencyIcon>
+            <span
+              className="CurrencyEntrystyle__CurrencyIcon-zl3z4f-1 evsVHR"
+            >
+              $
+            </span>
+          </CurrencyEntrystyle__CurrencyIcon>
+        </div>
+      </CurrencyEntrystyle__CurrencyBox>
+    </div>
+  </CurrencyEntrystyle__Form>
+</CurrencyEntry>
+`;

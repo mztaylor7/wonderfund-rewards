@@ -1,0 +1,653 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App Component should contain the global style 1`] = `
+<head>
+  <style
+    data-styled="active"
+    data-styled-version="5.1.1"
+  >
+    .kSgUlC{width:100%;border:1px solid #9B9E9E;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;padding:5.2rem 20px 20px;margin-bottom:20px;-webkit-transition:all 0.2s ease-in-out;transition:all 0.2s ease-in-out;position:relative;}
+    .BmWDh{width:100%;border:1px solid #9B9E9E;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;padding:20px 20px;margin-bottom:20px;-webkit-transition:all 0.2s ease-in-out;transition:all 0.2s ease-in-out;position:relative;}
+    .iWDnYS{font-size:1.8rem;color:#282828;font-weight:700;line-height:1.4;margin-bottom:5px;}
+    .iErRtB{font-size:1.8rem;color:#282828;font-weight:400;line-height:1.4;margin-bottom:5px;}
+    .eiBTbF{font-size:1rem;color:#888B8B;text-transform:capitalize;}
+    .cDJTT{font-size:1rem;color:#888B8B;text-transform:uppercase;}
+    .hRNJRj{font-size:1.2rem;line-height:1.5;position:relative;height:40px;color:#888B8B;display:grid;grid-template-rows:1fr 20px;overflow:hidden;margin-bottom:20px;}
+    .loBJcu{color:#282828;background:linear-gradient( to right,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 20% );width:80px;text-align:end;cursor:pointer;position:absolute;right:5px;bottom:0;}
+    .cCvtGG{position:relative;margin:10px 0;}
+    .evsVHR{-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;text-align:center;overflow:hidden;font-size:1.2rem;white-space:nowrap;width:4.2rem;}
+    .jTmnGB{-webkit-transition:all 300ms cubic-bezier(0.175,0.885,0.335,1);transition:all 300ms cubic-bezier(0.175,0.885,0.335,1);height:100%;position:absolute;border-right:1px solid #dcdedd;top:0;left:0;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;pointer-events:none;color:#656969;z-index:2;}
+    .kOuXyP{border:1px solid #dcdedd;color:#282828;cursor:default;padding:10px 10px 10px 5.4rem;position:relative;height:42px;line-height:20px;box-sizing:border-box;width:100%;-webkit-transition:all 300ms cubic-bezier(0.175,0.885,0.335,1);transition:all 300ms cubic-bezier(0.175,0.885,0.335,1);text-rendering:auto;word-spacing:normal;text-transform:none;text-indent:0px;text-shadow:none;display:inline-block;text-align:start;font:400 13.3333px Arial;-webkit-writing-mode:horizontal-tb;-ms-writing-mode:lr;writing-mode:horizontal-tb;}
+    .kOuXyP:focus{outline:0;border-color:#009e74;box-shadow:#f8f9fd 0 0 5px;}
+    .kOuXyP:focus + div{border-color:#009e74;}
+    .hTA-dXx{width:100%;background-color:#009e74;color:#ffffff;height:4.2rem;padding:0 1.8rem;font-size:1.4rem;font-weight:500;-webkit-transition:all 0.25s ease-in-out !important;transition:all 0.25s ease-in-out !important;text-align:center;cursor:pointer;border:none;position:relative;display:inline-block;border-radius:0;margin-top:18px;}
+    .hTA-dXx:hover:not(:disabled){background-color:#037362;}
+    .hTA-dXx:hover:not(:disabled){-webkit-transform:translateY(-1px);-ms-transform:translateY(-1px);transform:translateY(-1px);}
+    .hTA-dXx:focus{outline:1px solid #282828;outline-offset:2px;-webkit-transition:outline 0.25s ease-in-out;transition:outline 0.25s ease-in-out;}
+    .drcuGn{height:100%;overflow:auto;width:12vw;position:fixed;padding-right:20px;padding-bottom:60px;padding-top:40px;}
+    .dAlLHb{margin-top:10px;padding:1.8rem;width:100%;height:auto;background:linear-gradient(to bottom,#dbe7ff,#fff2ec);border:1px solid #dbe7ff;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}
+    .dAlLHb span,.dAlLHb p{margin-bottom:1.2rem;font-size:1.4rem;line-height:2.4rem;}
+    .dAlLHb span{font-weight:800;color:#222222;}
+    .iORtcV{font-size:2.1rem;color:#282828;text-transform:capitalize;font-weight:400;line-height:1.4;margin:4rem 0;}
+    .iayjJg{height:7.2rem;width:7.2rem;position:absolute;cursor:pointer;top:-3.4rem;left:0;right:0;margin:0 auto;}
+    .iayjJg img{height:7.2rem;width:7.2rem;border-radius:100%;background-size:cover;z-index:1;}
+    *{font-family:'Muli',sans-serif;margin:0;padding:0;box-sizing:border-box;}
+    html{font-size:62.5%;font-weight:400;}
+    body{padding:20px;}
+    *{font-family:'Muli',sans-serif;margin:0;padding:0;box-sizing:border-box;}
+    html{font-size:62.5%;font-weight:400;}
+    body{padding:20px;}
+  </style>
+</head>
+`;
+
+exports[`App Component should match the test snapshot 1`] = `
+.c1 {
+  width: 100%;
+  border: 1px solid #9B9E9E;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding: 5.2rem 20px 20px;
+  margin-bottom: 20px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+}
+
+.c7 {
+  width: 100%;
+  border: 1px solid #9B9E9E;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding: 20px 20px;
+  margin-bottom: 20px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+}
+
+.c3 {
+  font-size: 1.8rem;
+  color: #282828;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 5px;
+}
+
+.c8 {
+  font-size: 1.8rem;
+  color: #282828;
+  font-weight: 400;
+  line-height: 1.4;
+  margin-bottom: 5px;
+}
+
+.c9 {
+  font-size: 1rem;
+  color: #888B8B;
+  text-transform: capitalize;
+}
+
+.c14 {
+  font-size: 1rem;
+  color: #888B8B;
+  text-transform: uppercase;
+}
+
+.c4 {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  position: relative;
+  height: 40px;
+  color: #888B8B;
+  display: grid;
+  grid-template-rows: 1fr 20px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.c5 {
+  color: #282828;
+  background: linear-gradient( to right,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 20% );
+  width: 80px;
+  text-align: end;
+  cursor: pointer;
+  position: absolute;
+  right: 5px;
+  bottom: 0;
+}
+
+.c10 {
+  position: relative;
+  margin: 10px 0;
+}
+
+.c13 {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  font-size: 1.2rem;
+  white-space: nowrap;
+  width: 4.2rem;
+}
+
+.c12 {
+  -webkit-transition: all 300ms cubic-bezier(0.175,0.885,0.335,1);
+  transition: all 300ms cubic-bezier(0.175,0.885,0.335,1);
+  height: 100%;
+  position: absolute;
+  border-right: 1px solid #dcdedd;
+  top: 0;
+  left: 0;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  pointer-events: none;
+  color: #656969;
+  z-index: 2;
+}
+
+.c11 {
+  border: 1px solid #dcdedd;
+  color: #282828;
+  cursor: default;
+  padding: 10px 10px 10px 5.4rem;
+  position: relative;
+  height: 42px;
+  line-height: 20px;
+  box-sizing: border-box;
+  width: 100%;
+  -webkit-transition: all 300ms cubic-bezier(0.175,0.885,0.335,1);
+  transition: all 300ms cubic-bezier(0.175,0.885,0.335,1);
+  text-rendering: auto;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  font: 400 13.3333px Arial;
+  -webkit-writing-mode: horizontal-tb;
+  -ms-writing-mode: lr;
+  writing-mode: horizontal-tb;
+}
+
+.c11:focus {
+  outline: 0;
+  border-color: #009e74;
+  box-shadow: #f8f9fd 0 0 5px;
+}
+
+.c11:focus + div {
+  border-color: #009e74;
+}
+
+.c16 {
+  width: 100%;
+  background-color: #009e74;
+  color: #ffffff;
+  height: 4.2rem;
+  padding: 0 1.8rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+  -webkit-transition: all 0.25s ease-in-out !important;
+  transition: all 0.25s ease-in-out !important;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  position: relative;
+  display: inline-block;
+  border-radius: 0;
+  margin-top: 18px;
+}
+
+.c16:hover:not(:disabled) {
+  background-color: #037362;
+}
+
+.c16:hover:not(:disabled) {
+  -webkit-transform: translateY(-1px);
+  -ms-transform: translateY(-1px);
+  transform: translateY(-1px);
+}
+
+.c16:focus {
+  outline: 1px solid #282828;
+  outline-offset: 2px;
+  -webkit-transition: outline 0.25s ease-in-out;
+  transition: outline 0.25s ease-in-out;
+}
+
+.c0 {
+  height: 100%;
+  overflow: auto;
+  width: 12vw;
+  position: fixed;
+  padding-right: 20px;
+  padding-bottom: 60px;
+  padding-top: 40px;
+}
+
+.c15 {
+  margin-top: 10px;
+  padding: 1.8rem;
+  width: 100%;
+  height: auto;
+  background: linear-gradient(to bottom,#dbe7ff,#fff2ec);
+  border: 1px solid #dbe7ff;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.c15 span,
+.c15 p {
+  margin-bottom: 1.2rem;
+  font-size: 1.4rem;
+  line-height: 2.4rem;
+}
+
+.c15 span {
+  font-weight: 800;
+  color: #222222;
+}
+
+.c6 {
+  font-size: 2.1rem;
+  color: #282828;
+  text-transform: capitalize;
+  font-weight: 400;
+  line-height: 1.4;
+  margin: 4rem 0;
+}
+
+.c2 {
+  height: 7.2rem;
+  width: 7.2rem;
+  position: absolute;
+  cursor: pointer;
+  top: -3.4rem;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.c2 img {
+  height: 7.2rem;
+  width: 7.2rem;
+  border-radius: 100%;
+  background-size: cover;
+  z-index: 1;
+}
+
+<App>
+  <Theme>
+    <ThemeProvider
+      theme={
+        Object {
+          "colors": Object {
+            "borderGrey": "#9B9E9E",
+            "buttonGreen": "#009E74",
+            "flavorText": "#888B8B",
+            "gradientBlue": "#DBE7FE",
+            "gradientOrange": "#FFF2EC",
+            "highlightGreen": "#009E74",
+            "linkText": "#498F80",
+            "text": "#282828",
+          },
+          "fontSizes": Object {
+            "large": "3rem",
+            "medium": "1.8rem",
+            "small": "1rem",
+          },
+          "fonts": Array [
+            "Muli",
+            "sans-serif",
+          ],
+        }
+      }
+    >
+      <HelmetWrapper
+        defer={true}
+        encodeSpecialCharacters={true}
+      >
+        <SideEffect(NullComponent)
+          defer={true}
+          encodeSpecialCharacters={true}
+          link={
+            Array [
+              Object {
+                "href": "https://fonts.googleapis.com/css2?family=Muli:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap",
+                "rel": "stylesheet",
+              },
+            ]
+          }
+          meta={
+            Array [
+              Object {
+                "charset": "UTF-8",
+              },
+              Object {
+                "content": "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0",
+                "name": "viewport",
+              },
+              Object {
+                "content": "ie=edge",
+                "http-equiv": "X-UA-Compatible",
+              },
+            ]
+          }
+          script={
+            Array [
+              Object {
+                "crossOrigin": "anonymous",
+                "src": "https://kit.fontawesome.com/1e96e77bac.js",
+              },
+            ]
+          }
+          title="Document"
+          titleAttributes={Object {}}
+        >
+          <NullComponent
+            defer={true}
+            encodeSpecialCharacters={true}
+            link={
+              Array [
+                Object {
+                  "href": "https://fonts.googleapis.com/css2?family=Muli:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap",
+                  "rel": "stylesheet",
+                },
+              ]
+            }
+            meta={
+              Array [
+                Object {
+                  "charset": "UTF-8",
+                },
+                Object {
+                  "content": "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0",
+                  "name": "viewport",
+                },
+                Object {
+                  "content": "ie=edge",
+                  "http-equiv": "X-UA-Compatible",
+                },
+              ]
+            }
+            script={
+              Array [
+                Object {
+                  "crossOrigin": "anonymous",
+                  "src": "https://kit.fontawesome.com/1e96e77bac.js",
+                },
+              ]
+            }
+            title="Document"
+            titleAttributes={Object {}}
+          />
+        </SideEffect(NullComponent)>
+      </HelmetWrapper>
+      <Memo(GlobalStyleComponent) />
+      <RewardViewer>
+        <RewardViewerstyle___default>
+          <div
+            className="c0"
+          >
+            <AvatarCard>
+              <_default
+                activated={true}
+                padding="5.2rem"
+              >
+                <Containerstyle___default
+                  activated={true}
+                  padding="5.2rem"
+                >
+                  <div
+                    className="c1"
+                  >
+                    <_default>
+                      <Avatarstyle___default>
+                        <div
+                          className="c2"
+                        />
+                      </Avatarstyle___default>
+                    </_default>
+                    <_default
+                      heavy={true}
+                    >
+                      <Headingstyle___default
+                        heavy={true}
+                      >
+                        <h2
+                          className="c3"
+                        />
+                      </Headingstyle___default>
+                    </_default>
+                    <p>
+                      1 created · 0 backed
+                    </p>
+                    <Description
+                      activated={true}
+                      descOpen={false}
+                      description=""
+                      setDescOpen={[Function]}
+                    >
+                      <Descriptionstyle__DescriptionContainer
+                        activated={true}
+                        open={false}
+                      >
+                        <div
+                          className="c4"
+                          open={false}
+                        >
+                          <p />
+                          <Descriptionstyle__DescCollapseBtn
+                            onClick={[Function]}
+                            open={false}
+                          >
+                            <p
+                              className="c5"
+                              onClick={[Function]}
+                              open={false}
+                            >
+                              Read more...
+                            </p>
+                          </Descriptionstyle__DescCollapseBtn>
+                        </div>
+                      </Descriptionstyle__DescriptionContainer>
+                    </Description>
+                     
+                  </div>
+                </Containerstyle___default>
+              </_default>
+            </AvatarCard>
+            <_default>
+              <LargeTitlestyle___default>
+                <h3
+                  className="c6"
+                >
+                  Support
+                </h3>
+              </LargeTitlestyle___default>
+            </_default>
+            <GradientCard>
+              <_default
+                activated={true}
+              >
+                <Containerstyle___default
+                  activated={true}
+                >
+                  <div
+                    className="c7"
+                  >
+                    <_default>
+                      <Headingstyle___default>
+                        <h2
+                          className="c8"
+                        >
+                          Pledge without a reward
+                        </h2>
+                      </Headingstyle___default>
+                    </_default>
+                    <WithTheme(Component)
+                      activated={true}
+                    >
+                      <Component
+                        activated={true}
+                        theme={
+                          Object {
+                            "colors": Object {
+                              "borderGrey": "#9B9E9E",
+                              "buttonGreen": "#009E74",
+                              "flavorText": "#888B8B",
+                              "gradientBlue": "#DBE7FE",
+                              "gradientOrange": "#FFF2EC",
+                              "highlightGreen": "#009E74",
+                              "linkText": "#498F80",
+                              "text": "#282828",
+                            },
+                            "fontSizes": Object {
+                              "large": "3rem",
+                              "medium": "1.8rem",
+                              "small": "1rem",
+                            },
+                            "fonts": Array [
+                              "Muli",
+                              "sans-serif",
+                            ],
+                          }
+                        }
+                      >
+                        <_default
+                          style={
+                            Object {
+                              "color": "#282828",
+                            }
+                          }
+                          uppercase={false}
+                        >
+                          <SubHeadingstyle___default
+                            uppercase={false}
+                          >
+                            <p
+                              className="c9"
+                            >
+                              Pledge amount
+                            </p>
+                          </SubHeadingstyle___default>
+                        </_default>
+                        <CurrencyEntry
+                          input=""
+                          setInput={[Function]}
+                        >
+                          <CurrencyEntrystyle__Form>
+                            <div
+                              className="c10"
+                            >
+                              <CurrencyEntrystyle__Input
+                                min="0"
+                                onChange={[Function]}
+                                type="number"
+                                value=""
+                              >
+                                <input
+                                  className="c11"
+                                  min="0"
+                                  onChange={[Function]}
+                                  type="number"
+                                  value=""
+                                />
+                              </CurrencyEntrystyle__Input>
+                              <CurrencyEntrystyle__CurrencyBox>
+                                <div
+                                  className="c12"
+                                >
+                                  <CurrencyEntrystyle__CurrencyIcon>
+                                    <span
+                                      className="c13"
+                                    >
+                                      $
+                                    </span>
+                                  </CurrencyEntrystyle__CurrencyIcon>
+                                </div>
+                              </CurrencyEntrystyle__CurrencyBox>
+                            </div>
+                          </CurrencyEntrystyle__Form>
+                        </CurrencyEntry>
+                        <_default
+                          uppercase={true}
+                        >
+                          <SubHeadingstyle___default
+                            uppercase={true}
+                          >
+                            <p
+                              className="c14"
+                            >
+                              About £0
+                            </p>
+                          </SubHeadingstyle___default>
+                        </_default>
+                        <GradientCardstyle___default>
+                          <div
+                            className="c15"
+                          >
+                            <span>
+                              Back it because you believe in it.
+                            </span>
+                            <p>
+                              Support the project for no rewards, just because it speaks to you.
+                            </p>
+                          </div>
+                        </GradientCardstyle___default>
+                        <ContinueButton>
+                          <ContinueButtonstyle___default>
+                            <button
+                              className="c16"
+                            >
+                              Continue
+                            </button>
+                          </ContinueButtonstyle___default>
+                        </ContinueButton>
+                      </Component>
+                    </WithTheme(Component)>
+                  </div>
+                </Containerstyle___default>
+              </_default>
+            </GradientCard>
+          </div>
+        </RewardViewerstyle___default>
+      </RewardViewer>
+    </ThemeProvider>
+  </Theme>
+</App>
+`;

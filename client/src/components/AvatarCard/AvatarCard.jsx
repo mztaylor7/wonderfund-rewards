@@ -45,7 +45,7 @@ const AvatarCard = () => {
       <Description
         descOpen={false}
         activated
-        setDescOpen={() => setModalOpen(!modalOpen)}
+        setDescOpen={setModalOpen}
         description={project.rewards[0].description}
       />
       {modalOpen ? (

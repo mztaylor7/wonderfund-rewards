@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SubHeading Component should match the test snapshot 1`] = `
+<Theme>
+  <ThemeProvider
+    theme={
+      Object {
+        "colors": Object {
+          "borderGrey": "#9B9E9E",
+          "buttonGreen": "#009E74",
+          "flavorText": "#888B8B",
+          "gradientBlue": "#DBE7FE",
+          "gradientOrange": "#FFF2EC",
+          "highlightGreen": "#009E74",
+          "linkText": "#498F80",
+          "text": "#282828",
+        },
+        "fontSizes": Object {
+          "large": "3rem",
+          "medium": "1.8rem",
+          "small": "1rem",
+        },
+        "fonts": Array [
+          "Muli",
+          "sans-serif",
+        ],
+      }
+    }
+  >
+    <_default>
+      <SubHeadingstyle___default>
+        <p
+          className="SubHeadingstyle___default-qgikex-0 eiBTbF"
+        />
+      </SubHeadingstyle___default>
+    </_default>
+  </ThemeProvider>
+</Theme>
+`;

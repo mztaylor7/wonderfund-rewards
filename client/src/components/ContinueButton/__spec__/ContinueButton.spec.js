@@ -1,12 +1,13 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
+import toJson from 'enzyme-to-json';
 import ContinueButton from '../ContinueButton';
 
 describe('ContinueButton Component', () => {
   let component;
 
   beforeEach(() => {
-    component = shallow(<ContinueButton />);
+    component = mount(<ContinueButton />);
   });
 
   afterEach(() => {
@@ -15,5 +16,9 @@ describe('ContinueButton Component', () => {
 
   it('should render without failure', () => {
     expect(component).toBeDefined();
+  });
+
+  it('should match the test snapshot', () => {
+    expect(toJson(component)).toMatchSnapshot();
   });
 });

@@ -1,6 +1,8 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
+import toJson from 'enzyme-to-json';
 import Card from '../Card';
+import Theme from '../../Theme/Theme';
 
 describe('Card Component', () => {
   let component;
@@ -16,7 +18,11 @@ describe('Card Component', () => {
     rewardItems: 'Test1,Test2,Test3',
   };
   beforeEach(() => {
-    component = shallow(<Card reward={reward} />);
+    component = mount(
+      <Theme>
+        <Card reward={reward} />
+      </Theme>
+    );
   });
 
   afterEach(() => {
@@ -25,5 +31,9 @@ describe('Card Component', () => {
 
   it('should render without failure', () => {
     expect(component).toBeDefined();
+  });
+
+  it('should match the test snapshot', () => {
+    expect(toJson(component)).toMatchSnapshot();
   });
 });

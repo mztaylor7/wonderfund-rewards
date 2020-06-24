@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContinueButton Component should match the test snapshot 1`] = `
+<ContinueButton>
+  <ContinueButtonstyle___default>
+    <button
+      className="ContinueButtonstyle___default-mwgchk-0 hTA-dXx"
+    >
+      Continue
+    </button>
+  </ContinueButtonstyle___default>
+</ContinueButton>
+`;

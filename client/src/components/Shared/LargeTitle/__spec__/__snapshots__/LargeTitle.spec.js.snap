@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LargeTitle Component should match the test snapshot 1`] = `
+<Theme>
+  <ThemeProvider
+    theme={
+      Object {
+        "colors": Object {
+          "borderGrey": "#9B9E9E",
+          "buttonGreen": "#009E74",
+          "flavorText": "#888B8B",
+          "gradientBlue": "#DBE7FE",
+          "gradientOrange": "#FFF2EC",
+          "highlightGreen": "#009E74",
+          "linkText": "#498F80",
+          "text": "#282828",
+        },
+        "fontSizes": Object {
+          "large": "3rem",
+          "medium": "1.8rem",
+          "small": "1rem",
+        },
+        "fonts": Array [
+          "Muli",
+          "sans-serif",
+        ],
+      }
+    }
+  >
+    <_default
+      uppercase={true}
+    >
+      <LargeTitlestyle___default
+        uppercase={true}
+      >
+        <h3
+          className="LargeTitlestyle___default-sc-68uopl-0 kTxtyv"
+        />
+      </LargeTitlestyle___default>
+    </_default>
+  </ThemeProvider>
+</Theme>
+`;
+
+exports[`LargeTitle Component should match the test snapshot for lowercase lettering 1`] = `
+<Theme>
+  <ThemeProvider
+    theme={
+      Object {
+        "colors": Object {
+          "borderGrey": "#9B9E9E",
+          "buttonGreen": "#009E74",
+          "flavorText": "#888B8B",
+          "gradientBlue": "#DBE7FE",
+          "gradientOrange": "#FFF2EC",
+          "highlightGreen": "#009E74",
+          "linkText": "#498F80",
+          "text": "#282828",
+        },
+        "fontSizes": Object {
+          "large": "3rem",
+          "medium": "1.8rem",
+          "small": "1rem",
+        },
+        "fonts": Array [
+          "Muli",
+          "sans-serif",
+        ],
+      }
+    }
+  >
+    <_default
+      uppercase={false}
+    >
+      <LargeTitlestyle___default
+        uppercase={false}
+      >
+        <h3
+          className="LargeTitlestyle___default-sc-68uopl-0 iORtcV"
+        />
+      </LargeTitlestyle___default>
+    </_default>
+  </ThemeProvider>
+</Theme>
+`;

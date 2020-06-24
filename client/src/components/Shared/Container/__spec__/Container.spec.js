@@ -1,12 +1,18 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
+import toJson from 'enzyme-to-json';
 import Container from '../Container';
+import Theme from '../../../Theme/Theme';
 
 describe('Container Component', () => {
   let component;
 
   beforeEach(() => {
-    component = shallow(<Container />);
+    component = mount(
+      <Theme>
+        <Container />
+      </Theme>
+    );
   });
 
   afterEach(() => {
@@ -15,5 +21,9 @@ describe('Container Component', () => {
 
   it('should render without failure', () => {
     expect(component).toBeDefined();
+  });
+
+  it('should match the test snapshot', () => {
+    expect(toJson(component)).toMatchSnapshot();
   });
 });

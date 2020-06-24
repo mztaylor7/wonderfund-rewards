@@ -1,0 +1,261 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RewardViewer Component should match the test snapshot 1`] = `
+<Theme>
+  <ThemeProvider
+    theme={
+      Object {
+        "colors": Object {
+          "borderGrey": "#9B9E9E",
+          "buttonGreen": "#009E74",
+          "flavorText": "#888B8B",
+          "gradientBlue": "#DBE7FE",
+          "gradientOrange": "#FFF2EC",
+          "highlightGreen": "#009E74",
+          "linkText": "#498F80",
+          "text": "#282828",
+        },
+        "fontSizes": Object {
+          "large": "3rem",
+          "medium": "1.8rem",
+          "small": "1rem",
+        },
+        "fonts": Array [
+          "Muli",
+          "sans-serif",
+        ],
+      }
+    }
+  >
+    <RewardViewer>
+      <RewardViewerstyle___default>
+        <div
+          className="RewardViewerstyle___default-gd04tw-0 drcuGn"
+        >
+          <AvatarCard>
+            <_default
+              activated={true}
+              padding="5.2rem"
+            >
+              <Containerstyle___default
+                activated={true}
+                padding="5.2rem"
+              >
+                <div
+                  className="Containerstyle___default-sc-1q8wjhx-0 kSgUlC"
+                >
+                  <_default>
+                    <Avatarstyle___default>
+                      <div
+                        className="Avatarstyle___default-s7ub6l-0 iayjJg"
+                      />
+                    </Avatarstyle___default>
+                  </_default>
+                  <_default
+                    heavy={true}
+                  >
+                    <Headingstyle___default
+                      heavy={true}
+                    >
+                      <h2
+                        className="Headingstyle___default-dlpxpq-0 iWDnYS"
+                      />
+                    </Headingstyle___default>
+                  </_default>
+                  <p>
+                    1 created · 0 backed
+                  </p>
+                  <Description
+                    activated={true}
+                    descOpen={false}
+                    description=""
+                    setDescOpen={[Function]}
+                  >
+                    <Descriptionstyle__DescriptionContainer
+                      activated={true}
+                      open={false}
+                    >
+                      <div
+                        className="Descriptionstyle__DescriptionContainer-wtqy6i-0 hRNJRj"
+                        open={false}
+                      >
+                        <p />
+                        <Descriptionstyle__DescCollapseBtn
+                          onClick={[Function]}
+                          open={false}
+                        >
+                          <p
+                            className="Descriptionstyle__DescCollapseBtn-wtqy6i-1 loBJcu"
+                            onClick={[Function]}
+                            open={false}
+                          >
+                            Read more...
+                          </p>
+                        </Descriptionstyle__DescCollapseBtn>
+                      </div>
+                    </Descriptionstyle__DescriptionContainer>
+                  </Description>
+                   
+                </div>
+              </Containerstyle___default>
+            </_default>
+          </AvatarCard>
+          <_default>
+            <LargeTitlestyle___default>
+              <h3
+                className="LargeTitlestyle___default-sc-68uopl-0 iORtcV"
+              >
+                Support
+              </h3>
+            </LargeTitlestyle___default>
+          </_default>
+          <GradientCard>
+            <_default
+              activated={true}
+            >
+              <Containerstyle___default
+                activated={true}
+              >
+                <div
+                  className="Containerstyle___default-sc-1q8wjhx-0 BmWDh"
+                >
+                  <_default>
+                    <Headingstyle___default>
+                      <h2
+                        className="Headingstyle___default-dlpxpq-0 iErRtB"
+                      >
+                        Pledge without a reward
+                      </h2>
+                    </Headingstyle___default>
+                  </_default>
+                  <WithTheme(Component)
+                    activated={true}
+                  >
+                    <Component
+                      activated={true}
+                      theme={
+                        Object {
+                          "colors": Object {
+                            "borderGrey": "#9B9E9E",
+                            "buttonGreen": "#009E74",
+                            "flavorText": "#888B8B",
+                            "gradientBlue": "#DBE7FE",
+                            "gradientOrange": "#FFF2EC",
+                            "highlightGreen": "#009E74",
+                            "linkText": "#498F80",
+                            "text": "#282828",
+                          },
+                          "fontSizes": Object {
+                            "large": "3rem",
+                            "medium": "1.8rem",
+                            "small": "1rem",
+                          },
+                          "fonts": Array [
+                            "Muli",
+                            "sans-serif",
+                          ],
+                        }
+                      }
+                    >
+                      <_default
+                        style={
+                          Object {
+                            "color": "#282828",
+                          }
+                        }
+                        uppercase={false}
+                      >
+                        <SubHeadingstyle___default
+                          uppercase={false}
+                        >
+                          <p
+                            className="SubHeadingstyle___default-qgikex-0 eiBTbF"
+                          >
+                            Pledge amount
+                          </p>
+                        </SubHeadingstyle___default>
+                      </_default>
+                      <CurrencyEntry
+                        input=""
+                        setInput={[Function]}
+                      >
+                        <CurrencyEntrystyle__Form>
+                          <div
+                            className="CurrencyEntrystyle__Form-zl3z4f-0 cCvtGG"
+                          >
+                            <CurrencyEntrystyle__Input
+                              min="0"
+                              onChange={[Function]}
+                              type="number"
+                              value=""
+                            >
+                              <input
+                                className="CurrencyEntrystyle__Input-zl3z4f-3 kOuXyP"
+                                min="0"
+                                onChange={[Function]}
+                                type="number"
+                                value=""
+                              />
+                            </CurrencyEntrystyle__Input>
+                            <CurrencyEntrystyle__CurrencyBox>
+                              <div
+                                className="CurrencyEntrystyle__CurrencyBox-zl3z4f-2 jTmnGB"
+                              >
+                                <CurrencyEntrystyle__CurrencyIcon>
+                                  <span
+                                    className="CurrencyEntrystyle__CurrencyIcon-zl3z4f-1 evsVHR"
+                                  >
+                                    $
+                                  </span>
+                                </CurrencyEntrystyle__CurrencyIcon>
+                              </div>
+                            </CurrencyEntrystyle__CurrencyBox>
+                          </div>
+                        </CurrencyEntrystyle__Form>
+                      </CurrencyEntry>
+                      <_default
+                        uppercase={true}
+                      >
+                        <SubHeadingstyle___default
+                          uppercase={true}
+                        >
+                          <p
+                            className="SubHeadingstyle___default-qgikex-0 cDJTT"
+                          >
+                            About £0
+                          </p>
+                        </SubHeadingstyle___default>
+                      </_default>
+                      <GradientCardstyle___default>
+                        <div
+                          className="GradientCardstyle___default-sc-17ewli4-0 dAlLHb"
+                        >
+                          <span>
+                            Back it because you believe in it.
+                          </span>
+                          <p>
+                            Support the project for no rewards, just because it speaks to you.
+                          </p>
+                        </div>
+                      </GradientCardstyle___default>
+                      <ContinueButton>
+                        <ContinueButtonstyle___default>
+                          <button
+                            className="ContinueButtonstyle___default-mwgchk-0 hTA-dXx"
+                          >
+                            Continue
+                          </button>
+                        </ContinueButtonstyle___default>
+                      </ContinueButton>
+                    </Component>
+                  </WithTheme(Component)>
+                </div>
+              </Containerstyle___default>
+            </_default>
+          </GradientCard>
+        </div>
+      </RewardViewerstyle___default>
+    </RewardViewer>
+  </ThemeProvider>
+</Theme>
+`;

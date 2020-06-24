@@ -1,17 +1,16 @@
 import React from 'react';
-import { CurrencyBox, Input, Form, CurrencyIcon } from './CurrencyEntry.style';
+import { CurrencyBox, CurrencyIcon, Form, Input } from './CurrencyEntry.style';
 
 const CurrencyEntry = (props) => {
   const { input, setInput } = props;
 
+  const handleChange = (e) => {
+    setInput(e.target.value);
+  };
+
   return (
     <Form>
-      <Input
-        type='number'
-        min='0'
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-      />
+      <Input type='number' min='0' value={input} onChange={handleChange} />
       <CurrencyBox>
         <CurrencyIcon>$</CurrencyIcon>
       </CurrencyBox>

@@ -14,14 +14,16 @@ const RewardViewer = () => {
     });
   }, []);
 
+  const renderCards = () => {
+    return rewards.map((reward) => <Card key={reward.id} reward={reward} />);
+  };
+
   return (
     <RewardBounds>
       <AvatarCard />
       <LargeTitle>Support</LargeTitle>
       <GradientCard />
-      {rewards.map((reward) => (
-        <Card key={reward.id} reward={reward} />
-      ))}
+      {renderCards()}
     </RewardBounds>
   );
 };

@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AvatarCard Component should match the test snapshot 1`] = `
+<Theme>
+  <ThemeProvider
+    theme={
+      Object {
+        "colors": Object {
+          "borderGrey": "#9B9E9E",
+          "buttonGreen": "#009E74",
+          "flavorText": "#888B8B",
+          "gradientBlue": "#DBE7FE",
+          "gradientOrange": "#FFF2EC",
+          "highlightGreen": "#009E74",
+          "linkText": "#498F80",
+          "text": "#282828",
+        },
+        "fontSizes": Object {
+          "large": "3rem",
+          "medium": "1.8rem",
+          "small": "1rem",
+        },
+        "fonts": Array [
+          "Muli",
+          "sans-serif",
+        ],
+      }
+    }
+  >
+    <AvatarCard>
+      <_default
+        activated={true}
+        padding="5.2rem"
+      >
+        <Containerstyle___default
+          activated={true}
+          padding="5.2rem"
+        >
+          <div
+            className="Containerstyle___default-sc-1q8wjhx-0 kSgUlC"
+          >
+            <_default>
+              <Avatarstyle___default>
+                <div
+                  className="Avatarstyle___default-s7ub6l-0 iayjJg"
+                >
+                  [object Object]
+                </div>
+              </Avatarstyle___default>
+            </_default>
+            <_default
+              heavy={true}
+            >
+              <Headingstyle___default
+                heavy={true}
+              >
+                <h2
+                  className="Headingstyle___default-dlpxpq-0 iWDnYS"
+                >
+                  Bob
+                </h2>
+              </Headingstyle___default>
+            </_default>
+            <p>
+              1 created · 0 backed
+            </p>
+            <Description
+              activated={true}
+              descOpen={false}
+              description="Dolorem nulla distinctio temporibus fuga quibusdam qui qui cum sint. Consequatur quia corporis optio non inventore ab qui labore. Quam necessitatibus iure qui. Fuga laborum error. Optio minima quibusdam optio eum."
+              setDescOpen={[Function]}
+            >
+              <Descriptionstyle__DescriptionContainer
+                activated={true}
+                open={false}
+              >
+                <div
+                  className="Descriptionstyle__DescriptionContainer-wtqy6i-0 hRNJRj"
+                  open={false}
+                >
+                  <p>
+                    Dolorem nulla distinctio temporibus fuga quibusdam qui qui cum sint. Consequatur quia corporis optio non inventore ab qui labore. Quam necessitatibus iure qui. Fuga laborum error. Optio minima quibusdam optio eum.
+                  </p>
+                  <Descriptionstyle__DescCollapseBtn
+                    onClick={[Function]}
+                    open={false}
+                  >
+                    <p
+                      className="Descriptionstyle__DescCollapseBtn-wtqy6i-1 loBJcu"
+                      onClick={[Function]}
+                      open={false}
+                    >
+                      Read more...
+                    </p>
+                  </Descriptionstyle__DescCollapseBtn>
+                </div>
+              </Descriptionstyle__DescriptionContainer>
+            </Description>
+             
+          </div>
+        </Containerstyle___default>
+      </_default>
+    </AvatarCard>
+  </ThemeProvider>
+</Theme>
+`;

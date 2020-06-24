@@ -1,0 +1,229 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Description Component should match the test snapshot 1`] = `
+<Theme>
+  <ThemeProvider
+    theme={
+      Object {
+        "colors": Object {
+          "borderGrey": "#9B9E9E",
+          "buttonGreen": "#009E74",
+          "flavorText": "#888B8B",
+          "gradientBlue": "#DBE7FE",
+          "gradientOrange": "#FFF2EC",
+          "highlightGreen": "#009E74",
+          "linkText": "#498F80",
+          "text": "#282828",
+        },
+        "fontSizes": Object {
+          "large": "3rem",
+          "medium": "1.8rem",
+          "small": "1rem",
+        },
+        "fonts": Array [
+          "Muli",
+          "sans-serif",
+        ],
+      }
+    }
+  >
+    <Description
+      activated={true}
+      descClicked={[Function]}
+      descOpen={true}
+    >
+      <Descriptionstyle__DescriptionContainer
+        activated={true}
+        open={true}
+      >
+        <div
+          className="Descriptionstyle__DescriptionContainer-wtqy6i-0 iZdCHd"
+          open={true}
+        >
+          <p />
+          <Descriptionstyle__DescCollapseBtn
+            onClick={[Function]}
+            open={true}
+          >
+            <p
+              className="Descriptionstyle__DescCollapseBtn-wtqy6i-1 loBJcu"
+              onClick={[Function]}
+              open={true}
+            >
+              Less
+            </p>
+          </Descriptionstyle__DescCollapseBtn>
+        </div>
+      </Descriptionstyle__DescriptionContainer>
+    </Description>
+  </ThemeProvider>
+</Theme>
+`;
+
+exports[`Description Component should return am empty fragment if the "activated" prop is false 1`] = `
+<Theme>
+  <ThemeProvider
+    theme={
+      Object {
+        "colors": Object {
+          "borderGrey": "#9B9E9E",
+          "buttonGreen": "#009E74",
+          "flavorText": "#888B8B",
+          "gradientBlue": "#DBE7FE",
+          "gradientOrange": "#FFF2EC",
+          "highlightGreen": "#009E74",
+          "linkText": "#498F80",
+          "text": "#282828",
+        },
+        "fontSizes": Object {
+          "large": "3rem",
+          "medium": "1.8rem",
+          "small": "1rem",
+        },
+        "fonts": Array [
+          "Muli",
+          "sans-serif",
+        ],
+      }
+    }
+  >
+    <Description
+      activated={false}
+    >
+      <Descriptionstyle__DescriptionContainer
+        activated={false}
+      >
+        <div
+          className="Descriptionstyle__DescriptionContainer-wtqy6i-0 lhnXnZ"
+        >
+          <p />
+          <Descriptionstyle__DescCollapseBtn
+            onClick={[Function]}
+          >
+            <p
+              className="Descriptionstyle__DescCollapseBtn-wtqy6i-1 loBJcu"
+              onClick={[Function]}
+            />
+          </Descriptionstyle__DescCollapseBtn>
+        </div>
+      </Descriptionstyle__DescriptionContainer>
+    </Description>
+  </ThemeProvider>
+</Theme>
+`;
+
+exports[`Description Component should return an "Read More..." if the "activated" prop is true and the "descOpen" prop is false 1`] = `
+<Theme>
+  <ThemeProvider
+    theme={
+      Object {
+        "colors": Object {
+          "borderGrey": "#9B9E9E",
+          "buttonGreen": "#009E74",
+          "flavorText": "#888B8B",
+          "gradientBlue": "#DBE7FE",
+          "gradientOrange": "#FFF2EC",
+          "highlightGreen": "#009E74",
+          "linkText": "#498F80",
+          "text": "#282828",
+        },
+        "fontSizes": Object {
+          "large": "3rem",
+          "medium": "1.8rem",
+          "small": "1rem",
+        },
+        "fonts": Array [
+          "Muli",
+          "sans-serif",
+        ],
+      }
+    }
+  >
+    <Description
+      activated={true}
+      descOpen={false}
+    >
+      <Descriptionstyle__DescriptionContainer
+        activated={true}
+        open={false}
+      >
+        <div
+          className="Descriptionstyle__DescriptionContainer-wtqy6i-0 hRNJRj"
+          open={false}
+        >
+          <p />
+          <Descriptionstyle__DescCollapseBtn
+            onClick={[Function]}
+            open={false}
+          >
+            <p
+              className="Descriptionstyle__DescCollapseBtn-wtqy6i-1 loBJcu"
+              onClick={[Function]}
+              open={false}
+            >
+              Read more...
+            </p>
+          </Descriptionstyle__DescCollapseBtn>
+        </div>
+      </Descriptionstyle__DescriptionContainer>
+    </Description>
+  </ThemeProvider>
+</Theme>
+`;
+
+exports[`Description Component should return an empty fragment if the "activated" prop is false 1`] = `
+<Theme>
+  <ThemeProvider
+    theme={
+      Object {
+        "colors": Object {
+          "borderGrey": "#9B9E9E",
+          "buttonGreen": "#009E74",
+          "flavorText": "#888B8B",
+          "gradientBlue": "#DBE7FE",
+          "gradientOrange": "#FFF2EC",
+          "highlightGreen": "#009E74",
+          "linkText": "#498F80",
+          "text": "#282828",
+        },
+        "fontSizes": Object {
+          "large": "3rem",
+          "medium": "1.8rem",
+          "small": "1rem",
+        },
+        "fonts": Array [
+          "Muli",
+          "sans-serif",
+        ],
+      }
+    }
+  >
+    <Description
+      activated={false}
+      descOpen={false}
+    >
+      <Descriptionstyle__DescriptionContainer
+        activated={false}
+        open={false}
+      >
+        <div
+          className="Descriptionstyle__DescriptionContainer-wtqy6i-0 lhnXnZ"
+          open={false}
+        >
+          <p />
+          <Descriptionstyle__DescCollapseBtn
+            onClick={[Function]}
+            open={false}
+          >
+            <p
+              className="Descriptionstyle__DescCollapseBtn-wtqy6i-1 loBJcu"
+              onClick={[Function]}
+              open={false}
+            />
+          </Descriptionstyle__DescCollapseBtn>
+        </div>
+      </Descriptionstyle__DescriptionContainer>
+    </Description>
+  </ThemeProvider>
+</Theme>
+`;
