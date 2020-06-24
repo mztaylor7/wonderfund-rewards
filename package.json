@@ -26,6 +26,7 @@
     "format": "(cd server && yarn format); (cd client && yarn format);",
     "postinstall": "(cd client && yarn install); (cd server && yarn install);",
     "lint": "(cd server && yarn lint); (cd client && yarn lint);",
+    "precommit-msg": "echo 'Project parsing...' && exit 0",
     "sort": "(npx sort-package-json); (cd server && yarn sort); (cd client && yarn sort);",
     "prestart": "cd client && yarn build-prod",
     "start": "cd server && yarn start",
