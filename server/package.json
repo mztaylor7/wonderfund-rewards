@@ -63,6 +63,7 @@
     "eslint-plugin-react": "^7.20.0",
     "inquirer": "^7.2.0",
     "mocha": "^8.0.1",
+    "mocha-junit-reporter": "^2.0.0",
     "nodemon": "^2.0.4",
     "nyc": "^15.1.0",
     "prettier": "^2.0.5",

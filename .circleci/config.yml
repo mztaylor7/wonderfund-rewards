@@ -32,17 +32,12 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
-      # Update npm
+      # Install Dependencies
       - run:
           name: Install Project Dependencies
           command: |
             yarn install
-
-      # Install Packages
-      - run:
-          name: Install Testing Packages
-          command: |
-            sudo yarn add global nyc mocha mocha-junit-reporter jest enzyme
+            sudo yarn add mocha-junit-reporter global -W
 
       # Save the dependency cache
       - save_cache:
