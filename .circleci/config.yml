@@ -23,17 +23,18 @@ jobs:
           command: |
             sudo apt-get update -qq -y
             sudo apt-get install lcov -y
+            sudo apt-get install mysql-client
 
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "package-lock.json" }}
+            - v1-dependencies-{{ checksum "yarn.lock" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
       # Update npm
       - run:
-          name: Update Global NPM
+          name: Install Project Dependencies
           command: |
             yarn install
 
@@ -41,13 +42,13 @@ jobs:
       - run:
           name: Install Testing Packages
           command: |
-            yarn add nyc mocha mocha-junit-reporter jest enzyme
+            sudo yarn add global nyc mocha mocha-junit-reporter jest enzyme
 
       # Save the dependency cache
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package-lock.json" }}
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
 
       # Make Report Directory
       - run: mkdir reports
