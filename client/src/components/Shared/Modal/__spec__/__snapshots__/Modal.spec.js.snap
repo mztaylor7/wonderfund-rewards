@@ -34,6 +34,7 @@ exports[`Modal Component should match the test snapshot 1`] = `
           "location": "Home",
         }
       }
+      setModalOpen={[MockFunction]}
     >
       <Portal
         containerInfo={

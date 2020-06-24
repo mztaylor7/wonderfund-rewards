@@ -6,13 +6,12 @@ import styles from './Modal.module.scss';
 import Heading from '../Heading/Heading';
 import SubHeading from '../SubHeading/SubHeading';
 
-const Modal = ({ modalOpen, setModalOpen, project }) => {
+const Modal = ({ setModalOpen, project }) => {
   const { creator, location } = project;
 
   const renderModal = () => {
     const toggleModal = (e) => {
       e.stopPropagation();
-      console.log(e.target);
       setModalOpen(false);
     };
 

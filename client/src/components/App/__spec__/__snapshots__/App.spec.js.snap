@@ -418,7 +418,9 @@ exports[`App Component should match the test snapshot 1`] = `
         </SideEffect(NullComponent)>
       </HelmetWrapper>
       <Memo(GlobalStyleComponent) />
-      <RewardViewer>
+      <RewardViewer
+        getRewards={[Function]}
+      >
         <RewardViewerstyle___default>
           <div
             className="c0"

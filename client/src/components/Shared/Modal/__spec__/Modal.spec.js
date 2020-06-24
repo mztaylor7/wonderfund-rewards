@@ -3,6 +3,7 @@ import { mount } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import Modal from '../Modal';
 import Theme from '../../../Theme/Theme';
+import { Fader, InfoCard } from '../Modal.style';
 
 describe('Modal Component', () => {
   let component;
@@ -11,6 +12,8 @@ describe('Modal Component', () => {
     creator: 'Bob',
     location: 'Home',
   };
+
+  const mockModalFn = jest.fn();
 
   // add a div with #modal-root id to the global body
   const modalRoot = global.document.createElement('div');
@@ -21,7 +24,7 @@ describe('Modal Component', () => {
   beforeEach(() => {
     component = mount(
       <Theme>
-        <Modal project={project} />
+        <Modal setModalOpen={mockModalFn} project={project} />
       </Theme>
     );
   });
@@ -36,5 +39,17 @@ describe('Modal Component', () => {
 
   it('should match the test snapshot', () => {
     expect(toJson(component)).toMatchSnapshot();
+  });
+
+  it('should hide the modal when the close button is clicked', () => {
+    const fader = component.find(Fader);
+    fader.simulate('click', () => {});
+    expect(mockModalFn).toHaveBeenCalled();
+  });
+
+  it('should not close the modal when the info card is clicked', () => {
+    const fader = component.find(InfoCard);
+    fader.simulate('click', () => {});
+    expect(mockModalFn).toHaveBeenCalledTimes(0);
   });
 });

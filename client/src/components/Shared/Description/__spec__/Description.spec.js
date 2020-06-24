@@ -31,6 +31,8 @@ describe('Description Component', () => {
 
   afterEach(() => {
     component.unmount();
+    componentV2.unmount();
+    componentV3.unmount();
   });
 
   it('should render without failure', () => {
