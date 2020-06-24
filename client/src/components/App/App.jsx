@@ -3,7 +3,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 
 /* Import Theme Provider */
-import Theme from '../Theme';
+import Theme from '../Theme/Theme';
 import GlobalStyles from './App.style';
 
 /* Import Components */
