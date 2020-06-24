@@ -452,9 +452,7 @@ exports[`App Component should match the test snapshot 1`] = `
                       >
                         <h2
                           className="c3"
-                        >
-                          User
-                        </h2>
+                        />
                       </Headingstyle___default>
                     </_default>
                     <p>
