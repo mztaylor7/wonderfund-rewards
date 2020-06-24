@@ -90,6 +90,31 @@ describe('/api/projects', function () {
    * Test the Project GET Routes
    */
   context('GET /', function () {
+    it('should receive the served html file if any route is hit', function (done) {
+      const binaryParser = (res, callback) => {
+        res.setEncoding('binary');
+        res.data = '';
+        res.on('data', function (chunk) {
+          res.data += chunk;
+        });
+        res.on('end', function () {
+          callback(null, Buffer.from(res.data, 'binary'));
+        });
+      };
+
+      request
+        .get(`${apiAddress}/1`)
+        .expect(200)
+        .expect('Content-Type', 'text/html; charset=UTF-8')
+        .buffer()
+        .parse(binaryParser)
+        .end(function (err, res) {
+          // binary response data is in res.body as a buffer
+          assert.ok(Buffer.isBuffer(res.body));
+          done();
+        });
+    });
+
     it('should get the user image for the passed in project id', async function () {
       const res = await request.get(`${apiAddress}/user?id=1`);
       assert.equal(res.statusCode, 200);
