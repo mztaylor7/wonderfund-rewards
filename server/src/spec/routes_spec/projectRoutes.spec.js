@@ -27,6 +27,7 @@ describe('/api/projects', function () {
 
   const mockProject = {
     title: 'Fantastic Granite Table',
+    creator: 'Bob',
     subtitle: 'Fundamental incremental extranet',
     category: 'Games',
     subcategory: 'Handcrafted',
@@ -42,6 +43,7 @@ describe('/api/projects', function () {
 
   const mockProject2 = {
     title: 'Fantastic Granite Table 2',
+    creator: 'Bob',
     subtitle: 'Fundamental incremental extranet',
     category: 'Games',
     subcategory: 'Handcrafted',
@@ -88,6 +90,42 @@ describe('/api/projects', function () {
    * Test the Project GET Routes
    */
   context('GET /', function () {
+    it('should receive the served html file if any route is hit', function (done) {
+      const binaryParser = (res, callback) => {
+        res.setEncoding('binary');
+        res.data = '';
+        res.on('data', function (chunk) {
+          res.data += chunk;
+        });
+        res.on('end', function () {
+          callback(null, Buffer.from(res.data, 'binary'));
+        });
+      };
+
+      request
+        .get(`${apiAddress}/1`)
+        .expect(200)
+        .expect('Content-Type', 'text/html; charset=UTF-8')
+        .buffer()
+        .parse(binaryParser)
+        .end(function (err, res) {
+          // binary response data is in res.body as a buffer
+          assert.ok(Buffer.isBuffer(res.body));
+          done();
+        });
+    });
+
+    it('should get the user image for the passed in project id', async function () {
+      const res = await request.get(`${apiAddress}/user?id=1`);
+      assert.equal(res.statusCode, 200);
+      assert.isDefined(res);
+    });
+
+    it('should return a status code of 200 if a user image does not exist', async function () {
+      const res = await request.get(`${apiAddress}/user?id=-1`);
+      assert.equal(res.statusCode, 400);
+    });
+
     it('should get all projects if no [id] or [name] query parameter is passed in', async function () {
       const res = await request.get(apiAddress);
       assert.equal(res.statusCode, 200);

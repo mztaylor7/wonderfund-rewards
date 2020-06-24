@@ -11,26 +11,26 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.scss$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
-      },
-      {
         test: /\.(js|jsx)$/,
         use: 'babel-loader',
         exclude: /node_modules/,
       },
       {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
-      },
-      {
-        test: /\.png$/,
-        use: [
+        test: /\.s?css$/,
+        oneOf: [
           {
-            loader: 'url-loader',
-            options: {
-              mimetype: 'image/png',
-            },
+            test: /\.module\.s?css$/,
+            use: [
+              MiniCssExtractPlugin.loader,
+              {
+                loader: 'css-loader',
+                options: { modules: true },
+              },
+              'sass-loader',
+            ],
+          },
+          {
+            use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
           },
         ],
       },
@@ -50,6 +50,7 @@ const config = {
     new MiniCssExtractPlugin(),
   ],
   devServer: {
+    inline: true,
     contentBase: './dist',
     historyApiFallback: true,
   },

@@ -13,6 +13,10 @@ const attributes = {
     type: DataTypes.STRING,
     allowNull: false
   },
+  creator: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
   subtitle: {
     type: DataTypes.STRING,
     allowNull: false

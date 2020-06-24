@@ -1,0 +1,17 @@
+.flex {
+  display: flex;
+}
+
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+
+  & ul {
+    list-style: none;
+  }
+
+  & li {
+    font-size: 12px;
+    margin: 12px 10px 12px 0;
+  }
+}

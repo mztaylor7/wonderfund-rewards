@@ -8,71 +8,19 @@
   "author": "",
   "main": "src/index.js",
   "scripts": {
+    "dev": "nodemon src/index.js",
+    "format": "npx prettier . --write",
+    "lint": "npx eslint ./ --fix",
+    "seed:database": "node src/dev-data/seeds/projectSeed.js",
+    "sort": "npx sort-package-json",
+    "start": "node src/index.js",
     "test": "env DEBUG=off NODE_ENV=test DATABASE_NAME=kstart_test mocha src/spec/**/*.js --exit",
-    "test:watch": "env DEBUG=off NODE_ENV=test DATABASE_NAME=kstart_test mocha src/spec/**/*.js --watch",
     "test:coverage": "env DEBUG=off NODE_ENV=test DATABASE_NAME=kstart_test nyc --reporter=text mocha src/spec/**/*.js --exit",
     "test:coverageHtml": "env DEBUG=off NODE_ENV=test DATABASE_NAME=kstart_test nyc --reporter=html mocha src/spec/**/*.js --exit",
-    "seed:database": "node src/dev-data/seeds/projectSeed.js",
-    "dev": "nodemon src/index.js",
-    "start": "node src/index.js"
-  },
-  "engines": {
-    "node": "12.16.3"
-  },
-  "prettier": {
-    "arrowParens": "always",
-    "bracketSpacing": true,
-    "printWidth": 80,
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "none"
-  },
-  "eslintConfig": {
-    "plugins": [
-      "prettier",
-      "chai-expect",
-      "mocha"
-    ],
-    "extends": [
-      "airbnb",
-      "prettier",
-      "plugin:node/recommended",
-      "plugin:mocha/recommended",
-      "plugin:chai-expect/recommended"
-    ],
-    "env": {
-      "mocha": true
-    },
-    "rules": {
-      "class-methods-use-this": "off",
-      "consistent-return": "off",
-      "func-names": "off",
-      "no-console": "warn",
-      "no-param-reassign": "off",
-      "no-process-exit": "off",
-      "no-return-await": "off",
-      "no-underscore-dangle": "off",
-      "node/no-unpublished-require": 0,
-      "node/no-missing-require": 0,
-      "no-unused-vars": [
-        "error",
-        {
-          "argsIgnorePattern": "req|res|next|val"
-        }
-      ],
-      "object-shorthand": "off",
-      "prefer-destructuring": [
-        "error",
-        {
-          "object": true,
-          "array": false
-        }
-      ],
-      "spaced-comment": "off",
-      "prettier/prettier": "error"
-    }
+    "test:watch": "env DEBUG=off NODE_ENV=test DATABASE_NAME=kstart_test mocha src/spec/**/*.js --watch"
   },
   "dependencies": {
+    "aws-sdk": "^2.703.0",
     "axios": "^0.19.2",
     "cors": "^2.8.5",
     "debug": "^4.1.1",
@@ -118,5 +66,8 @@
     "sinon": "^9.0.2",
     "sinon-chai": "^3.5.0",
     "supertest": "^4.0.2"
+  },
+  "engines": {
+    "node": "12.16.3"
   }
 }

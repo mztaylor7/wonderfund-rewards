@@ -13,80 +13,13 @@
     "build-prod": "./node_modules/.bin/webpack -p --mode production",
     "clean": "rm dist/bundle.js",
     "dev": "webpack-dev-server --hot --mode development",
+    "format": "npx prettier . --write",
+    "lint": "npx eslint ./ --fix",
+    "sort": "npx sort-package-json",
     "test": "echo 'add tests'"
   },
   "resolutions": {
     "styled-components": "^5"
-  },
-  "babel": {
-    "plugins": [
-      "react-hot-loader/babel",
-      "babel-plugin-styled-components"
-    ],
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "modules": false
-        }
-      ],
-      "@babel/preset-react"
-    ]
-  },
-  "prettier": {
-    "arrowParens": "always",
-    "bracketSpacing": true,
-    "jsxSingleQuote": true,
-    "printWidth": 80,
-    "semi": true,
-    "singleQuote": true
-  },
-  "eslintConfig": {
-    "env": {
-      "browser": true,
-      "es6": true
-    },
-    "parser": "babel-eslint",
-    "parserOptions": {
-      "ecmaFeatures": {
-        "jsx": true
-      },
-      "ecmaVersion": 11,
-      "sourceType": "module"
-    },
-    "plugins": [
-      "react",
-      "prettier"
-    ],
-    "extends": [
-      "plugin:react/recommended",
-      "airbnb",
-      "prettier"
-    ],
-    "rules": {
-      "prettier/prettier": [
-        "error"
-      ],
-      "react/jsx-filename-extension": [
-        0
-      ],
-      "react/prop-types": [
-        1,
-        {
-          "ignore": [
-            "className",
-            "children",
-            "location",
-            "params",
-            "location*"
-          ]
-        }
-      ]
-    },
-    "globals": {
-      "Atomics": "readonly",
-      "SharedArrayBuffer": "readonly"
-    }
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.3.6",
@@ -101,6 +34,7 @@
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
     "react-hot-loader": "^4.12.21",
+    "react-html-parser": "^2.0.2",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",

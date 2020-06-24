@@ -1,3 +1,4 @@
+const AWS = require('aws-sdk');
 const { getProjectModel } = require('../database');
 const { getRewardModel } = require('../database');
 
@@ -9,6 +10,7 @@ const { getRewardModel } = require('../database');
 const filterBody = (req) => {
   return {
     title: req.body.title,
+    creator: req.body.creator,
     subtitle: req.body.subtitle,
     category: req.body.category,
     subcategory: req.body.subcategory,
@@ -39,6 +41,37 @@ const getSearchQuery = (req) => {
   }
 
   return searchQuery;
+};
+
+/**
+ * Get Image
+ * @param id The id of the project to fetch the user for
+ * @returns {Promise<PromiseResult<S3.GetObjectOutput, AWSError>>}
+ */
+const getImage = (id) => {
+  const s3 = new AWS.S3();
+  return s3
+    .getObject({
+      Bucket: 'fec-zayers-reward-service',
+      Key: `${id}.png`
+    })
+    .promise();
+};
+
+/**
+ * Get User Image
+ * @param req The HTTP Request Object
+ * @param res The HTTP Response Object
+ */
+module.exports.getUserImage = (req, res) => {
+  getImage(req.id)
+    .then((image) => {
+      const buf = Buffer.from(image.Body);
+      const base64 = buf.toString('base64');
+      const html = `<img src="data:image/jpeg;base64,${base64}" alt="user avatar"/>`;
+      res.status(200).send(html);
+    })
+    .catch((err) => res.status(400).send(err));
 };
 
 /**

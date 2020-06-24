@@ -29,6 +29,11 @@ module.exports = (req, res, next) => {
       .json({ message: 'No query parameters were provided in the request' });
   }
 
+  /* If the project ID query param exists but is empty, return an empty array*/
+  if (req.query.projectId === '') {
+    return res.status(200).json([]);
+  }
+
   // Create a function from pluck that takes in a parameter object
   const replace = pluck(req);
   replace('id');

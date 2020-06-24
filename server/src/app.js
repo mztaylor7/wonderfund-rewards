@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: true, limit: '10kb' })); // Form Parser
 
 // Set a rate limiter to avoid API abuse - the current call size is 1000 calls per hour
 const limiter = rateLimit({
-  max: 100,
+  max: 1000,
   windowMs: 60 * 60 * 1000, //60 seconds * 60 minutes * 1000 = 3600000 milliseconds
   message: 'Too many requests from this IP, please try again in an hour.'
 });
@@ -38,6 +38,11 @@ app.use('/api/rewards', rewardRouter);
 
 // Serve up the dist folder from the client at the defined PORT
 app.use(express.static(path.resolve(__dirname, '../../client/dist')));
+
+/* This is to allow the app to send the dist html file no matter the params in the request */
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../client/dist', 'index.html'));
+});
 
 // Export the App module
 module.exports = app;
