@@ -1,5 +1,5 @@
 import React from 'react';
-import SubHeading from '../SubHeading/SubHeading';
+import SubHeading from '../Shared/SubHeading/SubHeading';
 import RewardList from './RewarsList.style';
 
 export default (props) => {

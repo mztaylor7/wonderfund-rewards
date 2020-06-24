@@ -5,7 +5,7 @@ import Container from '../Shared/Container/Container';
 import Heading from '../Shared/Heading/Heading';
 import Avatar from '../Shared/Avatar/Avatar';
 import { getUserInfo } from '../../services/apiService';
-import Description from '../Shared/DescriptionContainer/Description';
+import Description from '../Shared/Description/Description';
 import Modal from '../Shared/Modal/Modal';
 
 /**

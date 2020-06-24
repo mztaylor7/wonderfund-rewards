@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import RewardViewer from '../RewardViewer';
+import RewardList from '../RewardList';
 
-describe('RewardViewer Component', () => {
+describe('RewardList Component', () => {
   let component;
 
   beforeEach(() => {
-    component = shallow(<RewardViewer />);
+    component = shallow(<RewardList rewardItems='Test1,Test2,Test3' />);
   });
 
   afterEach(() => {
