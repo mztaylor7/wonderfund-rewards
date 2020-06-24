@@ -32,8 +32,12 @@ const AvatarCard = () => {
    * @returns {string}
    */
   const formatUsername = () => {
-    project.creator = project.creator.replace('_', ' ').replace('.', ' ');
-    return project.creator;
+    if (project) {
+      project.creator = project.creator.replace('_', ' ').replace('.', ' ');
+      return project.creator;
+    }
+
+    return 'User';
   };
 
   /* Return the JSX to render */

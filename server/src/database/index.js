@@ -41,7 +41,8 @@ const createSequelizeConnection = () => {
     mysql
       .createConnection({
         user: DATABASE_USER,
-        password: DATABASE_PASSWORD
+        password: DATABASE_PASSWORD,
+        host: DATABASE_HOST
       })
       .then((sqlRoot) => {
         sqlRoot

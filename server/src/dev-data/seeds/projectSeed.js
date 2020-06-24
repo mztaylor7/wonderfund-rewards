@@ -131,8 +131,12 @@ const generateProjects = async (dbName, seedAmount) => {
  */
 (() => {
   /* Mutable variables to hold the database name and seeding amount */
-  let dbName = 'kstart_test';
+  let dbName = 'kstart';
   let seedAmount = 100;
+
+  if (process.argv[2] === '--docker') {
+    return generateProjects(dbName, seedAmount);
+  }
 
   /* Questions to present to the user in the console */
   const questions = [

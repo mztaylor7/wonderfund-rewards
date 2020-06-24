@@ -6,7 +6,7 @@ services:
   rewards-service:
     container_name: rewards-api
     build: ./
-    command: npm start
+    command: yarn start:database
     working_dir: /Workspace/fec-capstone/rewards
     env_file:
       - ./server/src/config/.env
@@ -14,8 +14,20 @@ services:
       - "3005:3005"
     environment:
       DATABASE_HOST: mysql
-      MYSQL_URI: mysql://root:password@mysql:3307/kstart
+      MYSQL_URI: mysql://root:password@mysql:3306
       REDIS_URI: redis://redis:6380
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+    volumes:
+      - ~/.aws/:/root/.aws:ro
+    depends_on:
+      - "mysql"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "mysql://root:password@mysql:3306"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
   # MySQL
   mysql:
@@ -27,7 +39,7 @@ services:
       MYSQL_USER: k-user
       MYSQL_PASSWORD: k-pass
     ports:
-      - "3307:3307"
+      - "3306:3306"
 
   # Redis
   redis:
