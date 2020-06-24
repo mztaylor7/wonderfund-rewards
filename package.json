@@ -31,6 +31,12 @@
     "start": "cd server && yarn start",
     "test": "(cd server && yarn test); (cd client && yarn test);"
   },
+  "pre-commit": [
+    "precommit-msg",
+    "sort",
+    "lint",
+    "format"
+  ],
   "dependencies": {},
   "devDependencies": {
     "concurrently": "^5.2.0",

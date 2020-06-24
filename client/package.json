@@ -15,12 +15,15 @@
     "dev": "webpack-dev-server --hot --mode development",
     "format": "npx prettier . --write",
     "lint": "npx eslint ./ --fix",
+    "precommit-msg": "echo 'Client parsing...' && exit 0",
     "sort": "npx sort-package-json",
-    "test": "jest",
-    "precommit-msg": "echo 'Client parsing...' && exit 0"
+    "test": "jest"
   },
   "pre-commit": [
-    "sort", "lint", "format"
+    "precommit-msg",
+    "sort",
+    "lint",
+    "format"
   ],
   "resolutions": {
     "styled-components": "^5"
@@ -35,7 +38,6 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "enzyme-to-json": "^3.5.0",
-    "eslint": "^7.3.1",
     "global": "^4.4.0",
     "lodash": "^4.17.15",
     "prettier": "^2.0.5",
@@ -71,7 +73,7 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "enzyme-to-json": "^3.5.0",
-    "eslint": "^6.8.0",
+    "eslint": "^7.3.1",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-config-react-app": "^5.2.1",
