@@ -35,31 +35,19 @@ jobs:
       - run:
           name: Update Global NPM
           command: |
-            sudo yarn global add npm@latest
+            yarn install
 
       # Install Packages
       - run:
-          name: Install Server NPM Packages
+          name: Install Testing Packages
           command: |
-            npm install nyc mocha mocha-junit-reporter --quiet
-            cd server
-            npm install --quiet
-            npm install --only=dev --quiet
+            yarn add nyc mocha mocha-junit-reporter
 
       # Save the dependency cache
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package-lock.json" }}
-
-      # Lint & Format
-      - run:
-          name: Lint, Sort, & Format Server
-          command: |
-            cd server
-            yarn sort
-            yarn lint
-            yarn format
 
       # Make Report Directory
       - run: mkdir reports

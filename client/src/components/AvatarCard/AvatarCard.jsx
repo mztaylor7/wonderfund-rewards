@@ -5,7 +5,7 @@ import Container from '../Shared/Container/Container';
 import Heading from '../Shared/Heading/Heading';
 import Avatar from '../Shared/Avatar/Avatar';
 import { getUserInfo } from '../../services/apiService';
-import Description from '../Shared/DescriptionContainer/Description';
+import Description from '../Shared/Description/Description';
 import Modal from '../Shared/Modal/Modal';
 
 /**
@@ -18,8 +18,7 @@ const AvatarCard = () => {
     creator: '',
     rewards: [{ description: '' }],
   });
-  const [descOpen, setDescOpen] = useState(false);
-  const [modalOpen, setModalOpen] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     getUserInfo().then((response) => {
@@ -44,7 +43,7 @@ const AvatarCard = () => {
       <Heading heavy>{formatUsername()}</Heading>
       <p>1 created · 0 backed</p>
       <Description
-        descOpen={descOpen}
+        descOpen={false}
         activated
         setDescOpen={() => setModalOpen(!modalOpen)}
         description={project.rewards[0].description}
