@@ -5,4 +5,4 @@ import ReactDOM from 'react-dom';
 import App from './components/App/App';
 
 /* Render the App component to the screen */
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('rewards'));
