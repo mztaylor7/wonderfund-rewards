@@ -40,9 +40,9 @@ app.use('/api/rewards', rewardRouter);
 app.use('/', express.static(path.resolve(__dirname, '../../client/dist')));
 
 /* This is to allow the app to send the dist html file no matter the params in the request */
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../client/dist', 'index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../../client/dist', 'index.html'));
+// });
 
 // Export the App module
 module.exports = app;
