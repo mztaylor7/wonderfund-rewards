@@ -35,7 +35,6 @@
   "dependencies": {},
   "devDependencies": {
     "concurrently": "^5.2.0",
-    "gulp": "^4.0.2",
-    "pre-commit": "^1.2.2"
+    "gulp": "^4.0.2"
   }
 }
