@@ -37,7 +37,7 @@ app.use('/api/projects', projectRouter);
 app.use('/api/rewards', rewardRouter);
 
 // Serve up the dist folder from the client at the defined PORT
-app.use('./', express.static(path.resolve(__dirname, '../../client/dist')));
+app.use('/', express.static(path.resolve(__dirname, '../../client/dist')));
 
 /* This is to allow the app to send the dist html file no matter the params in the request */
 app.get('*', (req, res) => {
