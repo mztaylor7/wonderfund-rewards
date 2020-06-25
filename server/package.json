@@ -11,7 +11,6 @@
     "dev": "nodemon src/index.js",
     "format": "npx prettier . --write",
     "lint": "npx eslint ./ --fix",
-    "precommit-msg": "echo 'Server parsing...' && exit 0",
     "seed:database": "node src/dev-data/seeds/projectSeed.js",
     "sort": "npx sort-package-json",
     "start": "node src/index.js",
@@ -20,12 +19,6 @@
     "test:coverageHtml": "env DEBUG=off NODE_ENV=test DATABASE_NAME=kstart_test nyc --reporter=html mocha src/spec/**/*.js --exit",
     "test:watch": "env DEBUG=off NODE_ENV=test DATABASE_NAME=kstart_test mocha src/spec/**/*.js --watch"
   },
-  "pre-commit": [
-    "precommit-msg",
-    "sort",
-    "lint",
-    "format"
-  ],
   "dependencies": {
     "aws-sdk": "^2.703.0",
     "axios": "^0.19.2",

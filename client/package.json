@@ -15,16 +15,9 @@
     "dev": "webpack-dev-server --hot --mode development",
     "format": "npx prettier . --write",
     "lint": "npx eslint ./ --fix",
-    "precommit-msg": "echo 'Client parsing...' && exit 0",
     "sort": "npx sort-package-json",
     "test": "jest"
   },
-  "pre-commit": [
-    "precommit-msg",
-    "sort",
-    "lint",
-    "format"
-  ],
   "resolutions": {
     "styled-components": "^5"
   },

@@ -26,18 +26,12 @@
     "format": "(cd server && npm run format); (cd client && npm run format);",
     "postinstall": "(cd client && npm install); (cd server && npm install);",
     "lint": "(cd server && npm run lint); (cd client && npm run lint);",
-    "precommit-msg": "echo 'Project parsing...' && exit 0",
     "sort": "(npx sort-package-json); (cd server && npm run sort); (cd client && npm run sort);",
     "prestart": "cd client && npm run build-prod",
     "start": "cd server && npm run start",
     "start:database": "node server/src/dev-data/seeds/projectSeed.js --docker && npm run start",
     "test": "(cd server && npm run test); (cd client && npm run test);"
   },
-  "pre-commit": [
-    "sort",
-    "lint",
-    "format"
-  ],
   "dependencies": {},
   "devDependencies": {
     "concurrently": "^5.2.0",
