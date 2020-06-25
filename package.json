@@ -20,21 +20,20 @@
     "client"
   ],
   "scripts": {
-    "dev": "concurrently 'yarn dev:server' 'yarn dev:client'",
-    "dev:client": "cd client && yarn build-dev:watch",
-    "dev:server": "cd server && yarn dev",
-    "format": "(cd server && yarn format); (cd client && yarn format);",
-    "postinstall": "(cd client && yarn install); (cd server && yarn install);",
-    "lint": "(cd server && yarn lint); (cd client && yarn lint);",
+    "dev": "concurrently 'npm run dev:server' 'npm run dev:client'",
+    "dev:client": "cd client && npm run build-dev:watch",
+    "dev:server": "cd server && npm run dev",
+    "format": "(cd server && npm run format); (cd client && npm run format);",
+    "postinstall": "(cd client && npm install); (cd server && npm install);",
+    "lint": "(cd server && npm run lint); (cd client && npm run lint);",
     "precommit-msg": "echo 'Project parsing...' && exit 0",
-    "start:database": "node server/src/dev-data/seeds/projectSeed.js --docker && yarn start",
-    "sort": "(npx sort-package-json); (cd server && yarn sort); (cd client && yarn sort);",
-    "prestart": "cd client && yarn build-prod",
-    "start": "cd server && yarn start",
-    "test": "(cd server && yarn test); (cd client && yarn test);"
+    "sort": "(npx sort-package-json); (cd server && npm run sort); (cd client && npm run sort);",
+    "prestart": "cd client && npm run build-prod",
+    "start": "cd server && npm run start",
+    "start:database": "node server/src/dev-data/seeds/projectSeed.js --docker && npm run start",
+    "test": "(cd server && npm run test); (cd client && npm run test);"
   },
   "pre-commit": [
-    "precommit-msg",
     "sort",
     "lint",
     "format"
@@ -42,6 +41,7 @@
   "dependencies": {},
   "devDependencies": {
     "concurrently": "^5.2.0",
-    "gulp": "^4.0.2"
+    "gulp": "^4.0.2",
+    "pre-commit": "^1.2.2"
   }
 }

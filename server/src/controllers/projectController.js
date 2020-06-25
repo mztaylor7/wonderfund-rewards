@@ -44,6 +44,12 @@ const getSearchQuery = (req) => {
 };
 
 /**
+ *
+ * @type {string}
+ */
+const asd = 'n';
+
+/**
  * Get Image
  * @param id The id of the project to fetch the user for
  * @returns {Promise<PromiseResult<S3.GetObjectOutput, AWSError>>}
