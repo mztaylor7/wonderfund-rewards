@@ -40,26 +40,3 @@ npm run start:database
 ```sh
 npm run test
 ```
-
-## Author
-
-👤 **Zach Ayers**
-
-* Website: https://www.zachayers.io
-* Github: [@zjayers](https://github.com/zjayers)
-
-## 🤝 Contributing
-
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/team-iroh/pledge-rewards/issues). You can also take a look at the [contributing guide](https://github.com/team-iroh/pledge-rewards/blob/master/CONTRIBUTING.md).
-
-## Show your support
-
-Give a ⭐️ if this project helped you!
-
-## 📝 License
-
-Copyright © 2020 [Zach Ayers](https://github.com/zjayers).<br />
-This project is [ISC](https://github.com/team-iroh/pledge-rewards/blob/master/LICENSE) licensed.
-
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
