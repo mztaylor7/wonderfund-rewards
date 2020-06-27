@@ -22,7 +22,11 @@
 https://team-iroh.github.io/pledge-rewards/index.html
 
 ## API Documentation
-https://documenter.getpostman.com/view/11644172/SzzkcHBk
+### /api/projects
+https://documenter.getpostman.com/view/11644172/SzzkcH2w?version=latest
+
+### /api/rewards
+https://documenter.getpostman.com/view/11644172/SzzkcHBk?version=latest
 
 ## Prerequisites
 
