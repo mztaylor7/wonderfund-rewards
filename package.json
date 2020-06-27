@@ -1,12 +1,12 @@
 {
-  "name": "rewards",
+  "name": "kickstarter-rewards-service",
   "version": "1.0.0",
   "private": true,
-  "description": "",
+  "description": "This is the client & server side code for the rewards/pledges microservice that mocks the rewards component of the Kickstarter site.",
   "keywords": [],
-  "homepage": "https://github.com/team-iroh/za-service#readme",
+  "homepage": "https://github.com/team-iroh/pledge-rewards#readme",
   "bugs": {
-    "url": "https://github.com/team-iroh/za-service/issues"
+    "url": "https://github.com/team-iroh/pledge-rewards/issues"
   },
   "repository": {
     "type": "git",
@@ -36,5 +36,10 @@
   "devDependencies": {
     "concurrently": "^5.2.0",
     "gulp": "^4.0.2"
+  },
+  "engines": {
+    "npm": ">=6.14.5",
+    "node": ">=12.16.3",
+    "yarn": ">=1.22.4"
   }
 }
