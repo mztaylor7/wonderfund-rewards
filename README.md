@@ -33,6 +33,14 @@ https://documenter.getpostman.com/view/11644172/SzzkcHBk?version=latest
 - npm >=6.14.5
 - node >=12.16.3
 
+## Mounting Points in index.html
+- Rewards module mounts to the div with id of 'rewards'
+- Rewards modal window mounts to the div with id of 'modal-root'
+```html
+<div id="rewards"></div>
+<div id="modal-root"></div>
+```
+
 ## Install
 
 ```sh
