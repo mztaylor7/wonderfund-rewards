@@ -68,7 +68,6 @@ npm run start
 ## Usage - Seed Database Script
 
 ```sh
-cd server
 npm run seed:database
 ```
 
