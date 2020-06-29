@@ -9,6 +9,7 @@ COPY . .
 
 # Command to run upon mounting image
 RUN yarn install
+RUN yarn build
 
 # Command to access the bash of the image
 CMD ["/bin/bash"]
