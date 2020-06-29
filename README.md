@@ -47,6 +47,12 @@ https://documenter.getpostman.com/view/11644172/SzzkcHBk?version=latest
 npm install
 ```
 
+## Build
+
+```sh
+npm run build
+```
+
 ## Usage - Start & Seed Database
 
 ```sh
