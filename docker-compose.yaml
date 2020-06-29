@@ -35,7 +35,7 @@ services:
     container_name: rewards-mysql
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: kstart
+      MYSQL_DATABASE: kickstarter
       MYSQL_USER: k-user
       MYSQL_PASSWORD: k-pass
     ports:

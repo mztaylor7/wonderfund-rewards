@@ -7,7 +7,7 @@ jobs:
       - image: "mysql:8.0.20"
         environment:
           MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: kstart
+          MYSQL_DATABASE: kickstarter
           MYSQL_USER: user
           MYSQL_PASSWORD: password
 

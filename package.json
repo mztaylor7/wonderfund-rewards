@@ -29,7 +29,8 @@
     "sort": "(npx sort-package-json); (cd server && npm run sort); (cd client && npm run sort);",
     "prestart": "cd client && npm run build-prod",
     "start": "cd server && npm run start",
-    "start:database": "node server/src/dev-data/seeds/projectSeed.js --docker && npm run start",
+    "seed:database": "node server/src/dev-data/seeds/projectSeed.js --docker",
+    "start:database": "npm run seed:database && npm run start",
     "test": "(cd server && npm run test); (cd client && npm run test);"
   },
   "dependencies": {},
