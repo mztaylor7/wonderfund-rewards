@@ -6,20 +6,26 @@ const getParams = () => {
   return currentAddress.substring(n + 1);
 };
 
+const removeParams = () => {
+  const currentAddress = window.location.href;
+  const n = currentAddress.lastIndexOf('/');
+  return currentAddress.substring(0, n);
+};
+
 export const getRewards = () => {
-  return axios.get(`${window.location.href}/api/rewards`, {
+  return axios.get(`${removeParams()}/api/rewards`, {
     params: { projectId: getParams() },
   });
 };
 
 export const getUserInfo = () => {
-  return axios.get(`${window.location.href}/api/projects/find`, {
+  return axios.get(`${removeParams()}}/api/projects/find`, {
     params: { id: getParams() },
   });
 };
 
 export const getUserImage = () => {
-  return axios.get(`${window.location.href}/api/projects/user`, {
+  return axios.get(`${removeParams()}/api/projects/user`, {
     params: { id: getParams() },
   });
 };
