@@ -6,9 +6,7 @@ services:
   rewards-service:
     container_name: rewards-api
     build: ./
-    command: |
-      yarn build
-      yarn start:database
+    command: yarn start:database
     working_dir: /app
     env_file:
       - ./server/src/config/.env
