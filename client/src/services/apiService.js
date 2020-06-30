@@ -7,19 +7,19 @@ const getParams = () => {
 };
 
 export const getRewards = () => {
-  return axios.get(`http://localhost:3005/api/rewards`, {
+  return axios.get(`${window.location.href}/api/rewards`, {
     params: { projectId: getParams() },
   });
 };
 
 export const getUserInfo = () => {
-  return axios.get(`http://localhost:3005/api/projects/find`, {
+  return axios.get(`${window.location.href}/api/projects/find`, {
     params: { id: getParams() },
   });
 };
 
 export const getUserImage = () => {
-  return axios.get(`http://localhost:3005/api/projects/user`, {
+  return axios.get(`${window.location.href}/api/projects/user`, {
     params: { id: getParams() },
   });
 };
