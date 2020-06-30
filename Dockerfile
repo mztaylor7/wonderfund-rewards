@@ -8,7 +8,7 @@ WORKDIR /app
 COPY . .
 
 # Command to run upon mounting image
-RUN npm install
+RUN yarn install
 
 
 
