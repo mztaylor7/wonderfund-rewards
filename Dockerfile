@@ -8,7 +8,9 @@ WORKDIR /app
 COPY . .
 
 # Command to run upon mounting image
-RUN npm install
+RUN  install
+RUN npm run build
+
 
 # Command to access the bash of the image
 CMD ["/bin/bash"]
