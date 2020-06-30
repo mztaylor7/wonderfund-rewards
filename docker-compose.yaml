@@ -1,4 +1,4 @@
-version: '3.6'
+version: '2'
 
 services:
 
@@ -6,15 +6,17 @@ services:
   rewards-service:
     container_name: rewards-api
     build: ./
-    command: yarn start:database
-    working_dir: /Workspace/fec-capstone/rewards
+    command: |
+      npm run build
+      npm run start:database
+    working_dir: /app
     env_file:
       - ./server/src/config/.env
     ports:
       - "3005:3005"
     environment:
       DATABASE_HOST: mysql
-      MYSQL_URI: mysql://root:password@mysql:3306
+      MYSQL_URI: mysql://root:password@mysql:3306docker
       REDIS_URI: redis://redis:6380
       AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
@@ -22,12 +24,6 @@ services:
       - ~/.aws/:/root/.aws:ro
     depends_on:
       - "mysql"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "mysql://root:password@mysql:3306"]
-      interval: 1m30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
 
   # MySQL
   mysql:
@@ -36,8 +32,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: kickstarter
-      MYSQL_USER: k-user
-      MYSQL_PASSWORD: k-pass
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
     ports:
       - "3306:3306"
 
