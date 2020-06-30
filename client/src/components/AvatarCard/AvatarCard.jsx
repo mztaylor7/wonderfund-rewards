@@ -61,5 +61,5 @@ const AvatarCard = () => {
   );
 };
 
-/* Export the component - use the withTheme hook to allow theme access inside of this component */
+/* Export the component */
 export default AvatarCard;
