@@ -1,7 +1,10 @@
 import axios from 'axios';
 
-const serverAddr =
-  'http://ec2-3-133-92-215.us-east-2.compute.amazonaws.com:3005';
+// const serverAddr =
+// 'http://ec2-3-133-92-215.us-east-2.compute.amazonaws.com:3005';
+
+const serverAddr = 'http://localhost:3005';
+
 const getParams = () => {
   const currentAddress = window.location.href;
   const n = currentAddress.lastIndexOf('/');
