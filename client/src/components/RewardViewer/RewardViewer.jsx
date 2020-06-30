@@ -22,7 +22,7 @@ const RewardViewer = ({ getRewards }) => {
 
   return (
     <RewardBounds>
-      {/* <AvatarCard /> */}
+      <AvatarCard />
       <LargeTitle>Support</LargeTitle>
       <GradientCard />
       {renderCards()}
