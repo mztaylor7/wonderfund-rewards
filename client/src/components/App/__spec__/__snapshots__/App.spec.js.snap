@@ -6,10 +6,14 @@ exports[`App Component should contain the global style 1`] = `
     data-styled="active"
     data-styled-version="5.1.1"
   >
+    .kSgUlC{width:100%;border:1px solid #9B9E9E;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;padding:5.2rem 20px 20px;margin-bottom:20px;-webkit-transition:all 0.2s ease-in-out;transition:all 0.2s ease-in-out;position:relative;}
     .BmWDh{width:100%;border:1px solid #9B9E9E;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;padding:20px 20px;margin-bottom:20px;-webkit-transition:all 0.2s ease-in-out;transition:all 0.2s ease-in-out;position:relative;}
+    .iWDnYS{font-size:1.8rem;color:#282828;font-weight:700;line-height:1.4;margin-bottom:5px;}
     .iErRtB{font-size:1.8rem;color:#282828;font-weight:400;line-height:1.4;margin-bottom:5px;}
     .eiBTbF{font-size:1rem;color:#888B8B;text-transform:capitalize;}
     .cDJTT{font-size:1rem;color:#888B8B;text-transform:uppercase;}
+    .hRNJRj{font-size:1.2rem;line-height:1.5;position:relative;height:40px;color:#888B8B;display:grid;grid-template-rows:1fr 20px;overflow:hidden;margin-bottom:20px;}
+    .loBJcu{color:#282828;background:linear-gradient( to right,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 20% );width:80px;text-align:end;cursor:pointer;position:absolute;right:5px;bottom:0;}
     .cCvtGG{position:relative;margin:10px 0;}
     .evsVHR{-webkit-box-pack:center;-webkit-justify-content:center;-ms-flex-pack:center;justify-content:center;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;text-align:center;overflow:hidden;font-size:1.2rem;white-space:nowrap;width:4.2rem;}
     .jTmnGB{-webkit-transition:all 300ms cubic-bezier(0.175,0.885,0.335,1);transition:all 300ms cubic-bezier(0.175,0.885,0.335,1);height:100%;position:absolute;border-right:1px solid #dcdedd;top:0;left:0;display:-webkit-inline-box;display:-webkit-inline-flex;display:-ms-inline-flexbox;display:inline-flex;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;pointer-events:none;color:#656969;z-index:2;}
@@ -25,6 +29,8 @@ exports[`App Component should contain the global style 1`] = `
     .dAlLHb span,.dAlLHb p{margin-bottom:1.2rem;font-size:1.4rem;line-height:2.4rem;}
     .dAlLHb span{font-weight:800;color:#222222;}
     .iORtcV{font-size:2.1rem;color:#282828;text-transform:capitalize;font-weight:400;line-height:1.4;margin:4rem 0;}
+    .iayjJg{height:7.2rem;width:7.2rem;position:absolute;cursor:pointer;top:-3.4rem;left:0;right:0;margin:0 auto;}
+    .iayjJg img{height:7.2rem;width:7.2rem;border-radius:100%;background-size:cover;z-index:1;}
     *{font-family:'Muli',sans-serif;margin:0;padding:0;box-sizing:border-box;}
     html{font-size:62.5%;font-weight:400;}
     body{padding:20px;}
@@ -36,7 +42,24 @@ exports[`App Component should contain the global style 1`] = `
 `;
 
 exports[`App Component should match the test snapshot 1`] = `
-.c2 {
+.c1 {
+  width: 100%;
+  border: 1px solid #9B9E9E;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding: 5.2rem 20px 20px;
+  margin-bottom: 20px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  position: relative;
+}
+
+.c7 {
   width: 100%;
   border: 1px solid #9B9E9E;
   display: -webkit-box;
@@ -56,29 +79,60 @@ exports[`App Component should match the test snapshot 1`] = `
 .c3 {
   font-size: 1.8rem;
   color: #282828;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 5px;
+}
+
+.c8 {
+  font-size: 1.8rem;
+  color: #282828;
   font-weight: 400;
   line-height: 1.4;
   margin-bottom: 5px;
 }
 
-.c4 {
+.c9 {
   font-size: 1rem;
   color: #888B8B;
   text-transform: capitalize;
 }
 
-.c9 {
+.c14 {
   font-size: 1rem;
   color: #888B8B;
   text-transform: uppercase;
 }
 
+.c4 {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  position: relative;
+  height: 40px;
+  color: #888B8B;
+  display: grid;
+  grid-template-rows: 1fr 20px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
 .c5 {
+  color: #282828;
+  background: linear-gradient( to right,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 20% );
+  width: 80px;
+  text-align: end;
+  cursor: pointer;
+  position: absolute;
+  right: 5px;
+  bottom: 0;
+}
+
+.c10 {
   position: relative;
   margin: 10px 0;
 }
 
-.c8 {
+.c13 {
   -webkit-box-pack: center;
   -webkit-justify-content: center;
   -ms-flex-pack: center;
@@ -94,7 +148,7 @@ exports[`App Component should match the test snapshot 1`] = `
   width: 4.2rem;
 }
 
-.c7 {
+.c12 {
   -webkit-transition: all 300ms cubic-bezier(0.175,0.885,0.335,1);
   transition: all 300ms cubic-bezier(0.175,0.885,0.335,1);
   height: 100%;
@@ -115,7 +169,7 @@ exports[`App Component should match the test snapshot 1`] = `
   z-index: 2;
 }
 
-.c6 {
+.c11 {
   border: 1px solid #dcdedd;
   color: #282828;
   cursor: default;
@@ -140,17 +194,17 @@ exports[`App Component should match the test snapshot 1`] = `
   writing-mode: horizontal-tb;
 }
 
-.c6:focus {
+.c11:focus {
   outline: 0;
   border-color: #009e74;
   box-shadow: #f8f9fd 0 0 5px;
 }
 
-.c6:focus + div {
+.c11:focus + div {
   border-color: #009e74;
 }
 
-.c11 {
+.c16 {
   width: 100%;
   background-color: #009e74;
   color: #ffffff;
@@ -169,17 +223,17 @@ exports[`App Component should match the test snapshot 1`] = `
   margin-top: 18px;
 }
 
-.c11:hover:not(:disabled) {
+.c16:hover:not(:disabled) {
   background-color: #037362;
 }
 
-.c11:hover:not(:disabled) {
+.c16:hover:not(:disabled) {
   -webkit-transform: translateY(-1px);
   -ms-transform: translateY(-1px);
   transform: translateY(-1px);
 }
 
-.c11:focus {
+.c16:focus {
   outline: 1px solid #282828;
   outline-offset: 2px;
   -webkit-transition: outline 0.25s ease-in-out;
@@ -194,7 +248,7 @@ exports[`App Component should match the test snapshot 1`] = `
   padding-top: 40px;
 }
 
-.c10 {
+.c15 {
   margin-top: 10px;
   padding: 1.8rem;
   width: 100%;
@@ -214,25 +268,44 @@ exports[`App Component should match the test snapshot 1`] = `
   align-items: center;
 }
 
-.c10 span,
-.c10 p {
+.c15 span,
+.c15 p {
   margin-bottom: 1.2rem;
   font-size: 1.4rem;
   line-height: 2.4rem;
 }
 
-.c10 span {
+.c15 span {
   font-weight: 800;
   color: #222222;
 }
 
-.c1 {
+.c6 {
   font-size: 2.1rem;
   color: #282828;
   text-transform: capitalize;
   font-weight: 400;
   line-height: 1.4;
   margin: 4rem 0;
+}
+
+.c2 {
+  height: 7.2rem;
+  width: 7.2rem;
+  position: absolute;
+  cursor: pointer;
+  top: -3.4rem;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.c2 img {
+  height: 7.2rem;
+  width: 7.2rem;
+  border-radius: 100%;
+  background-size: cover;
+  z-index: 1;
 }
 
 <App>
@@ -350,10 +423,78 @@ exports[`App Component should match the test snapshot 1`] = `
           <div
             className="c0"
           >
+            <AvatarCard>
+              <_default
+                activated={true}
+                padding="5.2rem"
+              >
+                <Containerstyle___default
+                  activated={true}
+                  padding="5.2rem"
+                >
+                  <div
+                    className="c1"
+                  >
+                    <_default>
+                      <Avatarstyle___default>
+                        <div
+                          className="c2"
+                        />
+                      </Avatarstyle___default>
+                    </_default>
+                    <_default
+                      heavy={true}
+                    >
+                      <Headingstyle___default
+                        heavy={true}
+                      >
+                        <h2
+                          className="c3"
+                        />
+                      </Headingstyle___default>
+                    </_default>
+                    <p>
+                      1 created · 0 backed
+                    </p>
+                    <Description
+                      activated={true}
+                      descOpen={false}
+                      description=""
+                      setDescOpen={[Function]}
+                    >
+                      <Descriptionstyle__DescriptionContainer
+                        activated={true}
+                        open={false}
+                      >
+                        <div
+                          className="c4"
+                          open={false}
+                        >
+                          <p />
+                          <Descriptionstyle__DescCollapseBtn
+                            onClick={[Function]}
+                            open={false}
+                          >
+                            <p
+                              className="c5"
+                              onClick={[Function]}
+                              open={false}
+                            >
+                              Read more...
+                            </p>
+                          </Descriptionstyle__DescCollapseBtn>
+                        </div>
+                      </Descriptionstyle__DescriptionContainer>
+                    </Description>
+                     
+                  </div>
+                </Containerstyle___default>
+              </_default>
+            </AvatarCard>
             <_default>
               <LargeTitlestyle___default>
                 <h3
-                  className="c1"
+                  className="c6"
                 >
                   Support
                 </h3>
@@ -367,12 +508,12 @@ exports[`App Component should match the test snapshot 1`] = `
                   activated={true}
                 >
                   <div
-                    className="c2"
+                    className="c7"
                   >
                     <_default>
                       <Headingstyle___default>
                         <h2
-                          className="c3"
+                          className="c8"
                         >
                           Pledge without a reward
                         </h2>
@@ -419,7 +560,7 @@ exports[`App Component should match the test snapshot 1`] = `
                             uppercase={false}
                           >
                             <p
-                              className="c4"
+                              className="c9"
                             >
                               Pledge amount
                             </p>
@@ -431,7 +572,7 @@ exports[`App Component should match the test snapshot 1`] = `
                         >
                           <CurrencyEntrystyle__Form>
                             <div
-                              className="c5"
+                              className="c10"
                             >
                               <CurrencyEntrystyle__Input
                                 min="0"
@@ -440,7 +581,7 @@ exports[`App Component should match the test snapshot 1`] = `
                                 value=""
                               >
                                 <input
-                                  className="c6"
+                                  className="c11"
                                   min="0"
                                   onChange={[Function]}
                                   type="number"
@@ -449,11 +590,11 @@ exports[`App Component should match the test snapshot 1`] = `
                               </CurrencyEntrystyle__Input>
                               <CurrencyEntrystyle__CurrencyBox>
                                 <div
-                                  className="c7"
+                                  className="c12"
                                 >
                                   <CurrencyEntrystyle__CurrencyIcon>
                                     <span
-                                      className="c8"
+                                      className="c13"
                                     >
                                       $
                                     </span>
@@ -470,7 +611,7 @@ exports[`App Component should match the test snapshot 1`] = `
                             uppercase={true}
                           >
                             <p
-                              className="c9"
+                              className="c14"
                             >
                               About £0
                             </p>
@@ -478,7 +619,7 @@ exports[`App Component should match the test snapshot 1`] = `
                         </_default>
                         <GradientCardstyle___default>
                           <div
-                            className="c10"
+                            className="c15"
                           >
                             <span>
                               Back it because you believe in it.
@@ -491,7 +632,7 @@ exports[`App Component should match the test snapshot 1`] = `
                         <ContinueButton>
                           <ContinueButtonstyle___default>
                             <button
-                              className="c11"
+                              className="c16"
                             >
                               Continue
                             </button>

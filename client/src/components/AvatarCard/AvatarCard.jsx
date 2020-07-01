@@ -22,7 +22,9 @@ const AvatarCard = () => {
 
   useEffect(() => {
     getUserInfo().then((response) => {
-      setProject(response.data[0]);
+      if (response.data.length > 0) {
+        setProject(response.data[0]);
+      }
     });
   }, []);
 
@@ -32,10 +34,8 @@ const AvatarCard = () => {
    * @returns {string}
    */
   const formatUsername = () => {
-    if (project) {
-      project.creator = project.creator.replace('_', ' ').replace('.', ' ');
-      return project.creator;
-    }
+    project.creator = project.creator.replace('_', ' ').replace('.', ' ');
+    return project.creator;
   };
 
   /* Return the JSX to render */
