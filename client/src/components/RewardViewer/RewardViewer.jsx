@@ -15,9 +15,10 @@ const RewardViewer = ({ getRewards }) => {
   }, []);
 
   const renderCards = () => {
-    return rewards.map((reward) => (
-      <Card key={`card_${rewards.id}`} reward={reward} />
-    ));
+    return rewards.map((reward, i) => {
+      const id = reward.id || i;
+      return <Card key={`card_${id}`} reward={reward} />;
+    });
   };
 
   return (
