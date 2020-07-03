@@ -1,8 +1,6 @@
 /* Import Modules */
 const path = require('path');
 const express = require('express');
-const cors = require('cors');
-const helmet = require('helmet');
 const xssClean = require('xss-clean');
 const rateLimit = require('express-rate-limit');
 const projectRouter = require('./routes/projectRoutes');
@@ -12,12 +10,8 @@ const rewardRouter = require('./routes/rewardRoutes');
 const app = express();
 
 /* Security
- *  Set the cors headers of all request and responses
- *  Use helmet to add secure headers to each response
  *  Use xssClean to protect against xss attacks
  * */
-app.use(cors());
-app.use(helmet());
 app.use(xssClean());
 
 // Allow the app to use the body-parser middleware so we can accept JSON body data
@@ -38,11 +32,6 @@ app.use('/api/rewards', rewardRouter);
 
 // Serve up the dist folder from the client at the defined PORT
 app.use('/', express.static(path.resolve(__dirname, '../../client/dist')));
-
-/* This is to allow the app to send the dist html file no matter the params in the request */
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../client/dist', 'index.html'));
-});
 
 // Export the App module
 module.exports = app;
