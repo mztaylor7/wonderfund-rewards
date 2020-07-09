@@ -23,15 +23,11 @@
     "dev": "concurrently 'npm run dev:server' 'npm run dev:client'",
     "dev:client": "cd client && npm run build-dev:watch",
     "dev:server": "cd server && npm run dev",
-    "format": "(cd server && npm run format); (cd client && npm run format);",
     "postinstall": "(cd client && npm install); (cd server && npm install);",
-    "lint": "(cd server && npm run lint); (cd client && npm run lint);",
-    "sort": "(npx sort-package-json); (cd server && npm run sort); (cd client && npm run sort);",
     "build": "cd client && npm run build-prod",
     "start": "cd server && npm run start",
     "seed:database": "node server/src/dev-data/seeds/projectSeed.js --docker",
     "start:database": "npm run seed:database && npm run start",
-    "test": "(cd server && npm run test); (cd client && npm run test);"
   },
   "dependencies": {},
   "devDependencies": {

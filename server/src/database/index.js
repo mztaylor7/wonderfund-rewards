@@ -2,12 +2,6 @@
 const Sequelize = require('sequelize');
 const mysql = require('mysql2/promise');
 
-/* Import Debug module
- *  These modules are used in place of 'console.log' to keep the terminal from being
- *  filled with unnecessary items during production runs
- * */
-const dbDebug = require('debug')('database:startup');
-
 /* Import Models */
 const Project = require('../models/projectModel');
 const Reward = require('../models/rewardModel');
@@ -68,7 +62,7 @@ const createSequelizeConnection = () => {
 
             /* Create database connection for sequelize*/
             connection.authenticate().then(async () => {
-              dbDebug('Connection has been established successfully.');
+              console.log('Connection has been established successfully.');
 
               /* Initialize Models */
               ProjectModel = Project.factory(connection);

@@ -9,15 +9,8 @@
   "main": "src/index.js",
   "scripts": {
     "dev": "nodemon src/index.js",
-    "format": "npx prettier . --write",
-    "lint": "npx eslint ./ --fix",
     "seed:database": "node src/dev-data/seeds/projectSeed.js",
-    "sort": "npx sort-package-json",
-    "start": "node src/index.js",
-    "test": "env DEBUG=off NODE_ENV=test DATABASE_NAME=kstart_test mocha src/spec/**/*.js --exit",
-    "test:coverage": "env DEBUG=off NODE_ENV=test DATABASE_NAME=kstart_test nyc --reporter=text mocha src/spec/**/*.js --exit",
-    "test:coverageHtml": "env DEBUG=off NODE_ENV=test DATABASE_NAME=kstart_test nyc --reporter=html mocha src/spec/**/*.js --exit",
-    "test:watch": "env DEBUG=off NODE_ENV=test DATABASE_NAME=kstart_test mocha src/spec/**/*.js --watch"
+    "start": "nodemon src/index.js"
   },
   "dependencies": {
     "aws-sdk": "^2.703.0",

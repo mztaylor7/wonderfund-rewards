@@ -11,7 +11,7 @@ export const getRewards = () => {
     params: { projectId: getParams() },
   });
 };
-
+//
 export const getUserInfo = () => {
   return axios.get(`/api/projects/find`, {
     params: { id: getParams() },
