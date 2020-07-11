@@ -24,12 +24,16 @@
     "dev:client": "cd client && npm run build-dev:watch",
     "dev:server": "cd server && npm run dev",
     "postinstall": "(cd client && npm install); (cd server && npm install);",
-    "build": "cd client && npm run build-prod",
+    "build": "cd client && npm run build-prod --watch",
     "start": "cd server && npm run start",
     "seed:database": "node server/src/dev-data/seeds/projectSeed.js --docker",
-    "start:database": "npm run seed:database && npm run start",
+    "start:database": "npm run seed:database && npm run start"
   },
-  "dependencies": {},
+  "dependencies": {
+    "csv-write-stream": "^2.0.0",
+    "pg": "^8.3.0",
+    "pg-hstore": "^2.3.3"
+  },
   "devDependencies": {
     "concurrently": "^5.2.0",
     "gulp": "^4.0.2"
