@@ -27,10 +27,12 @@
     "build": "cd client && npm run build-prod --watch",
     "start": "cd server && npm run start",
     "seed:database": "node server/src/dev-data/seeds/projectSeed.js --docker",
-    "start:database": "npm run seed:database && npm run start"
+    "start:database": "npm run seed:database && npm run start",
+    "seed": "node server/src/database/seed.js"
   },
   "dependencies": {
     "csv-write-stream": "^2.0.0",
+    "fast-csv": "^4.3.1",
     "pg": "^8.3.0",
     "pg-hstore": "^2.3.3"
   },
