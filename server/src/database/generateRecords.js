@@ -12,7 +12,21 @@ const getDaysBetween = (date1, date2) => {
   return Math.floor((utc2 - utc1) / _MS_PER_DAY);
 };
 
+var rewardIdCount = 0;
+var projectIdCount = 0;
+
+rewardIdGen = () => {
+  rewardIdCount++;
+  return rewardIdCount;
+}
+
+projectIdGen = () => {
+  projectIdCount++;
+  return projectIdCount;
+}
+
 const rewardGenerator = () => ({
+  id: rewardIdGen(),
   title: faker.commerce.productName(),
   pledgeAmount: Math.floor(faker.finance.amount()),
   description: faker.lorem.paragraph().substring(0, 120),
@@ -29,6 +43,7 @@ const rewardGenerator = () => ({
 
 
 const projectGenerator = () => ({
+  id: projectIdGen(),
   title: faker.commerce.productName(),
   creator: faker.internet.userName(),
   subtitle: faker.company.catchPhrase(),

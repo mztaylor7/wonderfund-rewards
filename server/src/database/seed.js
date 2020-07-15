@@ -21,21 +21,9 @@ var projectsCSV = path.resolve(__dirname, '../../../../csvs/projects.csv');
 
 client.query(
   `DROP TABLE IF EXISTS rewards;
-  CREATE TABLE rewards (
-    id SERIAL PRIMARY KEY,
-    title text,
-    pledgeArmount int,
-    description  text,
-    deliveryMonth text,
-    deliveryYear int,
-    shippingType text,
-    rewardQuantity int,
-    timeLimit int,
-    projectId int,
-    rewardItems text
-  );
+  CREATE TABLE rewards ( id int PRIMARY KEY, title text, pledgeArmount int, description  text, deliveryMonth text, deliveryYear int, shippingType text, rewardQuantity int, timeLimit int, projectId int, rewardItems text);
 
-  COPY rewards(title,pledgeArmount,description,deliveryMonth,deliveryYear,shippingType,rewardQuantity,timeLimit,projectId,rewardItems)
+  COPY rewards(id,title,pledgeArmount,description,deliveryMonth,deliveryYear,shippingType,rewardQuantity,timeLimit,projectId,rewardItems)
   FROM '${rewardsCSV}'
   DELIMITER ',' CSV HEADER;
 
