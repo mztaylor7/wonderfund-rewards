@@ -8,6 +8,10 @@ const config = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
   },
+  watch: true,
+  watchOptions: {
+    poll: 1000
+  },
   module: {
     rules: [
       {

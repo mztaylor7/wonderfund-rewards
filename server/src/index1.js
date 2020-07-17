@@ -7,6 +7,8 @@ const paramPluck = require("./middleware/paramPluck");
 
 app.use(express.json());
 
+app.get("/api/projects/find", paramPluck, db.getOneProject);
+
 app.get("/api/rewards", paramPluck, db.getRewards);
 app.post("/api/rewards", paramPluck, db.createOneReward);
 app.put("/api/rewards", paramPluck, db.updateOneReward);
@@ -22,5 +24,5 @@ app.get('*', (req, res) => {
 const PORT = process.env.PORT || 3005;
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`)
+  console.log(`Server is running on port: ${PORT}`)
 })

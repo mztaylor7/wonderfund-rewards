@@ -16,7 +16,7 @@ import Modal from '../Shared/Modal/Modal';
 const AvatarCard = () => {
   const [project, setProject] = useState({
     creator: '',
-    rewards: [{ description: '' }],
+    rewards: '',
   });
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -48,7 +48,7 @@ const AvatarCard = () => {
         descOpen={false}
         activated
         setDescOpen={setModalOpen}
-        description={project.rewards[0].description}
+        description={project.description}
       />
       {modalOpen ? (
         <Modal

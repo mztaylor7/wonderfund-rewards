@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "nodemon src/index.js",
     "seed:database": "node src/dev-data/seeds/projectSeed.js",
-    "start": "nodemon src/index.js"
+    "start": "nodemon --legacy-watch src/index1.js"
   },
   "dependencies": {
     "aws-sdk": "^2.703.0",

@@ -21,9 +21,9 @@ var projectsCSV = path.resolve(__dirname, '../../../../csvs/projects.csv');
 
 client.query(
   `DROP TABLE IF EXISTS rewards;
-  CREATE TABLE rewards ( id int PRIMARY KEY, title text, pledgeArmount int, description  text, deliveryMonth text, deliveryYear int, shippingType text, rewardQuantity int, timeLimit int, projectId int, rewardItems text);
+  CREATE TABLE rewards ( id SERIAL PRIMARY KEY, title text, pledgeAmount int, description  text, deliveryMonth text, deliveryYear int, rewardQuantity int, projectId int, rewardItems text);
 
-  COPY rewards(id,title,pledgeArmount,description,deliveryMonth,deliveryYear,shippingType,rewardQuantity,timeLimit,projectId,rewardItems)
+  COPY rewards(title,pledgeAmount,description,deliveryMonth,deliveryYear,rewardQuantity,projectId,rewardItems)
   FROM '${rewardsCSV}'
   DELIMITER ',' CSV HEADER;
 
@@ -32,19 +32,10 @@ client.query(
     id SERIAL PRIMARY KEY,
     title text,
     creator text,
-    subtitle  text,
-    category text,
-    subcategory text,
-    location text,
-    heroImage text,
-    heroVideo text,
-    launchDate text,
-    campaignDuration int,
-    budget int,
-    fundingGoal int
+    location text
   );
 
-  COPY projects(title,creator,subtitle,category,subcategory,location,heroImage,heroVideo,launchDate,campaignDuration,budget,fundingGoal)
+  COPY projects(title,creator,location)
   FROM '${projectsCSV}'
   DELIMITER ',' CSV HEADER;
   `,
@@ -52,7 +43,7 @@ client.query(
     if (err) {
       throw err;
     }
-    console.log(`Postgres running on port ${5434}`);
+    console.log(`Postgres running on port ${5432}`);
     client.end();
   }
 );

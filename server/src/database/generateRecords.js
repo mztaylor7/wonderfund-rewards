@@ -12,30 +12,30 @@ const getDaysBetween = (date1, date2) => {
   return Math.floor((utc2 - utc1) / _MS_PER_DAY);
 };
 
-var rewardIdCount = 0;
-var projectIdCount = 0;
+const maxRewards = 6;
+const minRewards = 3;
 
-rewardIdGen = () => {
-  rewardIdCount++;
-  return rewardIdCount;
-}
+// var rewardIdCount = 0;
+// var projectIdCount = 0;
 
-projectIdGen = () => {
-  projectIdCount++;
-  return projectIdCount;
-}
+// rewardIdGen = () => {
+//   rewardIdCount++;
+//   return rewardIdCount;
+// }
+
+// projectIdGen = () => {
+//   projectIdCount++;
+//   return projectIdCount;
+// }
 
 const rewardGenerator = () => ({
-  id: rewardIdGen(),
   title: faker.commerce.productName(),
   pledgeAmount: Math.floor(faker.finance.amount()),
   description: faker.lorem.paragraph().substring(0, 120),
   deliveryMonth: faker.date.month(),
   deliveryYear: faker.date.future().getFullYear(),
-  shippingType: faker.company.bsAdjective(),
   rewardQuantity: Math.floor(Math.random() * (500 - 1 + 1)) + 1,
-  timeLimit: faker.random.number(),
-  projectId: faker.random.number(),
+  projectId: 0,
   rewardItems: Array.from({ length: random.int(1, 6) }, () =>
     faker.commerce.product()
   ).join(',')
@@ -43,19 +43,9 @@ const rewardGenerator = () => ({
 
 
 const projectGenerator = () => ({
-  id: projectIdGen(),
   title: faker.commerce.productName(),
   creator: faker.internet.userName(),
-  subtitle: faker.company.catchPhrase(),
-  category: faker.commerce.department(),
-  subcategory: faker.commerce.productAdjective(),
-  location: faker.fake('{{address.city}}, {{address.stateAbbr}}'),
-  heroImage: faker.image.image(),
-  heroVideo: 'https://ytroulette.com/',
-  launchDate: faker.date.future().toString(),
-  campaignDuration: getDaysBetween(new Date(), faker.date.future()),
-  budget: Math.floor(faker.finance.amount()),
-  fundingGoal: Math.floor(faker.finance.amount())
+  location: faker.fake('{{address.city}}, {{address.stateAbbr}}')
 })
 
 class Writer {
@@ -76,13 +66,19 @@ class Writer {
 }
 
 (async() => {
-  console.time('20M records in:');
+  console.time('20M records in');
   const rewardWriter = new Writer('rewards.csv');
 
+
   for (let i = 0; i < 10000000; i++) {
-    const res = rewardWriter.write(rewardGenerator());
-    if(res instanceof Promise) {
-      await res;
+    const randomNumber = Math.floor(Math.random() * (maxRewards - minRewards + 1)) + minRewards;
+    for (let j = 1; j <= randomNumber; j++) {
+      const newReward = rewardGenerator();
+      newReward.projectId = i;
+      const res = rewardWriter.write(newReward);
+      if(res instanceof Promise) {
+        await res;
+      }
     }
   }
   rewardWriter.end();
@@ -90,6 +86,7 @@ class Writer {
   const projectWriter = new Writer('projects.csv');
 
   for (let i = 0; i < 10000000; i++) {
+
     const res = projectWriter.write(projectGenerator());
     if(res instanceof Promise) {
       await res;
