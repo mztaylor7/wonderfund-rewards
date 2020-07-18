@@ -16,13 +16,13 @@ const filterBody = (req) => {
   return {
     id: req.body.id,
     title: req.body.title,
-    pledgeArmount: req.body.pledgeAmount,
+    pledgeAmount: req.body.pledgeamount,
     description: req.body.description,
-    deliveryMonth: req.body.deliveryMonth,
-    deliveryYear: req.body.deliveryYear,
-    rewardQuantity: req.body.rewardQuantity,
+    deliveryMonth: req.body.deliverymonth,
+    deliveryYear: req.body.deliveryyear,
+    rewardQuantity: req.body.rewardquantity,
     projectId: req.body.projectId,
-    rewardItems: req.body.rewardItems,
+    rewardItems: req.body.rewarditems,
   };
 };
 
@@ -62,14 +62,13 @@ const getRewards = (req, res) => {
       console.log(err);
       res.status(400).send(err);
     }
-    console.log(data.rows)
     res.status(200).json(data.rows)
   })
 };
 
 const createOneReward = (req, res) => {
   const params = filterBody(req);
-  pool.query('INSERT INTO rewards (title, pledgeArmount, description, deliveryMonth, deliveryYear, shippingType, rewardQuantity, timeLimit, projectId, rewardItems) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)' [params.title, params.pledgeArmount, params.description, params.deliveryMonth, params.deliveryYear, params.shippingType, params.rewardQuantity, params.timeLimit, params.projectId, params.rewardItems], (err, data) => {
+  pool.query('INSERT INTO rewards (title, pledgeAmount, description, deliveryMonth, deliveryYear, rewardQuantity, projectId, rewardItems) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)' [params.title, params.pledgeAmount, params.description, params.deliveryMonth, params.deliveryYear, params.rewardQuantity, params.projectId, params.rewardItems], (err, data) => {
     if (err) {
       console.log(err);
       res.status(400).send(err);
@@ -81,7 +80,7 @@ const createOneReward = (req, res) => {
 const updateOneReward = (req, res) => {
   const searchQuery = getSearchQuery(req);
   const params = filterBody(req);
-  pool.query('UPDATE rewards SET title = $1, pledgeArmount = $2, description = $3, deliveryMonth = $4, deliveryYear = $5, shippingType = $6, rewardQuantity = $7, timeLimit = $8, projectId = $9, rewardItems = $10', [params.title, params.pledgeArmount, params.description, params.deliveryMonth, params.deliveryYear, params.shippingType, params.rewardQuantity, params.timeLimit, params.projectId, params.rewardItems], (err, data) => {
+  pool.query('UPDATE rewards SET title = $1, pledgeAmount = $2, description = $3, deliveryMonth = $4, deliveryYear = $5, rewardQuantity = $6, projectId = $7, rewardItems = $8', [params.title, params.pledgeAmount, params.description, params.deliveryMonth, params.deliveryYear, params.rewardQuantity, params.projectId, params.rewardItems], (err, data) => {
     if (err) {
       console.log(err);
       res.status(400).send(err);
@@ -92,7 +91,6 @@ const updateOneReward = (req, res) => {
 
 const deleteOneReward = (req, res) => {
   const searchQuery = getSearchQuery(req);
-
   pool.query('DELETE FROM rewards WHERE projectId = $1', [(searchQuery.projectId || searchQuery.id)], (err, data) => {
     if (err) {
       console.log(err);

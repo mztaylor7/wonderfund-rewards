@@ -31,10 +31,13 @@
     "seed": "node server/src/database/seed.js"
   },
   "dependencies": {
+    "compression": "^1.7.4",
     "csv-write-stream": "^2.0.0",
     "fast-csv": "^4.3.1",
+    "newrelic": "^6.11.0",
     "pg": "^8.3.0",
-    "pg-hstore": "^2.3.3"
+    "pg-hstore": "^2.3.3",
+    "xss-clean": "^0.1.1"
   },
   "devDependencies": {
     "concurrently": "^5.2.0",

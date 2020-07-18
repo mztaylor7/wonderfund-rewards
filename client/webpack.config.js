@@ -10,7 +10,7 @@ const config = {
   },
   watch: true,
   watchOptions: {
-    poll: 1000
+    poll: 1000,
   },
   module: {
     rules: [

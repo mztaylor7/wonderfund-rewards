@@ -199,3 +199,6 @@ dist
 
 # generated csv
 *.csv
+.env
+# config
+config.js
