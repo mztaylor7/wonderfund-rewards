@@ -28,7 +28,8 @@
     "start": "cd server && npm run start",
     "seed:database": "node server/src/dev-data/seeds/projectSeed.js --docker",
     "start:database": "npm run seed:database && npm run start",
-    "seed": "node server/src/database/seed.js"
+    "seed": "node server/src/database/seed.js",
+    "arty": "artillery run -o artyTest.json server/src/artillery.yml"
   },
   "dependencies": {
     "compression": "^1.7.4",

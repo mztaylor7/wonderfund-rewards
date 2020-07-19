@@ -1,3 +1,4 @@
+require('newrelic');
 const path = require("path");
 const express = require("express");
 const xss = require('xss-clean');
@@ -7,7 +8,6 @@ const compression = require('compression');
 const db = require('./database/index1.js');
 const paramPluck = require("./middleware/paramPluck");
 
-require('newrelic');
 // require("dotenv").config({ path: path.resolve(__dirname, "./config/.env") });
 const app = express();
 
@@ -27,6 +27,10 @@ app.put("/api/rewards", paramPluck, db.updateOneReward);
 app.patch("/api/rewards", paramPluck, db.updateOneReward);
 app.delete("/api/rewards", paramPluck, db.deleteOneReward);
 
+app.get('/', (req, res) => {
+  res.send('Hello world');
+})
+
 app.use("/", express.static(path.resolve(__dirname, "../../client/dist")));
 
 app.get('*', (req, res) => {
@@ -35,6 +39,7 @@ app.get('*', (req, res) => {
 
 const PORT = process.env.PORT || 3006;
 
+app.keepAliveTimeout = 0
 app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`)
 })
