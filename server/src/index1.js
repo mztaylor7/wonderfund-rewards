@@ -20,6 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 
 app.get("/api/projects/find", paramPluck, db.getOneProject);
+app.get("/api/projects/user", paramPluck, db.getUserImage);
 
 app.get("/api/rewards", paramPluck, db.getRewards);
 app.post("/api/rewards", paramPluck, db.createOneReward);
@@ -39,7 +40,6 @@ app.get('*', (req, res) => {
 
 const PORT = process.env.PORT || 3006;
 
-app.keepAliveTimeout = 0
 app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`)
 })

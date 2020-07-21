@@ -8,6 +8,7 @@ export default () => {
 
   useEffect(() => {
     getUserImage().then((response) => {
+      console.log('response.data: ', response.data);
       setImg(response.data);
     });
   }, []);
