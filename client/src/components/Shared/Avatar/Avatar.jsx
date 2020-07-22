@@ -4,14 +4,5 @@ import Avatar from './Avatar.style';
 import { getUserImage } from '../../../services/apiService';
 
 export default () => {
-  const [img, setImg] = useState('');
-
-  useEffect(() => {
-    getUserImage().then((response) => {
-      console.log('response.data: ', response.data);
-      setImg(response.data);
-    });
-  }, []);
-
-  return <Avatar>{ReactHtmlParser(img)}</Avatar>;
+  return <Avatar>{ReactHtmlParser(`<img src="https://gallery-module-deployment.s3.us-east-2.amazonaws.com/1.png" alt="user avatar"/>`)}</Avatar>;
 };

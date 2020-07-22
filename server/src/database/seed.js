@@ -3,11 +3,11 @@ const path = require('path');
 const { Pool, Client } = require('pg');
 
 const client = new Client({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'kickstarter',
-  password: 'taylor',
-  port: 5432
+  user: process.env.PGUSER,
+  host: process.env.PGHOST,
+  database: process.env.PGNAME,
+  password: process.env.PGPASSWORD,
+  port: process.env.PGPORT
 });
 
 client.connect();
@@ -43,7 +43,7 @@ client.query(
     if (err) {
       throw err;
     }
-    console.log(`Postgres running on port ${5432}`);
+    console.log(`Postgres running on port ${process.env.PGPORT}`);
     client.end();
   }
 );

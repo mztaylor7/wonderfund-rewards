@@ -42,40 +42,6 @@ const getSearchQuery = (req) => {
   return searchQuery;
 };
 
-/**
- * Get Image
- * @param id The id of the project to fetch the user for
- * @returns {Promise<PromiseResult<S3.GetObjectOutput, AWSError>>}
- */
-const getImage = (id) => {
-  const AWS = require("aws-sdk");
-
-  const s3 = new AWS.S3();
-
-  return s3
-    .getObject({
-      Bucket: "gallery-module-deployment",
-      Key: `${id}.png`,
-    })
-    .promise();
-};
-
-/**
- * Get User Image
- * @param req The HTTP Request Object
- * @param res The HTTP Response Object
- */
-const getUserImage = (req, res) => {
-  getImage(1)
-    .then((image) => {
-      const buf = Buffer.from(image.Body);
-      const base64 = buf.toString("base64");
-      const html = `<img src="data:image/jpeg;base64,${base64}" alt="user avatar"/>`;
-      res.status(200).send(html);
-    })
-    .catch((err) => res.status(400).send(err));
-};
-
 const getOneProject = (req, res) => {
   const searchQuery = req.id;
   // SELECT * FROM (SELECT * FROM projects WHERE id = 9999999) a, (SELECT description FROM rewards WHERE projectId = 9999999 LIMIT 1) b;
@@ -134,5 +100,5 @@ module.exports = {
   updateOneReward,
   deleteOneReward,
   getOneProject,
-  getUserImage
+  // getUserImage
 }

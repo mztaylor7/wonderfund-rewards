@@ -70,7 +70,7 @@ class Writer {
   const rewardWriter = new Writer('rewards.csv');
 
 
-  for (let i = 1; i < 10000000; i++) {
+  for (let i = 1; i <= 10000000; i++) {
     const randomNumber = Math.floor(Math.random() * (maxRewards - minRewards + 1)) + minRewards;
     for (let j = 1; j <= randomNumber; j++) {
       const newReward = rewardGenerator();
@@ -85,7 +85,7 @@ class Writer {
   console.log('reward data generated');
   const projectWriter = new Writer('projects.csv');
 
-  for (let i = 1; i < 10000000; i++) {
+  for (let i = 1; i <= 10000000; i++) {
 
     const res = projectWriter.write(projectGenerator());
     if(res instanceof Promise) {

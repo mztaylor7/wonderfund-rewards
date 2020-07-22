@@ -25,16 +25,6 @@ const Card = (props) => {
   const [activated, setActivated] = useState(false);
 
   const { reward } = props;
-  // const {
-  //   id,
-  //   title,
-  //   pledgeAmount,
-  //   description,
-  //   deliveryMonth,
-  //   deliveryYear,
-  //   rewardQuantity,
-  //   rewardItems,
-  // } = reward;
   const currencyConverted = Math.floor(reward.pledgeamount * 0.8);
 
   /* Return the JSX to render */

@@ -1,5 +1,4 @@
 'use strict'
-const nrKey = require('./server/src/config/config.js');
 /**
  * New Relic agent configuration.
  *
