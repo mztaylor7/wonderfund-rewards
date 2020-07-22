@@ -43,24 +43,27 @@ const getSearchQuery = (req) => {
 };
 
 const getOneProject = (req, res) => {
-  const searchQuery = req.id;
-  // SELECT * FROM (SELECT * FROM projects WHERE id = 9999999) a, (SELECT description FROM rewards WHERE projectId = 9999999 LIMIT 1) b;
-  pool.query('SELECT * FROM projects LEFT JOIN rewards ON projects.id = rewards.projectId WHERE projects.id = $1 LIMIT 1', [searchQuery], (err, data) => {
-    if (err) {
-      res.status(400).send(err);
-    }
-    res.status(200).json(data.rows)
-  })
+
+  var getProjectQuery = {
+    text: 'SELECT * FROM projects LEFT JOIN rewards ON projects.id = rewards.projectId WHERE projects.id = $1 LIMIT 1',
+    values: [req.id]
+  }
+  pool
+    .query(getProjectQuery)
+    .then(data => res.status(200).json(data.rows))
+    .catch(err => res.status(400).send(err))
 }
 
+
 const getRewards = (req, res) => {
-  const searchQuery = getSearchQuery(req);
-  pool.query('SELECT * FROM rewards where projectId = $1', [(searchQuery.projectId || searchQuery.id)], (err, data) => {
-    if (err) {
-      res.status(400).send(err);
-    }
-    res.status(200).json(data.rows)
-  })
+  var getRewardsQuery = {
+    text: 'SELECT * FROM rewards where projectId = $1',
+    values: [req.projectId]
+  }
+  pool
+    .query(getRewardsQuery)
+    .then(data => res.status(200).json(data.rows))
+    .catch(err => res.status(400).send(err))
 };
 
 const createOneReward = (req, res) => {
@@ -100,5 +103,4 @@ module.exports = {
   updateOneReward,
   deleteOneReward,
   getOneProject,
-  // getUserImage
 }
