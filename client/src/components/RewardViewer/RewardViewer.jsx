@@ -6,13 +6,27 @@ import GradientCard from '../GradientCard/GradientCard';
 import LargeTitle from '../Shared/LargeTitle/LargeTitle';
 import AvatarCard from '../AvatarCard/AvatarCard';
 
-const RewardViewer = ({ getRewards }) => {
+const RewardViewer = ({ getUserInfo }) => {
   const [rewards, setRewards] = useState([]);
+  const [firstReward, setFirstReward] = useState({});
   React.useEffect(() => {
-    getRewards().then((response) => {
-      setRewards(response.data);
+    getUserInfo().then((response) => {
+      if (response.data.length > 0) {
+        if (typeof response.data === 'string') {
+          JSON.parse(response.data);
+        }
+        setRewards(response.data);
+        setFirstReward(response.data[0]);
+      }
     });
-  }, []);
+  }, [])
+
+
+  // React.useEffect(() => {
+  //   getRewards().then((response) => {
+  //     setRewards(response.data);
+  //   });
+  // }, []);
 
   const renderCards = () => {
     return rewards.map((reward, i) => {
@@ -23,7 +37,7 @@ const RewardViewer = ({ getRewards }) => {
 
   return (
     <RewardBounds>
-      <AvatarCard />
+      <AvatarCard project={firstReward} />
       <LargeTitle>Support</LargeTitle>
       <GradientCard />
       {renderCards()}

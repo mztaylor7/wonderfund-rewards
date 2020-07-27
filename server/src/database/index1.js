@@ -2,7 +2,8 @@ require('dotenv').config();
 const { redisClient, redis } = require('./redis.js');
 const { Pool } = require('pg');
 
-const connectionString = process.env.PGCONNECTIONSTRING;
+// const connectionString = process.env.PGCONNECTIONSTRING;
+const connectionString = 'postgresql://postgres:taylor@localhost:5432/kickstarter';
 
 const pool = new Pool({
   connectionString: connectionString,
@@ -53,7 +54,7 @@ const getOneProject = (req, res) => {
       } else {
           try {
             var getProjectQuery = {
-              text: 'SELECT * FROM projects LEFT JOIN rewards ON projects.id = rewards.projectId WHERE projects.id = $1 LIMIT 1',
+              text: 'SELECT * FROM projects LEFT JOIN rewards ON projects.id = rewards.projectId WHERE projects.id = $1',
               values: [req.id]
             }
             await pool

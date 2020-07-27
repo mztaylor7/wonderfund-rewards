@@ -13,39 +13,41 @@ import Modal from '../Shared/Modal/Modal';
  * @returns {*}
  * @constructor
  */
-const AvatarCard = () => {
-  const [project, setProject] = useState({
-    creator: '',
-    rewards: '',
-  });
+const AvatarCard = (props) => {
+  // const [project, setProject] = useState({
+  //   creator: '',
+  //   rewards: '',
+  // });
   const [modalOpen, setModalOpen] = useState(false);
+  const { project } = props;
 
-  useEffect(() => {
-    getUserInfo().then((response) => {
-      if (response.data.length > 0) {
-        if (typeof response.data[0] === 'string') {
-          JSON.parse(response.data[0]);
-        }
-        setProject(response.data[0]);
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   getUserInfo().then((response) => {
+  //     if (response.data.length > 0) {
+  //       if (typeof response.data === 'string') {
+  //         JSON.parse(response.data);
+  //         console.log('response.data: ', response.data)
+  //       }
+  //       setProject(response.data[0]);
+  //     }
+  //   });
+  // }, []);
 
   /**
    * Format Username
    * Remove underscore from username
    * @returns {string}
    */
-  const formatUsername = () => {
-    project.creator = project.creator.replace('_', ' ').replace('.', ' ');
-    return project.creator;
-  };
+  // const formatUsername = () => {
+  //   project.creator = project.creator.replace('_', ' ').replace('.', ' ');
+  //   return project.creator;
+  // };
 
   /* Return the JSX to render */
   return (
     <Container activated padding='5.2rem'>
       <Avatar />
-      <Heading heavy>{formatUsername()}</Heading>
+      <Heading heavy>{project.creator}</Heading>
       <p>1 created · 0 backed</p>
       <Description
         descOpen={false}
