@@ -1,7 +1,9 @@
 require('dotenv').config();
+const { redisClient, redis } = require('./redis.js');
 const { Pool } = require('pg');
 
-const connectionString = process.env.PGCONNECTIONSTRING;
+// const connectionString = process.env.PGCONNECTIONSTRING;
+const connectionString = 'postgresql://postgres:taylor@localhost:5432/kickstarter'
 
 const pool = new Pool({
   connectionString: connectionString,
@@ -43,17 +45,37 @@ const getSearchQuery = (req) => {
 };
 
 const getOneProject = (req, res) => {
-
-  var getProjectQuery = {
-    text: 'SELECT * FROM projects LEFT JOIN rewards ON projects.id = rewards.projectId WHERE projects.id = $1 LIMIT 1',
-    values: [req.id]
-  }
-  pool
-    .query(getProjectQuery)
-    .then(data => res.status(200).json(data.rows))
-    .catch(err => res.status(400).send(err))
+  redisClient.get(req.id, async (err, data) => {
+    console.log('data: ', data)
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      if (data) {
+        res.send(data);
+      } else {
+          try {
+            var getProjectQuery = {
+              text: 'SELECT * FROM projects LEFT JOIN rewards ON projects.id = rewards.projectId WHERE projects.id = $1 LIMIT 1',
+              values: [req.id]
+            }
+            await pool
+              .query(getProjectQuery)
+              .then((projects) => {
+                res.status(200).json(projects.rows);
+                var redisEntry = JSON.stringify(projects.rows);
+                console.log('redisEntry: ', req.id)
+                redisClient.set(req.id, redisEntry, (err) => {
+                  if (err) console.log('Redis err: ', err)
+                });
+              })
+              .catch(err => res.status(400).send(err))
+          } catch (err) {
+            res.status(500).send(err)
+          }
+      }
+    }
+  })
 }
-
 
 const getRewards = (req, res) => {
   var getRewardsQuery = {
@@ -96,6 +118,24 @@ const deleteOneReward = (req, res) => {
     res.status(200).send(`Reward deleted with projectId: ${params.projectId}`)
   })
 }
+
+// const checkCache = (req, res, next) => {
+//   redisClient.hgetall(req.id, async (err, data) => {
+//     if (err) {
+//       res.status(500).send(err);
+//     } else {
+//       if (data !== null) {
+//         res.send(data);
+//       } else {
+//         (req, res) => {
+//           try {
+//             const
+//           }
+//         }
+//       }
+//     }
+//   })
+// }
 
 module.exports = {
   getRewards,
