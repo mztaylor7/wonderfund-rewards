@@ -23,6 +23,9 @@ const AvatarCard = () => {
   useEffect(() => {
     getUserInfo().then((response) => {
       if (response.data.length > 0) {
+        if (typeof response.data[0] === 'string') {
+          JSON.parse(response.data[0]);
+        }
         setProject(response.data[0]);
       }
     });
