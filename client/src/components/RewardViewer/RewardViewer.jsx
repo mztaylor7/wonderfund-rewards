@@ -19,8 +19,7 @@ const RewardViewer = ({ getUserInfo }) => {
         setFirstReward(response.data[0]);
       }
     });
-  }, [])
-
+  }, []);
 
   // React.useEffect(() => {
   //   getRewards().then((response) => {

@@ -2,8 +2,7 @@ require('dotenv').config();
 const { redisClient, redis } = require('./redis.js');
 const { Pool } = require('pg');
 
-// const connectionString = process.env.PGCONNECTIONSTRING;
-const connectionString = 'postgresql://postgres:taylor@localhost:5432/kickstarter';
+const connectionString = process.env.PGCONNECTIONSTRING;
 
 const pool = new Pool({
   connectionString: connectionString,
