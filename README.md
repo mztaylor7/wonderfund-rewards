@@ -11,7 +11,7 @@
   </a>
 </p>
 
-> This is the client & server side code for the rewards/pledges microservice that for a crowdfunding application.
+> This is the client & server side code for the rewards/pledges microservice for a crowdfunding application.
 
 ### 🏠 [Homepage](https://github.com/mztaylor7/wonderfund-rewards#readme)
 
