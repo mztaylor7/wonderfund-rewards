@@ -15,6 +15,10 @@ const getDaysBetween = (date1, date2) => {
 const maxRewards = 6;
 const minRewards = 3;
 
+/*
+  This is for generating a csv for a db without auto incrementing id column
+*/
+
 // var rewardIdCount = 0;
 // var projectIdCount = 0;
 

@@ -1,35 +1,46 @@
-/* Import Modules */
+require('newrelic');
+require('dotenv').config();
 const path = require("path");
+const express = require("express");
+const xss = require('xss-clean');
+const helmet = require('helmet');
+const cors = require('cors');
+const compression = require('compression');
+const db = require('./database/index.js');
+const paramPluck = require("./middleware/paramPluck");
 
-/* Set the Environmental Variables from the config file
- *  NOTE: for this server to function correctly, the config variables must be set
- * in the /config/.env file - this file does not exist if this project has been cloned from github.
- * Create a '.env' file in the 'config' folder and populate it with these variables
- * ----------------------
- * PORT:<port number>
- * DATABASE_NAME:<database name>
- * DATABASE_USER:<database username>
- * DATABASE_PASSWORD:<database password>
- * ----------------------
- * */
-require("dotenv").config({ path: path.resolve(__dirname, "./config/.env") });
+// require("dotenv").config({ path: path.resolve(__dirname, "./config/.env") });
+const app = express();
 
-/* App must be imported after the Environment Variables have been loaded
-   or it will not have access to the variables*/
-const database = require("./database");
-const app = require("./app");
+app.use(cors());
+app.use(helmet());
+app.use(xss());
+app.use(compression());
 
-/* If we are not running a test environment - make the sequelize database connection
- *  If a test suite is running - we will be making connections in the test suites
- * */
-if (process.env.NODE_ENV !== "test") {
-  database.createSequelizeConnection();
-}
+app.use(express.json());
+app.use(express.urlencoded({ extended: true}));
 
-// Start the server listening on the predefined PORT variable
-const server = app.listen(process.env.PORT, () => {
-  console.log(`Server running on port: ${process.env.PORT}`);
-});
+app.get("/api/projects/find", paramPluck, db.getOneProject);
+// app.get("/api/projects/user", paramPluck, db.getUserImage);
 
-// Export the server module
-module.exports = server;
+app.get("/api/rewards", paramPluck, db.getRewards);
+app.post("/api/rewards", paramPluck, db.createOneReward);
+app.put("/api/rewards", paramPluck, db.updateOneReward);
+app.patch("/api/rewards", paramPluck, db.updateOneReward);
+app.delete("/api/rewards", paramPluck, db.deleteOneReward);
+
+app.get('/', (req, res) => {
+  res.send('Hello world');
+})
+
+app.use("/", express.static(path.resolve(__dirname, "../../client/dist")));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../../client/dist/index.html'))
+})
+
+const PORT = process.env.PORT || 3006;
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port: ${PORT}`)
+})

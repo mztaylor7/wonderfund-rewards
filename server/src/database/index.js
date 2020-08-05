@@ -1,90 +1,126 @@
-// eslint-disable-next-line import/no-extraneous-dependencies,node/no-extraneous-require
-const Sequelize = require('sequelize');
-const mysql = require('mysql2/promise');
+require('dotenv').config();
+const { redisClient, redis } = require('./redis.js');
+const { Pool } = require('pg');
 
-/* Import Models */
-const Project = require('../models/projectModel');
-const Reward = require('../models/rewardModel');
+const connectionString = process.env.PGCONNECTIONSTRING;
 
-let ProjectModel;
-let RewardModel;
+const pool = new Pool({
+  connectionString: connectionString,
+})
 
-module.exports.getProjectModel = () => {
-  return ProjectModel;
+pool.on('error', (err, client) => {
+  console.error('Error:', err);
+});
+
+const filterBody = (req) => {
+  return {
+    id: req.body.id,
+    title: req.body.title,
+    pledgeAmount: req.body.pledgeamount,
+    description: req.body.description,
+    deliveryMonth: req.body.deliverymonth,
+    deliveryYear: req.body.deliveryyear,
+    rewardQuantity: req.body.rewardquantity,
+    projectId: req.body.projectId,
+    rewardItems: req.body.rewarditems,
+  };
 };
 
-module.exports.getRewardModel = () => {
-  return RewardModel;
+const getSearchQuery = (req) => {
+  const searchQuery = {};
+  if (req.projectId) {
+    searchQuery.projectId = req.projectId;
+  }
+
+  if (req.rewardId) {
+    searchQuery.id = req.rewardId;
+  }
+
+  if (req.id) {
+    searchQuery.id = req.id;
+  }
+
+  return searchQuery;
 };
 
-/**
- * Create Sequelize Connection
- * @returns {Promise<*>} A Promise that will eventually resolve with the connection and model
- * objects appended, or will reject with a connection error
- */
-const createSequelizeConnection = () => {
-  return new Promise((resolve, reject) => {
-    /* Connect with base MySQL2 package and creat ethe database if it doesn't exist */
-    const {
-      DATABASE_NAME,
-      DATABASE_USER,
-      DATABASE_PASSWORD,
-      DATABASE_HOST
-    } = process.env;
+const getOneProject = (req, res) => {
+  redisClient.get(req.id, async (err, data) => {
+    if (err) {
+      res.status(500).send(err);
+    } else {
+      if (data) {
+        res.send(data);
+      } else {
+          try {
+            var getProjectQuery = {
+              text: 'SELECT * FROM projects LEFT JOIN rewards ON projects.id = rewards.projectId WHERE projects.id = $1',
+              values: [req.id]
+            }
+            await pool
+              .query(getProjectQuery)
+              .then((projects) => {
+                res.status(200).json(projects.rows);
+                var redisEntry = JSON.stringify(projects.rows);
+                redisClient.set(req.id, redisEntry, (err) => {
+                  if (err) console.log('Redis err: ', err)
+                });
+              })
+              .catch(err => res.status(400).send(err))
+          } catch (err) {
+            res.status(500).send(err)
+          }
+      }
+    }
+  })
+}
 
-    mysql
-      .createConnection({
-        user: DATABASE_USER,
-        password: DATABASE_PASSWORD,
-        host: DATABASE_HOST
-      })
-      .then((sqlRoot) => {
-        sqlRoot
-          .query(`CREATE DATABASE IF NOT EXISTS ${DATABASE_NAME};`)
-          .then(() => {
-            // Connect to MySQL Database
-            const connection = new Sequelize(
-              DATABASE_NAME,
-              DATABASE_USER,
-              DATABASE_PASSWORD,
-              {
-                host: DATABASE_HOST,
-                dialect: 'mysql',
-                logging: false,
-                pool: {
-                  max: 5,
-                  min: 0,
-                  acquire: 30000,
-                  idle: 10000
-                }
-              }
-            );
-
-            /* Create database connection for sequelize*/
-            connection.authenticate().then(async () => {
-              console.log('Connection has been established successfully.');
-
-              /* Initialize Models */
-              ProjectModel = Project.factory(connection);
-              RewardModel = Reward.factory(connection);
-
-              /* Append Association Values to the Project Model for use when items are added ot the database */
-              ProjectModel.Rewards = ProjectModel.hasMany(RewardModel);
-              RewardModel.Project = RewardModel.belongsTo(ProjectModel);
-
-              /* Ensure the tables exist in the database before continuing */
-              await ProjectModel.sync();
-              await RewardModel.sync();
-
-              /* Everything is connected - resolve */
-              resolve(connection);
-            });
-          });
-      })
-      .catch(async (err) => {
-        reject(err);
-      });
-  });
+const getRewards = (req, res) => {
+  var getRewardsQuery = {
+    text: 'SELECT * FROM rewards where projectId = $1',
+    values: [req.projectId]
+  }
+  pool
+    .query(getRewardsQuery)
+    .then(data => res.status(200).json(data.rows))
+    .catch(err => res.status(400).send(err))
 };
 
-module.exports.createSequelizeConnection = createSequelizeConnection;
+const createOneReward = (req, res) => {
+  const params = filterBody(req);
+  pool.query('INSERT INTO rewards (title, pledgeAmount, description, deliveryMonth, deliveryYear, rewardQuantity, projectId, rewardItems) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)' [params.title, params.pledgeAmount, params.description, params.deliveryMonth, params.deliveryYear, params.rewardQuantity, params.projectId, params.rewardItems], (err, data) => {
+    if (err) {
+      res.status(400).send(err);
+    }
+    res.status(201).send(`Reward added with projectId: ${params.projectId}`)
+  })
+}
+
+const updateOneReward = (req, res) => {
+  const searchQuery = getSearchQuery(req);
+  const params = filterBody(req);
+  pool.query('UPDATE rewards SET title = $1, pledgeAmount = $2, description = $3, deliveryMonth = $4, deliveryYear = $5, rewardQuantity = $6, projectId = $7, rewardItems = $8', [params.title, params.pledgeAmount, params.description, params.deliveryMonth, params.deliveryYear, params.rewardQuantity, params.projectId, params.rewardItems], (err, data) => {
+    if (err) {
+      res.status(400).send(err);
+    }
+    res.status(200).send(`Reward updated with projectId: ${params.projectId}`)
+  })
+}
+
+const deleteOneReward = (req, res) => {
+  const searchQuery = getSearchQuery(req);
+  pool.query('DELETE FROM rewards WHERE projectId = $1', [(searchQuery.projectId || searchQuery.id)], (err, data) => {
+    if (err) {
+      res.status(400).send(err);
+    }
+    res.status(200).send(`Reward deleted with projectId: ${params.projectId}`)
+  })
+}
+
+
+module.exports = {
+  getRewards,
+  createOneReward,
+  updateOneReward,
+  deleteOneReward,
+  getOneProject,
+}

@@ -48,6 +48,11 @@ client.query(
   }
 );
 
+
+/*
+Insert examples
+*/
+
 // insert into rewards(title, pledgeAmount, description, deliveryMonth, deliveryYear, rewardQuantity, projectId, rewardItems) values('Intelligent Rubber Bike', 24, 'Laboriosam sunt aut voluptas doloribus exercitationem. Aut ut libero consequatur repellendus atque blanditiis corporis v', 'July', 2020, 166, 10000000, 'Bacon,Mouse,Chips')
 
 /*
