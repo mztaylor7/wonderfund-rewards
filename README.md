@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to kickstarter-rewards-service 👋</h1>
+<h1 align="center">Welcome to wonderfund-rewards 👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
   <img src="https://img.shields.io/badge/npm-%3E%3D6.14.5-blue.svg" />
@@ -6,20 +6,14 @@
   <a href="https://team-iroh.github.io/pledge-rewards/index.html" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
-  <a href="https://github.com/team-iroh/pledge-rewards/graphs/commit-activity" target="_blank">
+  <a href="https://github.com/mztaylor7/wonderfund-rewards/graphs/commit-activity" target="_blank">
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
-  </a>
-  <a href="https://github.com/team-iroh/pledge-rewards/blob/master/LICENSE" target="_blank">
-    <img alt="License: ISC" src="https://img.shields.io/github/license/zjayers/kickstarter-rewards-service" />
   </a>
 </p>
 
-> This is the client & server side code for the rewards/pledges microservice that mocks the rewards component of the Kickstarter site.
+> This is the client & server side code for the rewards/pledges microservice that for a crowdfunding application.
 
-### 🏠 [Homepage](https://github.com/team-iroh/pledge-rewards#readme)
-
-## Server Documentation
-https://team-iroh.github.io/pledge-rewards/index.html
+### 🏠 [Homepage](https://github.com/mztaylor7/wonderfund-rewards#readme)
 
 ## API Documentation
 ### /api/projects
@@ -53,26 +47,30 @@ npm install
 npm run build
 ```
 
-## Usage - Start & Seed Database
+## Usage - Seed Database
 
 ```sh
-npm run start:database
+npm run generateData
 ```
 
-## Usage - Start WITHOUT Seeding Database
+```sh
+npm run seed
+```
+
+## Usage - Start
 
 ```sh
 npm run start
 ```
+## Author
 
-## Usage - Seed Database Script
+👤 **Michael Taylor**
 
-```sh
-npm run seed:database
-```
+* Github: [@mztaylor7](https://github.com/mztaylor7)
+* LinkedIn: [@michael-taylor7](https://linkedin.com/in/michael-taylor7)
 
-## Run tests
+## Show your support
 
-```sh
-npm run test
-```
+Give a ⭐️ if this project helped you!
+
+***

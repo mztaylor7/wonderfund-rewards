@@ -29,6 +29,7 @@
     "seed:database": "node server/src/dev-data/seeds/projectSeed.js --docker",
     "start:database": "npm run seed:database && npm run start",
     "seed": "node server/src/database/seed.js",
+    "generateData": "node server/src/database/generateRecords.js",
     "arty": "artillery run -o artyTest.json server/src/artillery.yml"
   },
   "dependencies": {
